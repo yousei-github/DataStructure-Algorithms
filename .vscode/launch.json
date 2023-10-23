@@ -1,0 +1,64 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Debug this project",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/Cplusplus/bin/project_entry", // the executable file's name for debugging
+            "args": [
+                "--help",
+            ],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            //"preLaunchTask": "C/C++: g++ build this project in default optimization",
+            "miDebuggerPath": "/usr/bin/gdb" // The path of debugger. e.g., /usr/local/bin/gdb, /usr/bin/gdb
+        },
+        {
+            "name": "(gdb) Debug the logical verification",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/Cplusplus/bin/project_entry", // the executable file's name for debugging
+            "args": [
+                "--help",
+            ],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            //"preLaunchTask": "C/C++: g++ build this project in default optimization",
+            "miDebuggerPath": "/usr/bin/gdb" // The path of debugger. e.g., /usr/local/bin/gdb, /usr/bin/gdb
+        }
+    ]
+}
