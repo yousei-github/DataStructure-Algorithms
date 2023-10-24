@@ -15,7 +15,6 @@
 /* Variable */
 
 /* Function */
-
 int main(int argc, char** argv)
 {
     // LinkedLists::DoublyLinkedList<int> test;
@@ -30,8 +29,7 @@ int main(int argc, char** argv)
     // test.removeBack();
     // assert(test.empty());
 
-    LinkedLists::CircularlyDoublyLinkedList<int>
-        test2;
+    LinkedLists::CircularlyDoublyLinkedList<int> test2;
     assert(test2.empty());
     test2.add(6);
     test2.add(8);
@@ -56,6 +54,9 @@ int main(int argc, char** argv)
 
     uint8_t binary1 = 0b1001011;
     std::cout << binary1 << std::endl;
+
+    std::string output_file("Output_file");
+    output_statistics.output_file_initialization(output_file.c_str());
 
     return EXIT_SUCCESS;
 }
