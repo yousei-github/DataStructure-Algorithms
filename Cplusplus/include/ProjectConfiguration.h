@@ -42,8 +42,31 @@ public:
     FILE* file_handler = nullptr;
     char* file_name    = nullptr;
 
+    /**
+     *  Constructor
+     * 
+     * @param[in] v1 The name of data to output.
+     * @param[in] v2 The name of file extension.
+     */
     DATA_OUTPUT(std::string v1, std::string v2);
+
+    /**
+     *  Constructor
+     * 
+     * @param[in] v1 The name of data to output.
+     * @param[in] v2 The name of file extension.
+     * @param[in] string The name string.
+     */
     DATA_OUTPUT(std::string v1, std::string v2, const char* string);
+
+    /**
+     *  Constructor
+     * 
+     * @param[in] v1 The name of data to output.
+     * @param[in] v2 The name of file extension.
+     * @param[in] string_array The string array containing a string.
+     * @param[in] number The number of strings in the string_array.
+     */
     DATA_OUTPUT(std::string v1, std::string v2, char** string_array, uint32_t number);
     ~DATA_OUTPUT();
 

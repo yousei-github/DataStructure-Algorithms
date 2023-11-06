@@ -1,6 +1,12 @@
 /* Header */
 #include "ProjectConfiguration.h"
 
+#include <stddef.h>
+
+#include <cassert>
+#include <cstdlib>
+#include <iostream>
+
 /* Macro */
 
 /* Type */
@@ -47,6 +53,13 @@ void DATA_OUTPUT::output_file_initialization(const char* string)
 {
     file_handler = fopen(string, "w");
     file_name    = (char*) malloc(strlen(string) + 1);
+
+    if (file_name == nullptr)
+    {
+        std::cerr << __func__ << ": Memory Allocation Error." << std::endl;
+        abort();
+    }
+
     strcpy(file_name, string);
 }
 
@@ -56,6 +69,13 @@ void DATA_OUTPUT::output_file_initialization(char** string_array, uint32_t numbe
     for (uint32_t i = 0; i < number; i++)
     {
         char* string_temp = (char*) malloc(strlen(string_array[i]) + 1);
+
+        if (string_temp == nullptr)
+        {
+            std::cerr << __func__ << ": Memory Allocation Error." << std::endl;
+            abort();
+        }
+
         strcpy(string_temp, string_array[i]);
 
         const char* delimiter = "/";
@@ -84,6 +104,13 @@ void DATA_OUTPUT::output_file_initialization(char** string_array, uint32_t numbe
 
     file_handler = fopen(benchmark_names.c_str(), "w");
     file_name    = (char*) malloc(benchmark_names.size() + 1);
+
+    if (file_name == nullptr)
+    {
+        std::cerr << __func__ << ": Memory Allocation Error." << std::endl;
+        abort();
+    }
+
     strcpy(file_name, benchmark_names.c_str());
 }
 
@@ -109,5 +136,7 @@ STATISTICS::~STATISTICS()
 
 void STATISTICS::statistics_initialization()
 {
+    std::cout << "Initialize " << data_name << std::endl;
+
     /* Initialize variabes */
 }

@@ -58,5 +58,5 @@ int main(int argc, char** argv)
     std::string output_file("Output_file");
     output_statistics.output_file_initialization(output_file.c_str());
 
-    return EXIT_SUCCESS;
+    return EXIT_SUCCESS; // Returns the value zero to indicate success
 }
