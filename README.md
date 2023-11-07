@@ -1,12 +1,12 @@
 <p align="center">
-  <h1 align="center"> Data Structures and Algorithms in C++ </h1>
+  <h1 align="center"> Data Structures and Algorithms in C++ & Python </h1>
 </p>
 
 # About This Project
-This project is based on the book ["Data Structures and Algorithms in C++"](https://www.wiley.com/en-sg/Data+Structures+and+Algorithms+in+C%2B%2B%2C+2nd+Edition-p-9780470383278).
+This project is based on the book ["Data Structures and Algorithms in C++"](https://www.wiley.com/en-sg/Data+Structures+and+Algorithms+in+C%2B%2B%2C+2nd+Edition-p-9780470383278), ["Intro to Python for Computer Science and Data Science: Learning to Program with AI, Big Data and The Cloud"](https://www.pearson.com/store/p/intro-to-python-for-computer-science-and-data-science-learning-to-program-with-ai-big-data-and-the-cloud-global-edition/P200000004063/9781292364902).
 
 
-# Build and debug
+# Build and debug the C++ program
 
 Before starting to build or debug this project, you might need to be familiar with [the visual studio code tutorial](https://code.visualstudio.com/docs/cpp/config-linux). Also, a C++11 compiler is required for compilation.
 
@@ -39,8 +39,12 @@ By referring the contents of `launch.json` file in the `.vscode` directory, inpu
 (waiting for updating)
 ```
 
-# Run program
-According to the setting in the `ProjectConfiguration.h` file, the input parameters vary...
+# Run C++ program
+According to the build setting in the `/tasks.json` file, input the command like,
+```
+Cplusplus/bin/project_entry
+```
+where [project_entry] is the executable file's name.
 
 # Miscellaneous
 
