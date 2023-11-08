@@ -71,4 +71,8 @@
     "editor.indentSize": "tabSize",
     "editor.formatOnSave": true, // To format when you save your file
     "C_Cpp.clang_format_path": "/usr/bin/clang-format", // The full path of the clang-format executable. For Linux: "/usr/bin/clang-format".
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "ms-python.autopep8"
+    }
 }
