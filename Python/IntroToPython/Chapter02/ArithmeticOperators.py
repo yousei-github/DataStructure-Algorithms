@@ -1,3 +1,11 @@
+# ArithmeticOperators.py
+"""Basic arithmetic operations."""
+
+# Data type
+print('type(1) is', type(1))
+print('type(1.0) is', type(1.0))
+print("type('Word') is", type('Word'))
+
 # Addition (+)
 print('1 + 1 =', 1 + 1)
 
