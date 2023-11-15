@@ -1,7 +1,7 @@
-# Calculator_AdditionWithTwoOperands.py
+# Calculator_TwoOperands.py
 
 print("""Wellcome!
-This is the addition calculator with two operands\n""")
+This is the calculator with two operands\n""")
 
 value1 = input('Enter first number: ')
 
