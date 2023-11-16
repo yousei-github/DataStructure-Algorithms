@@ -47,6 +47,9 @@
 # (6) Removing files from tracking (and your working directory):
 # git rm [name]
 
+# Removing files from tracking but leaving them in the working directory
+# git rm --cached [name]
+
 # (7) Moving files (or renaming files):
 # git mv [name_old] [name_new]
 
