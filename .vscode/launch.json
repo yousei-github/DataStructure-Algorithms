@@ -61,11 +61,35 @@
             "miDebuggerPath": "/usr/bin/gdb" // The path of debugger. e.g., /usr/local/bin/gdb, /usr/bin/gdb
         },
         {
-            "name": "Python: Current File",
-            "type": "python",
-            "request": "launch",
+            "name": "Python: Current File", // Provides the name for the debug configuration that appears in the VS Code dropdown list.
+            "type": "python", // Identifies the type of debugger to use; leave this set to python for Python code.
+            "python": "${command:python.interpreterPath}", // The full path that points to the Python interpreter to be used for debugging
+            "pythonArgs": [], // Specifies arguments to pass to the Python interpreter
+            "request": "launch", // Specifies the mode in which to start debugging
             "program": "${file}",
+            "args": [
+                "--port",
+                "1593"
+            ],
             "console": "integratedTerminal",
+            "stopOnEntry": true,
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true
+        },
+        {
+            "name": "Python: Specified File", // Provides the name for the debug configuration that appears in the VS Code dropdown list.
+            "type": "python", // Identifies the type of debugger to use; leave this set to python for Python code.
+            "python": "${command:python.interpreterPath}", // The full path that points to the Python interpreter to be used for debugging
+            "pythonArgs": [], // Specifies arguments to pass to the Python interpreter
+            "request": "launch", // Specifies the mode in which to start debugging
+            "program": "${workspaceFolder}/Python/IntroToPython/Chapter02/Calculator_TwoOperands.py",
+            "args": [
+                "--port",
+                "1593"
+            ],
+            "console": "integratedTerminal",
+            "stopOnEntry": true,
+            "cwd": "${workspaceFolder}",
             "justMyCode": true
         },
     ]

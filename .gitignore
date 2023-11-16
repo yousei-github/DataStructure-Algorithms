@@ -1,7 +1,7 @@
 # This file is used to list the file patterns for ignoring the tracking in git
 # ignore all files in below directories
 /bin/
-# /Python/.virtualEnvironment/
+/Python/.virtualEnvironment/
 
 # ignore the specified type of files (.stats/.statistics/.trace/Dockerfile/.sh)
 /*.stats
@@ -166,5 +166,3 @@
 
 # (24) Undoing your last commit, the git add and git commit commands, and all the work in your working directory:
 # git reset --hard [commit_number]
-
-
