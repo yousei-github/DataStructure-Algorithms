@@ -14,5 +14,7 @@ if ((operator == 'even') or (operator == 'odd') or (operator == 'Even') or (oper
         print('The result is: odd number')
 elif ((operator == 'value') or (operator == 'Value')):
     print('The result is:', ord(value1))
+elif ((operator == 'square root') or (operator == 'Square root')):
+    print('The result is:', float(value1) ** (0.5))
 else:
     print('Unknown operator:', operator)
