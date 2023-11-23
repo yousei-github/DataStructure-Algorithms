@@ -1,4 +1,4 @@
-#include "DoublyLinkedList.h"
+#include "LinkedLists/DoublyLinkedList.h"
 
 /* Header */
 
@@ -16,6 +16,27 @@ namespace LinkedLists
 {
 
 template<class T>
+DoublyLinkedListNode<T>::DoublyLinkedListNode(const DoublyLinkedListNode<T>& v1)
+{
+    element  = v1.element;
+    previous = v1.previous;
+    next     = v1.next;
+}
+
+template<class T>
+DoublyLinkedListNode<T>& DoublyLinkedListNode<T>::operator=(const DoublyLinkedListNode<T>& v1)
+{
+    if (this != &v1) // Avoid self-assignment
+    {
+        element  = v1.element;
+        previous = v1.previous;
+        next     = v1.next;
+    }
+
+    return *this; // Allow to chain together assignments
+}
+
+template<class T>
 DoublyLinkedList<T>::DoublyLinkedList()
 {
     // Create sentinels
@@ -26,7 +47,7 @@ DoublyLinkedList<T>::DoublyLinkedList()
     // Have sentinels point to each other
     header->next      = trailer;
     trailer->previous = header;
-};
+}
 
 template<class T>
 DoublyLinkedList<T>::~DoublyLinkedList()
@@ -39,54 +60,54 @@ DoublyLinkedList<T>::~DoublyLinkedList()
     // Remove the sentinels
     delete header;
     delete trailer;
-};
+}
 
 template<class T>
 bool DoublyLinkedList<T>::empty() const
 {
     // The empty state: chech whether the trailer follows immediately after the header
     return (header->next == trailer);
-};
+}
 
 template<class T>
 const T& DoublyLinkedList<T>::front() const
 {
     assert(! empty());
     return header->next->element;
-};
+}
 
 template<class T>
 const T& DoublyLinkedList<T>::back() const
 {
     assert(! empty());
     return trailer->previous->element;
-};
+}
 
 template<class T>
 void DoublyLinkedList<T>::addFront(const T& e)
 {
     add(header->next, e); // Use the protected add(...) function
-};
+}
 
 template<class T>
 void DoublyLinkedList<T>::addBack(const T& e)
 {
     add(trailer, e); // Use the protected add(...) function
-};
+}
 
 template<class T>
 void DoublyLinkedList<T>::removeFront()
 {
     assert(! empty());
     remove(header->next);
-};
+}
 
 template<class T>
 void DoublyLinkedList<T>::removeBack()
 {
     assert(! empty());
     remove(trailer->previous);
-};
+}
 
 template<class T>
 void DoublyLinkedList<T>::add(DoublyLinkedListNode<T>* v, const T& e)
@@ -104,7 +125,7 @@ void DoublyLinkedList<T>::add(DoublyLinkedListNode<T>* v, const T& e)
     // Link v->previous node <-> u node
     u->previous                        = vPrevious;
     vPrevious->next                    = u;
-};
+}
 
 template<class T>
 void DoublyLinkedList<T>::remove(DoublyLinkedListNode<T>* v)
@@ -117,6 +138,6 @@ void DoublyLinkedList<T>::remove(DoublyLinkedListNode<T>* v)
     u->next                    = w;
     w->previous                = u;
     delete v;
-};
+}
 
 } /* namespace LinkedLists */

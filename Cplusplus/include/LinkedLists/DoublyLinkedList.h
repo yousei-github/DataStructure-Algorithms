@@ -28,9 +28,13 @@ template<class T>          // class T is the list element type
 class DoublyLinkedListNode // Doubly linked list node
 {
 public:
-    T element;                                   // Node element value
+    T element {};                                // Node element value
     DoublyLinkedListNode<T>* previous = nullptr; // Previous node in list
     DoublyLinkedListNode<T>* next     = nullptr; // Next node in list
+
+    DoublyLinkedListNode() {};                               // Constructor
+    DoublyLinkedListNode(const DoublyLinkedListNode<T>& v1); // Constructor
+    DoublyLinkedListNode<T>& operator=(const DoublyLinkedListNode<T>& v1);
 };
 
 template<class T> // class T is the list element type
