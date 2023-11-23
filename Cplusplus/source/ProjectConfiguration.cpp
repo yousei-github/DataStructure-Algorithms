@@ -14,6 +14,7 @@
 /* Prototype */
 
 /* Variable */
+
 STATISTICS output_statistics("DataStructure-Algorithms statistics", ".statistics");
 
 /* Function */
@@ -79,9 +80,8 @@ void DATA_OUTPUT::output_file_initialization(char** string_array, uint32_t numbe
         strcpy(string_temp, string_array[i]);
 
         const char* delimiter = "/";
-        char empty[]          = "";
-        char* token           = empty;
-        char* last_token      = empty;
+        char* token           = NULL;
+        char* last_token      = NULL;
 
         /* Get the first token */
         token                 = strtok(string_temp, delimiter);

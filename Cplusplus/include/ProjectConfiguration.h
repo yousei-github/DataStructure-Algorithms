@@ -26,6 +26,7 @@
 #define DISABLE                    (false)
 
 /** Functionality options */
+
 #define USE_OPENMP                 (ENABLE) // Whether use OpenMP to speedup this project
 #define PRINT_STATISTICS_INTO_FILE (ENABLE) // Whether print the statistics into files
 
@@ -100,6 +101,7 @@ private:
 };
 
 /* Prototype */
+
 extern STATISTICS output_statistics;
 
 /* Variable */
