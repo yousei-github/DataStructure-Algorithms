@@ -50,6 +50,26 @@ DoublyLinkedList<T>::DoublyLinkedList()
 }
 
 template<class T>
+DoublyLinkedList<T>::DoublyLinkedList(const DoublyLinkedList<T>& v1)
+{
+    // Create sentinels
+    header  = new DoublyLinkedListNode<T>;
+    trailer = new DoublyLinkedListNode<T>;
+    assert((header != nullptr) && (trailer != nullptr));
+
+    // Have sentinels point to each other
+    header->next                  = trailer;
+    trailer->previous             = header;
+
+    DoublyLinkedListNode<T>* node = v1.trailer->previous;
+    for (size_t i = 0; i < v1.list_size; i++)
+    {
+        add(header->next, node->element);
+        node = node->previous;
+    }
+}
+
+template<class T>
 DoublyLinkedList<T>::~DoublyLinkedList()
 {
     while (! empty())
@@ -65,8 +85,14 @@ DoublyLinkedList<T>::~DoublyLinkedList()
 template<class T>
 bool DoublyLinkedList<T>::empty() const
 {
-    // The empty state: chech whether the trailer follows immediately after the header
+    // The empty state: check whether the trailer follows immediately after the header
     return (header->next == trailer);
+}
+
+template<class T>
+uint32_t DoublyLinkedList<T>::size() const
+{
+    return list_size;
 }
 
 template<class T>
@@ -81,6 +107,21 @@ const T& DoublyLinkedList<T>::back() const
 {
     assert(! empty());
     return trailer->previous->element;
+}
+
+template<class T>
+const T& DoublyLinkedList<T>::get(uint32_t index) const
+{
+    assert(! empty());
+    assert(index < list_size);
+
+    DoublyLinkedListNode<T>* node = header->next;
+    for (size_t i = 0; i < index; i++)
+    {
+        node = node->next;
+    }
+
+    return node->element;
 }
 
 template<class T>
@@ -110,6 +151,33 @@ void DoublyLinkedList<T>::removeBack()
 }
 
 template<class T>
+void DoublyLinkedList<T>::clear()
+{
+    while (! empty())
+    {
+        removeFront();
+    }
+}
+
+template<class T>
+DoublyLinkedList<T>& DoublyLinkedList<T>::operator=(const DoublyLinkedList<T>& v1)
+{
+    if (this != &v1) // Avoid self-assignment
+    {
+        clear(); // Delete old data
+
+        DoublyLinkedListNode<T>* node = v1.trailer->previous;
+        for (size_t i = 0; i < v1.list_size; i++)
+        {
+            add(header->next, node->element);
+            node = node->previous;
+        }
+    }
+
+    return *this; // Allow to chain together assignments
+}
+
+template<class T>
 void DoublyLinkedList<T>::add(DoublyLinkedListNode<T>* v, const T& e)
 {
     DoublyLinkedListNode<T>* u = new DoublyLinkedListNode<T>; // Create a new node for e
@@ -125,6 +193,8 @@ void DoublyLinkedList<T>::add(DoublyLinkedListNode<T>* v, const T& e)
     // Link v->previous node <-> u node
     u->previous                        = vPrevious;
     vPrevious->next                    = u;
+
+    list_size++;
 }
 
 template<class T>
@@ -138,6 +208,7 @@ void DoublyLinkedList<T>::remove(DoublyLinkedListNode<T>* v)
     u->next                    = w;
     w->previous                = u;
     delete v;
+    list_size--;
 }
 
 } /* namespace LinkedLists */

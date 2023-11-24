@@ -52,8 +52,8 @@ public:
 
 private:
     // The node referenced by the cursor is called the back node, and the node following the back node is called the front node in the circular order
-    DoublyLinkedListNode<T>* cursor = nullptr;
-    uint32_t list_size {}; // The size of the list
+    DoublyLinkedListNode<T>* cursor = {};
+    uint32_t list_size              = {}; // The size of the list
 };
 
 // Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template class]
