@@ -1,6 +1,5 @@
-#include "LinkedLists/CircularlyDoublyLinkedList.h"
-
 /* Header */
+#include "LinkedLists/CircularlyDoublyLinkedList.h"
 
 /* Macro */
 

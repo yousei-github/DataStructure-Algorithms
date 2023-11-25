@@ -1,6 +1,5 @@
-#include "LinkedLists/DoublyLinkedList.h"
-
 /* Header */
+#include "LinkedLists/DoublyLinkedList.h"
 
 /* Macro */
 

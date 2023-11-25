@@ -33,12 +33,13 @@
             "miDebuggerPath": "/usr/bin/gdb" // The path of debugger. e.g., /usr/local/bin/gdb, /usr/bin/gdb
         },
         {
-            "name": "(gdb) Debug the logical verification",
+            "name": "(gdb) Debug the active test",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/Cplusplus/bin/project_entry", // the executable file's name for debugging
+            "program": "${workspaceFolder}/Cplusplus/bin/${fileBasenameNoExtension}", // the executable file's name for debugging
             "args": [
-                "--help",
+                "--gtest_shuffle", // Randomize tests' orders on every iteration.
+                "--gtest_break_on_failure", // Turn assertion failures into debugger break-points.
             ],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",

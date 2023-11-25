@@ -6,7 +6,8 @@
 #include <HippoMocks/hippomocks.h> // The main header of HippoMocks. Reference: https://github.com/dascandy/hippomocks
 
 #include "gtest/gtest.h" // The main header of GoogleTest. Reference: https://github.com/google/googletest
-#endif                   // LOGICAL_VERIFICATION
+
+#endif // LOGICAL_VERIFICATION
 
 // Standard libraries
 #include <string.h>
