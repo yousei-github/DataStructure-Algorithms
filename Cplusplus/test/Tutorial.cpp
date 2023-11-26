@@ -10,9 +10,6 @@
 
 /* Type */
 
-extern int g_environment_set_up_count;
-extern int g_environment_tear_down_count;
-
 class Environment : public testing::Environment
 {
 public:
@@ -25,6 +22,10 @@ public:
 
     // Override this to define how to tear down the environment.
     void TearDown() override { g_environment_tear_down_count++; }
+
+    // Global environment variables
+    static int g_environment_set_up_count;
+    static int g_environment_tear_down_count;
 };
 
 class FixtureClass : public testing::Test
@@ -110,13 +111,13 @@ INSTANTIATE_TEST_SUITE_P(InstantiationOne, ValueParameterizedClass, testing::Ran
 
 /* Variable */
 // Global environment variables
-int g_environment_set_up_count            = {};
-int g_environment_tear_down_count         = {};
+int Environment::g_environment_set_up_count    = {};
+int Environment::g_environment_tear_down_count = {};
 
 // Define the shared resource of member variables
-double* FixtureClass::shared_resource     = {};
+double* FixtureClass::shared_resource          = {};
 
-int ValueParameterizedClass::global_count = {};
+int ValueParameterizedClass::global_count      = {};
 
 /* Function */
 
@@ -188,8 +189,8 @@ TEST(TestSuiteName, SkippedTest)
 
 TEST(TestSuiteName, GlobalEnvironment)
 {
-    EXPECT_NE(g_environment_set_up_count, 0);
-    EXPECT_EQ(g_environment_tear_down_count, 0);
+    EXPECT_NE(Environment::g_environment_set_up_count, 0);
+    EXPECT_EQ(Environment::g_environment_tear_down_count, 0);
 }
 
 // Test Fixtures

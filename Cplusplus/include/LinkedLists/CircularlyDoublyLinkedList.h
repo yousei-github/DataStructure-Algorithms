@@ -1,5 +1,5 @@
 /**
- * @brief
+ * @brief Circularly Doubly Linked List
  *
  */
 #ifndef _CIRCULARLYDOUBLYLINKEDLIST_H

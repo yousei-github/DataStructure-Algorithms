@@ -22,6 +22,55 @@ enum class Element : instantiationType
 
 /* Function */
 
+TEST(DoublyLinkedListNode, CopyByConstructor)
+{
+    /* Arrange */
+    LinkedLists::DoublyLinkedListNode<instantiationType> nodeA;
+    nodeA.element = instantiationType(Element::Two);
+
+    /* Act */
+    LinkedLists::DoublyLinkedListNode<instantiationType> sut(nodeA);
+
+    /* Assert */
+    EXPECT_EQ(sut.element, nodeA.element);
+    EXPECT_EQ(sut.previous, nodeA.previous);
+    EXPECT_EQ(sut.next, nodeA.next);
+}
+
+TEST(DoublyLinkedListNode, CopyByOperator)
+{
+    /* Arrange */
+    LinkedLists::DoublyLinkedListNode<instantiationType> nodeA;
+    nodeA.element = instantiationType(Element::Two);
+
+    LinkedLists::DoublyLinkedListNode<instantiationType> sut;
+
+    /* Act */
+    sut = nodeA;
+
+    /* Assert */
+    EXPECT_EQ(sut.element, nodeA.element);
+    EXPECT_EQ(sut.previous, nodeA.previous);
+    EXPECT_EQ(sut.next, nodeA.next);
+}
+
+TEST(DoublyLinkedListNode, SecondCopy)
+{
+    /* Arrange */
+    LinkedLists::DoublyLinkedListNode<instantiationType> nodeA, nodeB;
+    nodeA.element = instantiationType(Element::Two);
+
+    LinkedLists::DoublyLinkedListNode<instantiationType> sut;
+
+    /* Act */
+    sut = nodeB = nodeA;
+
+    /* Assert */
+    EXPECT_EQ(sut.element, nodeA.element);
+    EXPECT_EQ(sut.previous, nodeA.previous);
+    EXPECT_EQ(sut.next, nodeA.next);
+}
+
 TEST(DoublyLinkedList, CopyByConstructor)
 {
     /* Arrange */

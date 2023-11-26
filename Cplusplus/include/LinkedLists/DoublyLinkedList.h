@@ -1,5 +1,5 @@
 /**
- * @brief
+ * @brief Doubly Linked List
  *
  */
 #ifndef _DOUBLYLINKEDLIST_H
@@ -71,6 +71,7 @@ protected:
 /* Prototype */
 // Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template class]
 template class DoublyLinkedList<int>;
+template class DoublyLinkedListNode<int>;
 
 /* Variable */
 
