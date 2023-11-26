@@ -1,6 +1,5 @@
 
 /* Header */
-// Project configuration
 #include <iostream>
 
 #include "ProjectConfiguration.h"

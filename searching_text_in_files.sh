@@ -20,11 +20,11 @@ echo ${#findTextArray[@]}
 
 # Directory array
 directoryArray=(
-"."
-"./Cplusplus/Source/"
-"./Cplusplus/Source/LinkedLists/"
-"./Cplusplus/Include/"
-"./Cplusplus/Include/LinkedLists/"
+# "."
+"./Cplusplus/source/"
+"./Cplusplus/source/LinkedLists/"
+"./Cplusplus/include/"
+"./Cplusplus/include/LinkedLists/"
 )
 
 # Iterate the loop until the counter is less than a number
@@ -55,7 +55,7 @@ do
     for (( i=0; i<${arraylength}; i++ ));
     do
         # echo "index: $i, the given element is: ${findTextArray[$i]}"
-        command="find ${directoryArray[$counter]} -name $fileType1 -o -name $fileType2 | xargs grep -l ${findTextArray[$i]}"
+        command="find ${directoryArray[$counter]} -type f -name $fileType1 -o -name $fileType2 | xargs grep -l ${findTextArray[$i]}"
         # echo "Execute command: $command"
         # echo "[Output]:"
         # Execute the command
