@@ -154,6 +154,8 @@
 				"gtest_main",
 				"-l",
 				"gmock",
+				"-l",
+				"gmock_main",
 				/**
 				 * Below is the executable file's name
 				*/
