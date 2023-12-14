@@ -17,6 +17,7 @@
 /* Function */
 int main(int argc, char** argv)
 {
+    std::cout << sizeof(long) << std::endl;
     LinkedLists::CircularlyDoublyLinkedList<int> test2;
     assert(test2.empty());
     test2.add(6);

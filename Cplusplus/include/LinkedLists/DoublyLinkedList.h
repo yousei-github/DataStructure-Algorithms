@@ -43,16 +43,17 @@ public:
     DoublyLinkedList();                              // Constructor
     DoublyLinkedList(const DoublyLinkedList<T>& v1); // Constructor
     ~DoublyLinkedList();                             // Destructor
-    bool empty() const;                              // Check whether the list is empty
-    uint32_t size() const;                           // Get the size of the list
-    const T& front() const;                          // Get front element; an error results if the list is empty
-    const T& back() const;                           // Get back element; an error results if the list is empty
-    const T& get(uint32_t index) const;              // Return the [index]th element; an error results if the list is empty
-    void addFront(const T& e);                       // Add to front of list
-    void addBack(const T& e);                        // Add to back of list
-    void removeFront();                              // Remove from front
-    void removeBack();                               // Remove from back
-    void clear();                                    // Remove all the nodes
+
+    bool empty() const;                 // Check whether the list is empty
+    uint32_t size() const;              // Get the size of the list
+    const T& front() const;             // Get front element; an error results if the list is empty
+    const T& back() const;              // Get back element; an error results if the list is empty
+    const T& get(uint32_t index) const; // Return the [index]th element; an error results if the list is empty
+    void addFront(const T& e);          // Add to front of list
+    void addBack(const T& e);           // Add to back of list
+    void removeFront();                 // Remove from front
+    void removeBack();                  // Remove from back
+    void clear();                       // Remove all the nodes
 
     DoublyLinkedList<T>& operator=(const DoublyLinkedList<T>& v1);
 

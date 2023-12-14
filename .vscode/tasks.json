@@ -20,12 +20,15 @@
 				"${workspaceFolder}/Cplusplus/include/",
 				"-I",
 				"${workspaceFolder}/Cplusplus/include/LinkedLists/",
+				"-I",
+				"${workspaceFolder}/Cplusplus/include/NumericProgression/",
 				// "-L", // e.g., -L dir. Add directory [dir] to the list of directories to be searched for [-l].
 				// "${workspaceFolder}/vcpkg_installed/x64-linux/lib",
 				/**
 				 * Below are source files: (can be from multiples folders)
 				*/
 				"${workspaceFolder}/Cplusplus/source/LinkedLists/*.cpp",
+				"${workspaceFolder}/Cplusplus/source/NumericProgression/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/*.cpp",
 				/**
 				 * Below are library names:
@@ -75,12 +78,15 @@
 				"${workspaceFolder}/Cplusplus/include/",
 				"-I",
 				"${workspaceFolder}/Cplusplus/include/LinkedLists/",
+				"-I",
+				"${workspaceFolder}/Cplusplus/include/NumericProgression/",
 				// "-L", // e.g., -L dir. Add directory [dir] to the list of directories to be searched for [-l].
 				// "${workspaceFolder}/vcpkg_installed/x64-linux/lib",
 				/**
 				 * Below are source files: (can be from multiples folders)
 				*/
 				"${workspaceFolder}/Cplusplus/source/LinkedLists/*.cpp",
+				"${workspaceFolder}/Cplusplus/source/NumericProgression/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/*.cpp",
 				/**
 				 * Below are library names:
@@ -129,6 +135,8 @@
 				"${workspaceFolder}/Cplusplus/include/",
 				"-I",
 				"${workspaceFolder}/Cplusplus/include/LinkedLists/",
+				"-I",
+				"${workspaceFolder}/Cplusplus/include/NumericProgression/",
 				"-L", // e.g., -L dir. Add directory [dir] to the list of directories to be searched for [-l].
 				"/usr/local/include/gtest/",
 				"-L",
@@ -137,6 +145,7 @@
 				 * Below are source files: (can be from multiples folders)
 				*/
 				"${workspaceFolder}/Cplusplus/source/LinkedLists/*.cpp",
+				"${workspaceFolder}/Cplusplus/source/NumericProgression/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/ProjectConfiguration.cpp",
 				"${file}",
 				/**

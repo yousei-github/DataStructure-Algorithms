@@ -1,0 +1,42 @@
+/* Header */
+#include "NumericProgression/Progression.h"
+
+// C++ standard libraries:
+#include <cassert>
+#include <iostream>
+
+/* Macro */
+
+/* Type */
+
+/* Prototype */
+
+/* Variable */
+
+/* Function */
+
+namespace NumericProgression
+{
+
+void Progression::printProgression(uint64_t v1)
+{
+    std::cout << firstValue();      // Print the first value
+    for (size_t i = 2; i < v1; i++) // Print 2 through n
+    {
+        std::cout << ' ' << nextValue();
+    }
+    std::cout << std::endl;
+}
+
+uint64_t Progression::firstValue()
+{
+    current = first;
+    return current;
+}
+
+uint64_t Progression::nextValue()
+{
+    return ++current;
+}
+
+} // namespace NumericProgression
