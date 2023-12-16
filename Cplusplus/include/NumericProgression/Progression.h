@@ -23,6 +23,7 @@ namespace NumericProgression
 class Progression
 {
 public:
+    /** The @p v1 is the first value */
     Progression(uint64_t v1 = 0)
     : first(v1), current(v1) {}; // Constructor
     virtual ~Progression() {};   // Destructor

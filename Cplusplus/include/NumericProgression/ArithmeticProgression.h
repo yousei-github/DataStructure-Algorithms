@@ -1,0 +1,48 @@
+/**
+ * @brief Arithmetic Progression
+ *
+ */
+#ifndef _ARITHMETICPROGRESSION_H
+#define _ARITHMETICPROGRESSION_H 1
+
+/* Header */
+// Project configuration
+#include "ProjectConfiguration.h"
+
+// C standard libraries:
+#include <stdint.h>
+
+#include "NumericProgression/Progression.h"
+
+/* Macro */
+
+/* Type */
+
+namespace NumericProgression
+{
+
+/** Arithmetic progression */
+class ArithmeticProgression : public Progression
+{
+public:
+    /** The @p v1 is the first value, @p v2 is the increment */
+    ArithmeticProgression(uint64_t v1, uint64_t v2 = 1); // Constructor
+
+protected:
+    /** Advance */
+    virtual uint64_t nextValue();
+
+    /* Data */
+
+    uint64_t increment;
+};
+
+/* Prototype */
+
+/* Variable */
+
+/* Function */
+
+} // namespace NumericProgression
+
+#endif /* _ARITHMETICPROGRESSION_H */
