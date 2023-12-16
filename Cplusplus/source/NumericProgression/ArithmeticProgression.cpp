@@ -3,7 +3,6 @@
 
 // C++ standard libraries:
 #include <cassert>
-#include <iostream>
 
 /* Macro */
 

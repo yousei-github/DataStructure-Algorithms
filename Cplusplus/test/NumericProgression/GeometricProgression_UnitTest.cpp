@@ -1,11 +1,11 @@
 /* Header */
-#include "NumericProgression/ArithmeticProgression.h"
+#include "NumericProgression/GeometricProgression.h"
 #include "gtest/gtest.h"
 
 /* Macro */
 
-#define FIRST_VALUE     (1)
-#define INCREMENT_VALUE (2)
+#define FIRST_VALUE (1)
+#define BASE_VALUE  (2)
 
 /* Type */
 
@@ -17,10 +17,10 @@ typedef uint64_t dataType;
 
 /* Function */
 
-TEST(ArithmeticProgression, printOne)
+TEST(GeometricProgression, printOne)
 {
     /* Arrange */
-    NumericProgression::ArithmeticProgression sut(FIRST_VALUE, BASE_VALUE);
+    NumericProgression::GeometricProgression sut(FIRST_VALUE, BASE_VALUE);
 
     /* Act */
     sut.printProgression(1);
@@ -28,10 +28,10 @@ TEST(ArithmeticProgression, printOne)
     /* Assert */
 }
 
-TEST(ArithmeticProgression, printTwo)
+TEST(GeometricProgression, printTwo)
 {
     /* Arrange */
-    NumericProgression::ArithmeticProgression sut(FIRST_VALUE, BASE_VALUE);
+    NumericProgression::GeometricProgression sut(FIRST_VALUE, BASE_VALUE);
 
     /* Act */
     sut.printProgression(2);
@@ -39,10 +39,10 @@ TEST(ArithmeticProgression, printTwo)
     /* Assert */
 }
 
-TEST(ArithmeticProgression, printOneHundred)
+TEST(GeometricProgression, printOneHundred)
 {
     /* Arrange */
-    NumericProgression::ArithmeticProgression sut(FIRST_VALUE, BASE_VALUE);
+    NumericProgression::GeometricProgression sut(FIRST_VALUE, BASE_VALUE);
 
     /* Act */
     sut.printProgression(100);
