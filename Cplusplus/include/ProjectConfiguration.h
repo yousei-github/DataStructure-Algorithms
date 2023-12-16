@@ -10,18 +10,13 @@
 #endif // LOGICAL_VERIFICATION
 
 // Standard libraries
+#include <stdbool.h>
 #include <string.h>
 
 #include <cstdio>
 #include <string>
 
 /* Macro */
-#ifdef __cplusplus
-
-#else
-#define true (1u)
-#define false (0u)
-#endif /* __cplusplus */
 
 #define ENABLE                     (true)
 #define DISABLE                    (false)

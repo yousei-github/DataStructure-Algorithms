@@ -1,6 +1,10 @@
 
 /* Header */
+#include <HippoMocks/hippomocks.h>
+#include <time.h>
+
 #include <iostream>
+#include <string>
 
 #include "ProjectConfiguration.h"
 #include "gmock/gmock.h"
@@ -60,7 +64,7 @@ protected:
         // You can do set-up work for each test here.
     }
 
-    ~FixtureClass() override
+    ~FixtureClass()
     {
         // You can do clean-up work that doesn't throw exceptions here.
     }
@@ -76,9 +80,20 @@ protected:
         // Code here will be called immediately after each test (right before the destructor, which means the per-test tear-down).
     }
 
+    // Set up the mock
+    void MockSetUp(MockRepository& mocks)
+    {
+        // You can do mock set-up work for each test here.
+
+        mocks.OnCallFunc(clock).Return(CURRENT_CLOCK);
+    }
+
     // Class members declared here can be used by all tests in the test suite for FixtureClass.
-    const char name[12]        = "Hello World";
-    const uint32_t name_length = sizeof(name);
+    const char name[12]            = "Hello World";
+    const uint32_t name_length     = sizeof(name);
+    const clock_t CURRENT_CLOCK    = 10000;
+    const uint32_t TIMER_FREQUENCY = 50;
+    const clock_t CURRENT_TIME     = CURRENT_CLOCK / TIMER_FREQUENCY;
 
     // Declare some expensive resource shared by all tests.
     static double* shared_resource;
@@ -239,6 +254,16 @@ TEST_P(ValueParameterizedClass, Counting)
 
     // Inside a test, access the test parameter with the GetParam() method of the TestWithParam<T> class:
     std::cout << "The global_count is " << global_count << " at the " << GetParam() + 1 << "th test." << std::endl;
+}
+
+// Mock Tests
+TEST_F(FixtureClass, MockTimer)
+{
+    MockRepository mocks;
+    MockSetUp(mocks);
+
+    clock_t currentClock = clock();
+    EXPECT_EQ(currentClock, CURRENT_CLOCK) << "The current clock should be " << CURRENT_CLOCK << ".";
 }
 
 int main(int argc, char** argv)

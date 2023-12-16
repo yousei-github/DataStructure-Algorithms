@@ -20,8 +20,10 @@ namespace NumericProgression
 
 void Progression::printProgression(uint64_t v1)
 {
-    std::cout << firstValue();      // Print the first value
-    for (size_t i = 2; i < v1; i++) // Print 2 through n
+    assert(0 < v1); // The first value starts from the index 1
+
+    std::cout << firstValue();       // Print the first value
+    for (size_t i = 2; i <= v1; i++) // Print 2 through n
     {
         std::cout << ' ' << nextValue();
     }
