@@ -34,7 +34,7 @@ protected:
 
     /* Data */
 
-    uint64_t increment;
+    uint64_t increment; // Increment value
 };
 
 /* Prototype */

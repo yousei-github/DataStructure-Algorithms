@@ -34,7 +34,6 @@ public:
 protected:
     /** Reset */
     virtual uint64_t firstValue();
-
     /** Advance */
     virtual uint64_t nextValue();
 

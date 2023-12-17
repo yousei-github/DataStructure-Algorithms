@@ -34,7 +34,7 @@ protected:
 
     /* Data */
 
-    uint64_t base;
+    uint64_t base; // Base value
 };
 
 /* Prototype */
