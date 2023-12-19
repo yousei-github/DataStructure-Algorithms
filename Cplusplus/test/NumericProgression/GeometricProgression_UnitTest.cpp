@@ -50,6 +50,17 @@ TEST(GeometricProgression, printOneHundred)
     /* Assert */
 }
 
+TEST(GeometricProgression, Polymorphism)
+{
+    /* Arrange */
+    NumericProgression::Progression* sut = new NumericProgression::GeometricProgression(FIRST_VALUE, BASE_VALUE);
+
+    /* Act */
+    sut->printProgression(100);
+
+    /* Assert */
+}
+
 int main(int argc, char** argv)
 {
     testing::InitGoogleTest(&argc, argv);

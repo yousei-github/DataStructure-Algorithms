@@ -50,6 +50,17 @@ TEST(FibonacciProgression, printOneHundred)
     /* Assert */
 }
 
+TEST(FibonacciProgression, Polymorphism)
+{
+    /* Arrange */
+    NumericProgression::Progression* sut = new NumericProgression::FibonacciProgression(FIRST_VALUE, SECOND_VALUE);
+
+    /* Act */
+    sut->printProgression(100);
+
+    /* Assert */
+}
+
 int main(int argc, char** argv)
 {
     testing::InitGoogleTest(&argc, argv);

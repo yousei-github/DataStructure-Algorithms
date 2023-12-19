@@ -20,7 +20,7 @@ typedef uint64_t dataType;
 TEST(ArithmeticProgression, printOne)
 {
     /* Arrange */
-    NumericProgression::ArithmeticProgression sut(FIRST_VALUE, BASE_VALUE);
+    NumericProgression::ArithmeticProgression sut(FIRST_VALUE, INCREMENT_VALUE);
 
     /* Act */
     sut.printProgression(1);
@@ -31,7 +31,7 @@ TEST(ArithmeticProgression, printOne)
 TEST(ArithmeticProgression, printTwo)
 {
     /* Arrange */
-    NumericProgression::ArithmeticProgression sut(FIRST_VALUE, BASE_VALUE);
+    NumericProgression::ArithmeticProgression sut(FIRST_VALUE, INCREMENT_VALUE);
 
     /* Act */
     sut.printProgression(2);
@@ -42,10 +42,21 @@ TEST(ArithmeticProgression, printTwo)
 TEST(ArithmeticProgression, printOneHundred)
 {
     /* Arrange */
-    NumericProgression::ArithmeticProgression sut(FIRST_VALUE, BASE_VALUE);
+    NumericProgression::ArithmeticProgression sut(FIRST_VALUE, INCREMENT_VALUE);
 
     /* Act */
     sut.printProgression(100);
+
+    /* Assert */
+}
+
+TEST(ArithmeticProgression, Polymorphism)
+{
+    /* Arrange */
+    NumericProgression::Progression* sut = new NumericProgression::ArithmeticProgression(FIRST_VALUE, INCREMENT_VALUE);
+
+    /* Act */
+    sut->printProgression(100);
 
     /* Assert */
 }

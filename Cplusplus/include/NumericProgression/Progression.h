@@ -26,10 +26,12 @@ public:
     /** The @p v1 is the first value */
     Progression(uint64_t v1 = 0)
     : first(v1), current(v1) {}; // Constructor
-    virtual ~Progression() {};   // Destructor
+    virtual ~Progression() {};   // Destructor of the generic progression
 
     /** Print @p v1 values */
     void printProgression(uint64_t v1);
+
+    /** @todo A well-defined API for test */
 
 protected:
     /** Reset */
