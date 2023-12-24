@@ -19,7 +19,7 @@
 namespace NumericProgression
 {
 
-/** A generic progression */
+/** A generic progression defined by the abstract base clasee */
 class Progression
 {
 public:
@@ -37,7 +37,7 @@ protected:
     /** Reset */
     virtual uint64_t firstValue();
     /** Advance */
-    virtual uint64_t nextValue();
+    virtual uint64_t nextValue() = 0; // Pure virtual function
 
     /* Data */
 
