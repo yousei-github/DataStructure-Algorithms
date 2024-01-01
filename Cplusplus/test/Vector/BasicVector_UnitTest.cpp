@@ -142,6 +142,34 @@ TEST(BasicVector, RemoveAllElements)
     EXPECT_EQ(sut.size(), 0) << "The size of vector should be 0";
 }
 
+TEST(BasicVector, TemplatedArguments)
+{
+    /* Arrange */
+    Vector::BasicVector<instantiationType> vectorA(instantiationType(Element::Max));
+    for (size_t i = instantiationType(Element::One); i < instantiationType(Element::Max); i++)
+    {
+        vectorA[i] = i;
+    }
+
+    Vector::BasicVector<Vector::BasicVector<instantiationType>> sut(instantiationType(Element::Max));
+
+    /* Act */
+    for (size_t row = instantiationType(Element::One); row < instantiationType(Element::Max); row++)
+    {
+        sut[row] = vectorA;
+    }
+
+    /* Assert */
+    for (size_t row = instantiationType(Element::One); row < instantiationType(Element::Max); row++)
+    {
+        EXPECT_EQ(sut[row].size(), vectorA.size());
+        for (size_t column = instantiationType(Element::One); column < instantiationType(Element::Max); column++)
+        {
+            EXPECT_EQ(sut[row][column], vectorA[column]);
+        }
+    }
+}
+
 int main(int argc, char** argv)
 {
     testing::InitGoogleTest(&argc, argv);
