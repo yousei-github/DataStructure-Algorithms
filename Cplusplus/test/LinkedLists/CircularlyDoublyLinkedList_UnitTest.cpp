@@ -223,7 +223,7 @@ TEST(CircularlyDoublyLinkedList, MaximumSize)
 //     sut.clear();
 
 //     /* Assert */
-//     EXPECT_EQ(sut.size(), 0) << "The size of doubly linked list should 0";
+//     EXPECT_EQ(sut.size(), 0) << "The size of doubly linked list should be 0";
 // }
 
 int main(int argc, char** argv)

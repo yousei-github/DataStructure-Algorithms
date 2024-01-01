@@ -41,7 +41,7 @@ class DoublyLinkedList
 {
 public:
     DoublyLinkedList();                              // Constructor
-    DoublyLinkedList(const DoublyLinkedList<T>& v1); // Constructor
+    DoublyLinkedList(const DoublyLinkedList<T>& v1); // A copy constructor in case of the shallow copy since this class allocates memory
     ~DoublyLinkedList();                             // Destructor
 
     bool empty() const;                 // Check whether the list is empty
@@ -55,7 +55,7 @@ public:
     void removeBack();                  // Remove from back
     void clear();                       // Remove all the nodes
 
-    DoublyLinkedList<T>& operator=(const DoublyLinkedList<T>& v1);
+    DoublyLinkedList<T>& operator=(const DoublyLinkedList<T>& v1); // Overload the assignment operator in case of the shallow copy since this class allocates memory
 
 private:
     // List sentinels: the benefit is effectively handling the special cases by storing extra information

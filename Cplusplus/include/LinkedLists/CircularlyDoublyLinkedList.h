@@ -30,7 +30,7 @@ class CircularlyDoublyLinkedList
 {
 public:
     CircularlyDoublyLinkedList();                                        // Constructor
-    CircularlyDoublyLinkedList(const CircularlyDoublyLinkedList<T>& v1); // Constructor
+    CircularlyDoublyLinkedList(const CircularlyDoublyLinkedList<T>& v1); // A copy constructor in case of the shallow copy since this class allocates memory
     ~CircularlyDoublyLinkedList();                                       // Destructor
 
     bool empty() const;                 // Check whether the list is empty
@@ -47,7 +47,7 @@ public:
     // void addBack(const T& e);  // Add to back of list
     // void removeFront();        // Remove from front
     // void removeBack();         // Remove from back
-    CircularlyDoublyLinkedList<T>& operator=(const CircularlyDoublyLinkedList<T>& v1);
+    CircularlyDoublyLinkedList<T>& operator=(const CircularlyDoublyLinkedList<T>& v1); // Overload the assignment operator in case of the shallow copy since this class allocates memory
 
 private:
     // The node referenced by the cursor is called the back node, and the node following the back node is called the front node in the circular order
