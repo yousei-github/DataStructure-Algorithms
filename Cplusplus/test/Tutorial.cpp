@@ -187,13 +187,35 @@ TEST(TestSuiteName, TestName)
         });
 
     // Verifies that statement throws an exception of any type: EXPECT_ANY_THROW(statement)
-    // EXPECT_ANY_THROW(
-    //     {
-    //         int dividend = 5;
-    //         int divisor  = 0;
-    //         int quotient = dividend / divisor;
-    //         SUCCEED() << "The quotient is " << quotient;
-    //     });
+
+    class CommonException
+    {
+    public:
+        CommonException(const std::string& error)
+        : errorMessage(error) {}
+
+        std::string getError()
+        {
+            return errorMessage;
+        }
+
+    private:
+        std::string errorMessage;
+    };
+
+    EXPECT_ANY_THROW(
+        {
+            int dividend = 5;
+            int divisor  = 0;
+
+            if (divisor == 0) // Attempt to divide by 0?
+            {
+                throw CommonException("Divide by zero");
+            }
+
+            int quotient = dividend / divisor;
+            SUCCEED() << "The quotient is " << quotient;
+        });
 }
 
 TEST(TestSuiteName, SkippedTest)
