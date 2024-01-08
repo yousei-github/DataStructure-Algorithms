@@ -19,14 +19,14 @@
 namespace NumericProgression
 {
 
-/** A generic progression defined by the abstract base clasee */
+/** A generic progression defined by the abstract base class */
 class Progression
 {
 public:
     /** The @p v1 is the first value */
     Progression(uint64_t v1 = 0)
     : first(v1), current(v1) {}; // Constructor
-    virtual ~Progression() {};   // Destructor of the generic progression
+    virtual ~Progression() {};   // Virtual destructor of the abstract base class to avoid a memory leak in case the derived class needs to implement a destructor
 
     /** Print @p v1 values */
     void printProgression(uint64_t v1);

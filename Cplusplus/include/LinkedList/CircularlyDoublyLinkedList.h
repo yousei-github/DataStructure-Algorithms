@@ -16,13 +16,13 @@
 #include <cassert>
 #include <cstdio>
 
-#include "LinkedLists/DoublyLinkedList.h"
+#include "LinkedList/DoublyLinkedList.h"
 
 /* Macro */
 
 /* Type */
 
-namespace LinkedLists
+namespace LinkedList
 {
 
 template<class T> // class T is the list element type
@@ -63,6 +63,6 @@ template class CircularlyDoublyLinkedList<int>;
 
 /* Function */
 
-} /* namespace LinkedLists */
+} /* namespace LinkedList */
 
 #endif /* _CIRCULARLYDOUBLYLINKEDLIST_H */

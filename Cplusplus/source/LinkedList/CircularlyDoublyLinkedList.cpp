@@ -1,5 +1,5 @@
 /* Header */
-#include "LinkedLists/CircularlyDoublyLinkedList.h"
+#include "LinkedList/CircularlyDoublyLinkedList.h"
 
 /* Macro */
 
@@ -11,7 +11,7 @@
 
 /* Function */
 
-namespace LinkedLists
+namespace LinkedList
 {
 template<class T>
 CircularlyDoublyLinkedList<T>::CircularlyDoublyLinkedList()
@@ -167,4 +167,4 @@ CircularlyDoublyLinkedList<T>& CircularlyDoublyLinkedList<T>::operator=(const Ci
     return *this; // Allow to chain together assignments
 }
 
-} /* namespace LinkedLists */
+} /* namespace LinkedList */

@@ -33,7 +33,7 @@ public:
     ~BasicVector();                        // Destructor
 
     bool empty() const;    // Check whether the vector is empty
-    uint32_t size() const; // Get the size of the list
+    uint32_t size() const; // Get the size of the vector
     void clear();          // Remove all the elements
 
     BasicVector<T>& operator=(const BasicVector<T>& v1); // Overload the assignment operator in case of the shallow copy since this class allocates memory

@@ -20,7 +20,7 @@
 
 /* Type */
 
-namespace LinkedLists
+namespace LinkedList
 {
 
 template<class T>          // class T is the list element type
@@ -78,6 +78,6 @@ template class DoublyLinkedListNode<int>;
 
 /* Function */
 
-} /* namespace LinkedLists */
+} /* namespace LinkedList */
 
 #endif /* _DOUBLYLINKEDLIST_H */

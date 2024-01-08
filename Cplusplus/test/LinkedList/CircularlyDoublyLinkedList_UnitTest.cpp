@@ -1,5 +1,5 @@
 /* Header */
-#include "LinkedLists/CircularlyDoublyLinkedList.h"
+#include "LinkedList/CircularlyDoublyLinkedList.h"
 #include "gtest/gtest.h"
 
 /* Macro */
@@ -25,7 +25,7 @@ enum class Element : instantiationType
 TEST(CircularlyDoublyLinkedList, CopyByConstructor)
 {
     /* Arrange */
-    LinkedLists::CircularlyDoublyLinkedList<instantiationType> listA;
+    LinkedList::CircularlyDoublyLinkedList<instantiationType> listA;
     instantiationType elementOne = instantiationType(Element::One);
     listA.add(elementOne);
     instantiationType elementTwo = instantiationType(Element::Two);
@@ -34,7 +34,7 @@ TEST(CircularlyDoublyLinkedList, CopyByConstructor)
     listA.add(elementThree);
 
     /* Act */
-    LinkedLists::CircularlyDoublyLinkedList<instantiationType> sut(listA);
+    LinkedList::CircularlyDoublyLinkedList<instantiationType> sut(listA);
 
     /* Assert */
     EXPECT_EQ(sut.size(), listA.size());
@@ -46,7 +46,7 @@ TEST(CircularlyDoublyLinkedList, CopyByConstructor)
 TEST(CircularlyDoublyLinkedList, CopyByOperator)
 {
     /* Arrange */
-    LinkedLists::CircularlyDoublyLinkedList<instantiationType> listA;
+    LinkedList::CircularlyDoublyLinkedList<instantiationType> listA;
     instantiationType elementOne = instantiationType(Element::One);
     listA.add(elementOne);
     instantiationType elementTwo = instantiationType(Element::Two);
@@ -54,7 +54,7 @@ TEST(CircularlyDoublyLinkedList, CopyByOperator)
     instantiationType elementThree = instantiationType(Element::Three);
     listA.add(elementThree);
 
-    LinkedLists::CircularlyDoublyLinkedList<instantiationType> sut;
+    LinkedList::CircularlyDoublyLinkedList<instantiationType> sut;
 
     /* Act */
     sut = listA;
@@ -69,7 +69,7 @@ TEST(CircularlyDoublyLinkedList, CopyByOperator)
 TEST(CircularlyDoublyLinkedList, SecondCopy)
 {
     /* Arrange */
-    LinkedLists::CircularlyDoublyLinkedList<instantiationType> listA, listB;
+    LinkedList::CircularlyDoublyLinkedList<instantiationType> listA, listB;
     instantiationType elementOne = instantiationType(Element::One);
     listA.add(elementOne);
     instantiationType elementTwo = instantiationType(Element::Two);
@@ -77,7 +77,7 @@ TEST(CircularlyDoublyLinkedList, SecondCopy)
     instantiationType elementThree = instantiationType(Element::Three);
     listA.add(elementThree);
 
-    LinkedLists::CircularlyDoublyLinkedList<instantiationType> sut;
+    LinkedList::CircularlyDoublyLinkedList<instantiationType> sut;
 
     /* Act */
     sut = listB = listA;
@@ -92,7 +92,7 @@ TEST(CircularlyDoublyLinkedList, SecondCopy)
 TEST(CircularlyDoublyLinkedList, Empty)
 {
     /* Arrange */
-    LinkedLists::CircularlyDoublyLinkedList<instantiationType> sut;
+    LinkedList::CircularlyDoublyLinkedList<instantiationType> sut;
 
     /* Act */
     bool isEmpty = sut.empty();
@@ -104,7 +104,7 @@ TEST(CircularlyDoublyLinkedList, Empty)
 TEST(CircularlyDoublyLinkedList, MaximumSize)
 {
     /* Arrange */
-    LinkedLists::CircularlyDoublyLinkedList<instantiationType> sut;
+    LinkedList::CircularlyDoublyLinkedList<instantiationType> sut;
     sut.add(instantiationType(Element::One));
     sut.add(instantiationType(Element::Two));
     sut.add(instantiationType(Element::Three));
@@ -119,7 +119,7 @@ TEST(CircularlyDoublyLinkedList, MaximumSize)
 // TEST(CircularlyDoublyLinkedList, AddOneNodeInFront)
 // {
 //     /* Arrange */
-//     LinkedLists::DoublyLinkedList<instantiationType> sut;
+//     LinkedList::DoublyLinkedList<instantiationType> sut;
 //     instantiationType element = instantiationType(Element::One);
 
 //     /* Act */
@@ -132,7 +132,7 @@ TEST(CircularlyDoublyLinkedList, MaximumSize)
 // TEST(CircularlyDoublyLinkedList, AddOneNodeInBack)
 // {
 //     /* Arrange */
-//     LinkedLists::DoublyLinkedList<instantiationType> sut;
+//     LinkedList::DoublyLinkedList<instantiationType> sut;
 //     instantiationType element = instantiationType(Element::Two);
 
 //     /* Act */
@@ -145,7 +145,7 @@ TEST(CircularlyDoublyLinkedList, MaximumSize)
 // TEST(CircularlyDoublyLinkedList, AddSecondNodeInFront)
 // {
 //     /* Arrange */
-//     LinkedLists::DoublyLinkedList<instantiationType> sut;
+//     LinkedList::DoublyLinkedList<instantiationType> sut;
 //     instantiationType elementOne = instantiationType(Element::One);
 //     sut.addFront(elementOne);
 
@@ -161,7 +161,7 @@ TEST(CircularlyDoublyLinkedList, MaximumSize)
 // TEST(CircularlyDoublyLinkedList, GetThirdNode)
 // {
 //     /* Arrange */
-//     LinkedLists::DoublyLinkedList<instantiationType> sut;
+//     LinkedList::DoublyLinkedList<instantiationType> sut;
 //     instantiationType elementOne = instantiationType(Element::One);
 //     sut.addFront(elementOne);
 //     instantiationType elementTwo = instantiationType(Element::Two);
@@ -179,7 +179,7 @@ TEST(CircularlyDoublyLinkedList, MaximumSize)
 // TEST(CircularlyDoublyLinkedList, RemoveFrontNode)
 // {
 //     /* Arrange */
-//     LinkedLists::DoublyLinkedList<instantiationType> sut;
+//     LinkedList::DoublyLinkedList<instantiationType> sut;
 //     instantiationType elementOne = instantiationType(Element::One);
 //     sut.addFront(elementOne);
 //     instantiationType elementTwo = instantiationType(Element::Two);
@@ -195,7 +195,7 @@ TEST(CircularlyDoublyLinkedList, MaximumSize)
 // TEST(CircularlyDoublyLinkedList, RemoveBackNode)
 // {
 //     /* Arrange */
-//     LinkedLists::DoublyLinkedList<instantiationType> sut;
+//     LinkedList::DoublyLinkedList<instantiationType> sut;
 //     instantiationType elementOne = instantiationType(Element::One);
 //     sut.addFront(elementOne);
 //     instantiationType elementTwo = instantiationType(Element::Two);
@@ -211,7 +211,7 @@ TEST(CircularlyDoublyLinkedList, MaximumSize)
 // TEST(CircularlyDoublyLinkedList, RemoveAllNodes)
 // {
 //     /* Arrange */
-//     LinkedLists::DoublyLinkedList<instantiationType> sut;
+//     LinkedList::DoublyLinkedList<instantiationType> sut;
 //     instantiationType elementOne = instantiationType(Element::One);
 //     sut.addFront(elementOne);
 //     instantiationType elementTwo = instantiationType(Element::Two);

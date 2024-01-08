@@ -3,8 +3,8 @@
 /* Header */
 #include "Main.h"
 
-#include "LinkedLists/CircularlyDoublyLinkedList.h"
-#include "LinkedLists/DoublyLinkedList.h"
+#include "LinkedList/CircularlyDoublyLinkedList.h"
+#include "LinkedList/DoublyLinkedList.h"
 
 /* Macro */
 
@@ -18,7 +18,7 @@
 int main(int argc, char** argv)
 {
     std::cout << sizeof(long) << std::endl;
-    LinkedLists::CircularlyDoublyLinkedList<int> test2;
+    LinkedList::CircularlyDoublyLinkedList<int> test2;
     assert(test2.empty());
     test2.add(6);
     test2.add(8);
@@ -30,9 +30,9 @@ int main(int argc, char** argv)
     std::cout << test2.front() << std::endl;
     std::cout << test2.back() << std::endl;
 
-    // LinkedLists::CircularlyDoublyLinkedList<int> test3(test2);
-    LinkedLists::CircularlyDoublyLinkedList<int> test3;
-    LinkedLists::CircularlyDoublyLinkedList<int> test4 = test3 = test2;
+    // LinkedList::CircularlyDoublyLinkedList<int> test3(test2);
+    LinkedList::CircularlyDoublyLinkedList<int> test3;
+    LinkedList::CircularlyDoublyLinkedList<int> test4 = test3 = test2;
 
     test2.retreat();
     std::cout << test2.front() << std::endl;

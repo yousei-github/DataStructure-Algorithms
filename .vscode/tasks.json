@@ -25,19 +25,22 @@
 				"-I", // e.g., -I dir. This means adding the directory [dir] to the list of directories to be searched for header files during preprocessing
 				"${workspaceFolder}/Cplusplus/include/",
 				"-I",
-				"${workspaceFolder}/Cplusplus/include/LinkedLists/",
+				"${workspaceFolder}/Cplusplus/include/LinkedList/",
 				"-I",
 				"${workspaceFolder}/Cplusplus/include/NumericProgression/",
 				"-I",
 				"${workspaceFolder}/Cplusplus/include/Vector/",
+				"-I",
+				"${workspaceFolder}/Cplusplus/include/Array/",
 				// "-L", // e.g., -L dir. Add directory [dir] to the list of directories to be searched for [-l].
 				// "${workspaceFolder}/vcpkg_installed/x64-linux/lib",
 				/**
 				 * Below are source files: (can be from multiples folders)
 				 */
-				"${workspaceFolder}/Cplusplus/source/LinkedLists/*.cpp",
+				"${workspaceFolder}/Cplusplus/source/LinkedList/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/NumericProgression/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/Vector/*.cpp",
+				"${workspaceFolder}/Cplusplus/source/Array/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/*.cpp",
 				/**
 				 * Below are library names:
@@ -92,19 +95,22 @@
 				"-I", // e.g., -I dir. This means adding the directory [dir] to the list of directories to be searched for header files during preprocessing
 				"${workspaceFolder}/Cplusplus/include/",
 				"-I",
-				"${workspaceFolder}/Cplusplus/include/LinkedLists/",
+				"${workspaceFolder}/Cplusplus/include/LinkedList/",
 				"-I",
 				"${workspaceFolder}/Cplusplus/include/NumericProgression/",
 				"-I",
 				"${workspaceFolder}/Cplusplus/include/Vector/",
+				"-I",
+				"${workspaceFolder}/Cplusplus/include/Array/",
 				// "-L", // e.g., -L dir. Add directory [dir] to the list of directories to be searched for [-l].
 				// "${workspaceFolder}/vcpkg_installed/x64-linux/lib",
 				/**
 				 * Below are source files: (can be from multiples folders)
 				 */
-				"${workspaceFolder}/Cplusplus/source/LinkedLists/*.cpp",
+				"${workspaceFolder}/Cplusplus/source/LinkedList/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/NumericProgression/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/Vector/*.cpp",
+				"${workspaceFolder}/Cplusplus/source/Array/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/*.cpp",
 				/**
 				 * Below are library names:
@@ -159,19 +165,22 @@
 				"-I", // e.g., -I dir. This means adding the directory [dir] to the list of directories to be searched for header files during preprocessing
 				"${workspaceFolder}/Cplusplus/include/",
 				"-I",
-				"${workspaceFolder}/Cplusplus/include/LinkedLists/",
+				"${workspaceFolder}/Cplusplus/include/LinkedList/",
 				"-I",
 				"${workspaceFolder}/Cplusplus/include/NumericProgression/",
 				"-I",
 				"${workspaceFolder}/Cplusplus/include/Vector/",
+				"-I",
+				"${workspaceFolder}/Cplusplus/include/Array/",
 				// "-L", // e.g., -L dir. Add directory [dir] to the list of directories to be searched for [-l].
 				// "${workspaceFolder}/vcpkg_installed/x64-linux/lib",
 				/**
 				 * Below are source files: (can be from multiples folders)
 				 */
-				"${workspaceFolder}/Cplusplus/source/LinkedLists/*.cpp",
+				"${workspaceFolder}/Cplusplus/source/LinkedList/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/NumericProgression/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/Vector/*.cpp",
+				"${workspaceFolder}/Cplusplus/source/Array/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/*.cpp",
 				/**
 				 * Below are library names:
@@ -225,11 +234,13 @@
 				"-I", // e.g., -I dir. This means adding the directory [dir] to the list of directories to be searched for header files during preprocessing
 				"${workspaceFolder}/Cplusplus/include/",
 				"-I",
-				"${workspaceFolder}/Cplusplus/include/LinkedLists/",
+				"${workspaceFolder}/Cplusplus/include/LinkedList/",
 				"-I",
 				"${workspaceFolder}/Cplusplus/include/NumericProgression/",
 				"-I",
 				"${workspaceFolder}/Cplusplus/include/Vector/",
+				"-I",
+				"${workspaceFolder}/Cplusplus/include/Array/",
 				"-L", // e.g., -L dir. Add directory [dir] to the list of directories to be searched for [-l].
 				"/usr/local/include/gtest/",
 				"-L",
@@ -237,9 +248,10 @@
 				/**
 				 * Below are source files: (can be from multiples folders)
 				 */
-				"${workspaceFolder}/Cplusplus/source/LinkedLists/*.cpp",
+				"${workspaceFolder}/Cplusplus/source/LinkedList/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/NumericProgression/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/Vector/*.cpp",
+				"${workspaceFolder}/Cplusplus/source/Array/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/ProjectConfiguration.cpp",
 				"${file}",
 				/**
@@ -293,9 +305,9 @@
 				"-I", // e.g., -I dir. This means adding the directory dir to the list of directories to be searched for header files during preprocessing
 				"${workspaceFolder}/Cplusplus/Include/",
 				"-I",
-				"${workspaceFolder}/Cplusplus/Include/LinkedLists/",
+				"${workspaceFolder}/Cplusplus/Include/LinkedList/",
 				// Below are input files (can be from multiples folders)
-				"${workspaceFolder}/Cplusplus/Source/LinkedLists/*.cpp",
+				"${workspaceFolder}/Cplusplus/Source/LinkedList/*.cpp",
 				"${workspaceFolder}/Cplusplus/Source/*.cpp",
 				// Below is the executable file's name
 				"-o",

@@ -1,5 +1,5 @@
 /* Header */
-#include "LinkedLists/DoublyLinkedList.h"
+#include "LinkedList/DoublyLinkedList.h"
 
 /* Macro */
 
@@ -11,7 +11,7 @@
 
 /* Function */
 
-namespace LinkedLists
+namespace LinkedList
 {
 
 template<class T>
@@ -210,4 +210,4 @@ void DoublyLinkedList<T>::remove(DoublyLinkedListNode<T>* v)
     list_size--;
 }
 
-} /* namespace LinkedLists */
+} /* namespace LinkedList */

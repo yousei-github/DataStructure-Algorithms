@@ -35,9 +35,9 @@ echo ${#findTextArray[@]}
 directoryArray=(
 # "."
 "./Cplusplus/source/"
-"./Cplusplus/source/LinkedLists/"
+"./Cplusplus/source/LinkedList/"
 "./Cplusplus/include/"
-"./Cplusplus/include/LinkedLists/"
+"./Cplusplus/include/LinkedList/"
 )
 
 # Iterate the loop until the counter is less than a number

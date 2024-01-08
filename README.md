@@ -40,8 +40,8 @@ Build methods are explained below.
 ### 2. Command line-based Method.
 By referring the contents of `tasks.json` file in the `.vscode` directory, input the below command,
 ```sh
-$ [COMPILER] -O3 -g -Wall -fopenmp -I project_directory/inc/ -I project_directory/Cplusplus/include/ -I project_directory/Cplusplus/include/LinkedLists/ 
-project_directory/Cplusplus/source/LinkedLists/*.cpp project_directory/Cplusplus/source/*.cpp
+$ [COMPILER] -O3 -g -Wall -fopenmp -I project_directory/inc/ -I project_directory/Cplusplus/include/ -I project_directory/Cplusplus/include/LinkedList/ 
+project_directory/Cplusplus/source/LinkedList/*.cpp project_directory/Cplusplus/source/*.cpp
 -o project_directory/Cplusplus/bin/project_entry_O3
 ```
 where [COMPILER] is the compiler's name, such as g++.

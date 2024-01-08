@@ -1,5 +1,5 @@
 /* Header */
-#include "LinkedLists/DoublyLinkedList.h"
+#include "LinkedList/DoublyLinkedList.h"
 #include "gtest/gtest.h"
 
 /* Macro */
@@ -25,11 +25,11 @@ enum class Element : instantiationType
 TEST(DoublyLinkedListNode, CopyByConstructor)
 {
     /* Arrange */
-    LinkedLists::DoublyLinkedListNode<instantiationType> nodeA;
+    LinkedList::DoublyLinkedListNode<instantiationType> nodeA;
     nodeA.element = instantiationType(Element::Two);
 
     /* Act */
-    LinkedLists::DoublyLinkedListNode<instantiationType> sut(nodeA);
+    LinkedList::DoublyLinkedListNode<instantiationType> sut(nodeA);
 
     /* Assert */
     EXPECT_EQ(sut.element, nodeA.element);
@@ -40,10 +40,10 @@ TEST(DoublyLinkedListNode, CopyByConstructor)
 TEST(DoublyLinkedListNode, CopyByOperator)
 {
     /* Arrange */
-    LinkedLists::DoublyLinkedListNode<instantiationType> nodeA;
+    LinkedList::DoublyLinkedListNode<instantiationType> nodeA;
     nodeA.element = instantiationType(Element::Two);
 
-    LinkedLists::DoublyLinkedListNode<instantiationType> sut;
+    LinkedList::DoublyLinkedListNode<instantiationType> sut;
 
     /* Act */
     sut = nodeA;
@@ -57,10 +57,10 @@ TEST(DoublyLinkedListNode, CopyByOperator)
 TEST(DoublyLinkedListNode, SecondCopy)
 {
     /* Arrange */
-    LinkedLists::DoublyLinkedListNode<instantiationType> nodeA, nodeB;
+    LinkedList::DoublyLinkedListNode<instantiationType> nodeA, nodeB;
     nodeA.element = instantiationType(Element::Two);
 
-    LinkedLists::DoublyLinkedListNode<instantiationType> sut;
+    LinkedList::DoublyLinkedListNode<instantiationType> sut;
 
     /* Act */
     sut = nodeB = nodeA;
@@ -74,7 +74,7 @@ TEST(DoublyLinkedListNode, SecondCopy)
 TEST(DoublyLinkedList, CopyByConstructor)
 {
     /* Arrange */
-    LinkedLists::DoublyLinkedList<instantiationType> listA;
+    LinkedList::DoublyLinkedList<instantiationType> listA;
     instantiationType elementOne = instantiationType(Element::One);
     listA.addFront(elementOne);
     instantiationType elementTwo = instantiationType(Element::Two);
@@ -83,7 +83,7 @@ TEST(DoublyLinkedList, CopyByConstructor)
     listA.addFront(elementThree);
 
     /* Act */
-    LinkedLists::DoublyLinkedList<instantiationType> sut(listA);
+    LinkedList::DoublyLinkedList<instantiationType> sut(listA);
 
     /* Assert */
     EXPECT_EQ(sut.size(), listA.size());
@@ -95,7 +95,7 @@ TEST(DoublyLinkedList, CopyByConstructor)
 TEST(DoublyLinkedList, CopyByOperator)
 {
     /* Arrange */
-    LinkedLists::DoublyLinkedList<instantiationType> listA;
+    LinkedList::DoublyLinkedList<instantiationType> listA;
     instantiationType elementOne = instantiationType(Element::One);
     listA.addFront(elementOne);
     instantiationType elementTwo = instantiationType(Element::Two);
@@ -103,7 +103,7 @@ TEST(DoublyLinkedList, CopyByOperator)
     instantiationType elementThree = instantiationType(Element::Three);
     listA.addFront(elementThree);
 
-    LinkedLists::DoublyLinkedList<instantiationType> sut;
+    LinkedList::DoublyLinkedList<instantiationType> sut;
 
     /* Act */
     sut = listA;
@@ -118,7 +118,7 @@ TEST(DoublyLinkedList, CopyByOperator)
 TEST(DoublyLinkedList, SecondCopy)
 {
     /* Arrange */
-    LinkedLists::DoublyLinkedList<instantiationType> listA, listB;
+    LinkedList::DoublyLinkedList<instantiationType> listA, listB;
     instantiationType elementOne = instantiationType(Element::One);
     listA.addFront(elementOne);
     instantiationType elementTwo = instantiationType(Element::Two);
@@ -126,7 +126,7 @@ TEST(DoublyLinkedList, SecondCopy)
     instantiationType elementThree = instantiationType(Element::Three);
     listA.addFront(elementThree);
 
-    LinkedLists::DoublyLinkedList<instantiationType> sut;
+    LinkedList::DoublyLinkedList<instantiationType> sut;
 
     /* Act */
     sut = listB = listA;
@@ -141,7 +141,7 @@ TEST(DoublyLinkedList, SecondCopy)
 TEST(DoublyLinkedList, Empty)
 {
     /* Arrange */
-    LinkedLists::DoublyLinkedList<instantiationType> sut;
+    LinkedList::DoublyLinkedList<instantiationType> sut;
 
     /* Act */
     bool isEmpty = sut.empty();
@@ -153,7 +153,7 @@ TEST(DoublyLinkedList, Empty)
 TEST(DoublyLinkedList, MaximumSize)
 {
     /* Arrange */
-    LinkedLists::DoublyLinkedList<instantiationType> sut;
+    LinkedList::DoublyLinkedList<instantiationType> sut;
     sut.addFront(instantiationType(Element::One));
     sut.addFront(instantiationType(Element::Two));
     sut.addFront(instantiationType(Element::Three));
@@ -168,7 +168,7 @@ TEST(DoublyLinkedList, MaximumSize)
 TEST(DoublyLinkedList, AddOneNodeInFront)
 {
     /* Arrange */
-    LinkedLists::DoublyLinkedList<instantiationType> sut;
+    LinkedList::DoublyLinkedList<instantiationType> sut;
     instantiationType element = instantiationType(Element::One);
 
     /* Act */
@@ -181,7 +181,7 @@ TEST(DoublyLinkedList, AddOneNodeInFront)
 TEST(DoublyLinkedList, AddOneNodeInBack)
 {
     /* Arrange */
-    LinkedLists::DoublyLinkedList<instantiationType> sut;
+    LinkedList::DoublyLinkedList<instantiationType> sut;
     instantiationType element = instantiationType(Element::Two);
 
     /* Act */
@@ -194,7 +194,7 @@ TEST(DoublyLinkedList, AddOneNodeInBack)
 TEST(DoublyLinkedList, AddSecondNodeInFront)
 {
     /* Arrange */
-    LinkedLists::DoublyLinkedList<instantiationType> sut;
+    LinkedList::DoublyLinkedList<instantiationType> sut;
     instantiationType elementOne = instantiationType(Element::One);
     sut.addFront(elementOne);
 
@@ -210,7 +210,7 @@ TEST(DoublyLinkedList, AddSecondNodeInFront)
 TEST(DoublyLinkedList, GetThirdNode)
 {
     /* Arrange */
-    LinkedLists::DoublyLinkedList<instantiationType> sut;
+    LinkedList::DoublyLinkedList<instantiationType> sut;
     instantiationType elementOne = instantiationType(Element::One);
     sut.addFront(elementOne);
     instantiationType elementTwo = instantiationType(Element::Two);
@@ -228,7 +228,7 @@ TEST(DoublyLinkedList, GetThirdNode)
 TEST(DoublyLinkedList, RemoveFrontNode)
 {
     /* Arrange */
-    LinkedLists::DoublyLinkedList<instantiationType> sut;
+    LinkedList::DoublyLinkedList<instantiationType> sut;
     instantiationType elementOne = instantiationType(Element::One);
     sut.addFront(elementOne);
     instantiationType elementTwo = instantiationType(Element::Two);
@@ -244,7 +244,7 @@ TEST(DoublyLinkedList, RemoveFrontNode)
 TEST(DoublyLinkedList, RemoveBackNode)
 {
     /* Arrange */
-    LinkedLists::DoublyLinkedList<instantiationType> sut;
+    LinkedList::DoublyLinkedList<instantiationType> sut;
     instantiationType elementOne = instantiationType(Element::One);
     sut.addFront(elementOne);
     instantiationType elementTwo = instantiationType(Element::Two);
@@ -260,7 +260,7 @@ TEST(DoublyLinkedList, RemoveBackNode)
 TEST(DoublyLinkedList, RemoveAllNodes)
 {
     /* Arrange */
-    LinkedLists::DoublyLinkedList<instantiationType> sut;
+    LinkedList::DoublyLinkedList<instantiationType> sut;
     instantiationType elementOne = instantiationType(Element::One);
     sut.addFront(elementOne);
     instantiationType elementTwo = instantiationType(Element::Two);
