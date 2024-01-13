@@ -147,6 +147,26 @@ TEST(BasicArray, RemoveAllElements)
     EXPECT_EQ(sut.size(), 0) << "The size of array should be 0";
 }
 
+TEST(BasicArray, Occupancy)
+{
+    /* Arrange */
+    Array::BasicArray<instantiationType> sut(instantiationType(Element::Max));
+    for (auto parameter : entryTable)
+    {
+        Array::ArrayEntry<instantiationType> entry(parameter.element, parameter.number);
+        sut.add(entry);
+    }
+
+    sut.remove(0);
+
+    /* Act */
+    uint32_t occupancy = sut.occupancy();
+
+    /* Assert */
+    EXPECT_EQ(occupancy, instantiationType(Element::Max) - 1) << "The occupancy of array should be " << instantiationType(Element::Max) - 1;
+    EXPECT_EQ(sut.size(), instantiationType(Element::Max)) << "The size of array should be " << instantiationType(Element::Max);
+}
+
 TEST(BasicArray, StoreHighestNumberInDescendingOrder)
 {
     /* Arrange */

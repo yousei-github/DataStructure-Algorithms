@@ -1,6 +1,9 @@
 /* Header */
 #include "SortingAlgorithm/InsertionSort.h"
 
+// C++ standard libraries:
+#include <cassert>
+
 /* Macro */
 
 /* Type */
@@ -22,6 +25,8 @@ namespace SortingAlgorithm
 template<class T>
 void insertionSort(T* array, uint32_t length)
 {
+    assert(array != nullptr);
+
     for (size_t index = 1; index < length; index++) // Insertion loop
     {
         T current       = array[index];                           // Current element to insert
@@ -34,5 +39,8 @@ void insertionSort(T* array, uint32_t length)
         array[subIndex] = current; // This is the proper place for current
     }
 }
+
+// Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template function]
+template void insertionSort<int>(int* array, uint32_t length);
 
 } // namespace SortingAlgorithm

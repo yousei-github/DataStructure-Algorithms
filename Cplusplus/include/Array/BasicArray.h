@@ -76,7 +76,7 @@ public:
     /** Access entry at the @p index */
     ArrayEntry<T>& operator[](uint32_t index)
     {
-        assert(index < numberOfEntries); // Invalid index
+        assert(index < maxEntries); // Invalid index
         return entries[index];
     }
 
@@ -86,10 +86,11 @@ private:
     ArrayEntry<T>* entries   = {};
 };
 
-/* Prototype */
 // Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template class]
 template class ArrayEntry<int>;
 template class BasicArray<int>;
+
+/* Prototype */
 
 /* Variable */
 

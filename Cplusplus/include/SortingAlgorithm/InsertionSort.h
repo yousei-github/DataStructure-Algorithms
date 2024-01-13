@@ -9,9 +9,6 @@
 // Project configuration
 #include "ProjectConfiguration.h"
 
-// C++ standard libraries:
-#include <cassert>
-
 // C standard libraries:
 #include <stdint.h>
 

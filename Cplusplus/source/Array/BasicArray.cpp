@@ -141,7 +141,7 @@ void BasicArray<T>::add(const ArrayEntry<T>& v1)
 template<class T>
 ArrayEntry<T> BasicArray<T>::remove(uint32_t index)
 {
-    assert(index < numberOfEntries); // Invalid index
+    assert(index < maxEntries); // Invalid index
 
     ArrayEntry<T> entry = entries[index]; // Save the removed object
     for (size_t i = index + 1; i < numberOfEntries; i++)
