@@ -23,7 +23,7 @@ namespace SortingAlgorithm
  *  @param length The length of the array
 */
 template<class T>
-void insertionSort(T* array, uint32_t length)
+void insertionSort(T* array, const uint32_t length)
 {
     assert(array != nullptr);
 
@@ -41,6 +41,6 @@ void insertionSort(T* array, uint32_t length)
 }
 
 // Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template function]
-template void insertionSort<int>(int* array, uint32_t length);
+template void insertionSort<int>(int* array, const uint32_t length);
 
 } // namespace SortingAlgorithm

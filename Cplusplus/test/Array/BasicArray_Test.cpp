@@ -36,7 +36,6 @@ struct EntryOrganization
 /* Function */
 
 TEST(BasicArray, CopyByConstructor)
-
 {
     /* Arrange */
     Array::BasicArray<instantiationType> arrayA(instantiationType(Element::Max));

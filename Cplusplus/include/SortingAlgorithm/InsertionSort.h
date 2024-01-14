@@ -25,7 +25,7 @@ namespace SortingAlgorithm
 /* Function */
 
 template<class T>
-void insertionSort(T* array, uint32_t length);
+void insertionSort(T* array, const uint32_t length);
 
 } // namespace SortingAlgorithm
 
