@@ -27,30 +27,34 @@ TEST(DynamicAllocation, Matrix)
     /* Arrange */
     const uint32_t rowSize     = 7;
     const uint32_t columnSize  = 24;
-    instantiationType** Matrix = {};
+    instantiationType** matrix = {};
     instantiationType element  = {};
 
     /* Act */
-    Matrix                     = new instantiationType*[rowSize]; // Allocate an array of row pointers
+    matrix                     = new instantiationType*[rowSize]; // Allocate an array of row pointers
     for (size_t row = 0; row < rowSize; row++)
     {
-        Matrix[row] = new instantiationType[columnSize]; // Allocate the i-th row
-
-        for (size_t column = 0; column < columnSize; column++)
-        {
-            Matrix[row][column] = element++;
-        }
+        matrix[row] = new instantiationType[columnSize]; // Allocate the i-th row
     }
 
     /* Assert */
-    EXPECT_NE(Matrix, nullptr);
+    EXPECT_NE(matrix, nullptr);
+
+    // Store elements in the matrix
+    for (size_t row = 0; row < rowSize; row++)
+    {
+        for (size_t column = 0; column < columnSize; column++)
+        {
+            matrix[row][column] = element++;
+        }
+    }
 
     element = {};
     for (size_t row = 0; row < rowSize; row++)
     {
         for (size_t column = 0; column < columnSize; column++)
         {
-            EXPECT_EQ(Matrix[row][column], element) << "Matrix[" << row << "][" << column << "] should be " << element;
+            EXPECT_EQ(matrix[row][column], element) << "Matrix[" << row << "][" << column << "] should be " << element;
             element++;
         }
     }
@@ -58,9 +62,9 @@ TEST(DynamicAllocation, Matrix)
     /* TearDown */
     for (size_t row = 0; row < rowSize; row++)
     {
-        delete[] Matrix[row]; // Delete the i-th row
+        delete[] matrix[row]; // Delete the i-th row
     }
-    delete[] Matrix; // Delete the array of row pointers
+    delete[] matrix; // Delete the array of row pointers
 }
 
 int main(int argc, char** argv)
