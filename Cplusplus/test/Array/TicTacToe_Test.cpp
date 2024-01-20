@@ -24,11 +24,12 @@ TEST(TicTacToe, PrintBoard)
     // No code here
 }
 
-TEST(TicTacToe, WinRow)
+TEST(TicTacToe, XWinRow)
 {
     /* Arrange */
     Game::TicTacToe sut;
-    int8_t expectMark = sut.X;
+    int8_t expectMark                = sut.X;
+    Game::TicTacToe::WinType wintype = Game::TicTacToe::WinType::Row;
 
     /* Act */
     sut.putMark(0, 0);
@@ -39,14 +40,41 @@ TEST(TicTacToe, WinRow)
 
     /* Assert */
     sut.printBoard();
-    EXPECT_EQ(sut.getWinner(), expectMark);
+
+    const int8_t winner = sut.getWinner();
+    EXPECT_EQ(winner, expectMark);
+    EXPECT_EQ(sut.getWinType(winner), wintype);
 }
 
-TEST(TicTacToe, WinColumn)
+TEST(TicTacToe, OWinRow)
 {
     /* Arrange */
     Game::TicTacToe sut;
-    int8_t expectMark = sut.X;
+    int8_t expectMark                = sut.O;
+    Game::TicTacToe::WinType wintype = Game::TicTacToe::WinType::Row;
+
+    /* Act */
+    sut.putMark(0, 0);
+    sut.putMark(1, 1);
+    sut.putMark(2, 0);
+    sut.putMark(1, 0);
+    sut.putMark(0, 2);
+    sut.putMark(1, 2);
+
+    /* Assert */
+    sut.printBoard();
+
+    const int8_t winner = sut.getWinner();
+    EXPECT_EQ(winner, expectMark);
+    EXPECT_EQ(sut.getWinType(winner), wintype);
+}
+
+TEST(TicTacToe, XWinColumn)
+{
+    /* Arrange */
+    Game::TicTacToe sut;
+    int8_t expectMark                = sut.X;
+    Game::TicTacToe::WinType wintype = Game::TicTacToe::WinType::Column;
 
     /* Act */
     sut.putMark(0, 1);
@@ -57,14 +85,41 @@ TEST(TicTacToe, WinColumn)
 
     /* Assert */
     sut.printBoard();
-    EXPECT_EQ(sut.getWinner(), expectMark);
+
+    const int8_t winner = sut.getWinner();
+    EXPECT_EQ(winner, expectMark);
+    EXPECT_EQ(sut.getWinType(winner), wintype);
 }
 
-TEST(TicTacToe, WinDiagonal)
+TEST(TicTacToe, OWinColumn)
 {
     /* Arrange */
     Game::TicTacToe sut;
-    int8_t expectMark = sut.X;
+    int8_t expectMark                = sut.O;
+    Game::TicTacToe::WinType wintype = Game::TicTacToe::WinType::Column;
+
+    /* Act */
+    sut.putMark(1, 0);
+    sut.putMark(1, 1);
+    sut.putMark(0, 2);
+    sut.putMark(0, 1);
+    sut.putMark(2, 2);
+    sut.putMark(2, 1);
+
+    /* Assert */
+    sut.printBoard();
+
+    const int8_t winner = sut.getWinner();
+    EXPECT_EQ(winner, expectMark);
+    EXPECT_EQ(sut.getWinType(winner), wintype);
+}
+
+TEST(TicTacToe, XWinDiagonal)
+{
+    /* Arrange */
+    Game::TicTacToe sut;
+    int8_t expectMark                = sut.X;
+    Game::TicTacToe::WinType wintype = Game::TicTacToe::WinType::Diagonal;
 
     /* Act */
     sut.putMark(0, 0);
@@ -75,14 +130,41 @@ TEST(TicTacToe, WinDiagonal)
 
     /* Assert */
     sut.printBoard();
-    EXPECT_EQ(sut.getWinner(), expectMark);
+
+    const int8_t winner = sut.getWinner();
+    EXPECT_EQ(winner, expectMark);
+    EXPECT_EQ(sut.getWinType(winner), wintype);
+}
+
+TEST(TicTacToe, OWinDiagonal)
+{
+    /* Arrange */
+    Game::TicTacToe sut;
+    int8_t expectMark                = sut.O;
+    Game::TicTacToe::WinType wintype = Game::TicTacToe::WinType::Diagonal;
+
+    /* Act */
+    sut.putMark(1, 0);
+    sut.putMark(1, 1);
+    sut.putMark(1, 2);
+    sut.putMark(0, 2);
+    sut.putMark(2, 1);
+    sut.putMark(2, 0);
+
+    /* Assert */
+    sut.printBoard();
+
+    const int8_t winner = sut.getWinner();
+    EXPECT_EQ(winner, expectMark);
+    EXPECT_EQ(sut.getWinType(winner), wintype);
 }
 
 TEST(TicTacToe, Tie)
 {
     /* Arrange */
     Game::TicTacToe sut;
-    int8_t expectMark = sut.EMPTY;
+    int8_t expectMark                = sut.EMPTY;
+    Game::TicTacToe::WinType wintype = Game::TicTacToe::WinType::Tie;
 
     /* Act */
     sut.putMark(0, 0);
@@ -97,7 +179,10 @@ TEST(TicTacToe, Tie)
 
     /* Assert */
     sut.printBoard();
-    EXPECT_EQ(sut.getWinner(), expectMark);
+
+    const int8_t winner = sut.getWinner();
+    EXPECT_EQ(winner, expectMark);
+    EXPECT_EQ(sut.getWinType(winner), wintype);
 }
 
 int main(int argc, char** argv)
