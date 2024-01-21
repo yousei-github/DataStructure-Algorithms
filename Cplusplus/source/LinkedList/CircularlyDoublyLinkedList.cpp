@@ -15,6 +15,7 @@ namespace LinkedList
 {
 template<class T>
 CircularlyDoublyLinkedList<T>::CircularlyDoublyLinkedList()
+: cursor(nullptr), list_size(0)
 {
 }
 

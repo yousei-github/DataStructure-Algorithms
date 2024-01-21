@@ -46,6 +46,8 @@ DoublyLinkedList<T>::DoublyLinkedList()
     // Have sentinels point to each other
     header->next      = trailer;
     trailer->previous = header;
+
+    list_size         = 0;
 }
 
 template<class T>

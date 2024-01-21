@@ -23,7 +23,7 @@ namespace Vector
 {
 
 /** A simple vector class */
-template<typename T>
+template<typename T> // Cass T is the vector element type
 class BasicVector
 {
 public:
