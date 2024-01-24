@@ -50,10 +50,10 @@ TEST(Inheritance, InheritanceHierarchy)
         virtual void printMe() { std::cout << "Read it.\n"; }
     };
 
-    Region* mid = new State;
-    State* md   = new Maryland;
     Object* obj = new Place;
     Place* usa  = new Region;
+    Region* mid = new State;
+    State* md   = new Maryland;
 
     /* Act */
     md->printMe();                          // Polymorphism

@@ -15,15 +15,14 @@ typedef int instantiationType;
 
 /* Function */
 
+/**
+ * @test 
+ * Test the dynamic allocation of matrices
+ * 
+ * A two-dimensional array is also called a matrix which is an array of row pointers
+*/
 TEST(DynamicAllocation, Matrix)
 {
-    /**
-     * @test 
-     * Test the dynamic allocation of matrices
-     * 
-     * A two-dimensional array is also called a matrix which is an array of row pointers
-    */
-
     /* Arrange */
     const uint32_t rowSize     = 7;
     const uint32_t columnSize  = 24;
