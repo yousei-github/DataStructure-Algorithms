@@ -116,115 +116,131 @@ TEST(CircularlyDoublyLinkedList, MaximumSize)
     EXPECT_EQ(size, instantiationType(Element::Max)) << "The size of circularly doubly linked list should be " << instantiationType(Element::Max);
 }
 
-// TEST(CircularlyDoublyLinkedList, AddOneNodeInFront)
-// {
-//     /* Arrange */
-//     LinkedList::DoublyLinkedList<instantiationType> sut;
-//     instantiationType element = instantiationType(Element::One);
+TEST(CircularlyDoublyLinkedList, AddOneNodeInFront)
+{
+    /* Arrange */
+    LinkedList::CircularlyDoublyLinkedList<instantiationType> sut;
+    instantiationType element = instantiationType(Element::One);
 
-//     /* Act */
-//     sut.addFront(element);
+    /* Act */
+    sut.addFront(element);
 
-//     /* Assert */
-//     EXPECT_EQ(sut.front(), element) << "The element in the front node should be " << element;
-// }
+    /* Assert */
+    EXPECT_EQ(sut.front(), element) << "The element in the front node should be " << element;
+}
 
-// TEST(CircularlyDoublyLinkedList, AddOneNodeInBack)
-// {
-//     /* Arrange */
-//     LinkedList::DoublyLinkedList<instantiationType> sut;
-//     instantiationType element = instantiationType(Element::Two);
+TEST(CircularlyDoublyLinkedList, AddOneNodeInBack)
+{
+    /* Arrange */
+    LinkedList::CircularlyDoublyLinkedList<instantiationType> sut;
+    instantiationType element = instantiationType(Element::Two);
 
-//     /* Act */
-//     sut.addBack(element);
+    /* Act */
+    sut.addBack(element);
 
-//     /* Assert */
-//     EXPECT_EQ(sut.back(), element) << "The element in the back node should be " << element;
-// }
+    /* Assert */
+    EXPECT_EQ(sut.back(), element) << "The element in the back node should be " << element;
+}
 
-// TEST(CircularlyDoublyLinkedList, AddSecondNodeInFront)
-// {
-//     /* Arrange */
-//     LinkedList::DoublyLinkedList<instantiationType> sut;
-//     instantiationType elementOne = instantiationType(Element::One);
-//     sut.addFront(elementOne);
+TEST(CircularlyDoublyLinkedList, AddSecondNodeInFront)
+{
+    /* Arrange */
+    LinkedList::CircularlyDoublyLinkedList<instantiationType> sut;
+    instantiationType elementOne = instantiationType(Element::One);
+    sut.addFront(elementOne);
 
-//     instantiationType elementTwo = instantiationType(Element::Two);
+    instantiationType elementTwo = instantiationType(Element::Two);
 
-//     /* Act */
-//     sut.addFront(elementTwo);
+    /* Act */
+    sut.addFront(elementTwo);
 
-//     /* Assert */
-//     EXPECT_EQ(sut.front(), elementTwo) << "The element in the front node should be " << elementTwo;
-// }
+    /* Assert */
+    EXPECT_EQ(sut.front(), elementTwo) << "The element in the front node should be " << elementTwo;
+}
 
-// TEST(CircularlyDoublyLinkedList, GetThirdNode)
-// {
-//     /* Arrange */
-//     LinkedList::DoublyLinkedList<instantiationType> sut;
-//     instantiationType elementOne = instantiationType(Element::One);
-//     sut.addFront(elementOne);
-//     instantiationType elementTwo = instantiationType(Element::Two);
-//     sut.addFront(elementTwo);
-//     instantiationType elementThree = instantiationType(Element::Three);
-//     sut.addFront(elementThree);
+TEST(CircularlyDoublyLinkedList, AddSecondNodeInBack)
+{
+    /* Arrange */
+    LinkedList::CircularlyDoublyLinkedList<instantiationType> sut;
+    instantiationType elementOne = instantiationType(Element::One);
+    sut.addBack(elementOne);
 
-//     /* Act */
-//     instantiationType thirdNode = sut.get(2);
+    instantiationType elementTwo = instantiationType(Element::Two);
 
-//     /* Assert */
-//     EXPECT_EQ(thirdNode, elementOne) << "The element in the third node should be " << elementOne;
-// }
+    /* Act */
+    sut.addBack(elementTwo);
 
-// TEST(CircularlyDoublyLinkedList, RemoveFrontNode)
-// {
-//     /* Arrange */
-//     LinkedList::DoublyLinkedList<instantiationType> sut;
-//     instantiationType elementOne = instantiationType(Element::One);
-//     sut.addFront(elementOne);
-//     instantiationType elementTwo = instantiationType(Element::Two);
-//     sut.addFront(elementTwo);
+    /* Assert */
+    EXPECT_EQ(sut.back(), elementTwo) << "The element in the back node should be " << elementTwo;
+}
 
-//     /* Act */
-//     sut.removeFront();
+TEST(CircularlyDoublyLinkedList, GetThirdNode)
+{
+    /* Arrange */
+    LinkedList::CircularlyDoublyLinkedList<instantiationType> sut;
+    instantiationType elementOne = instantiationType(Element::One);
+    sut.addFront(elementOne);
+    instantiationType elementTwo = instantiationType(Element::Two);
+    sut.addFront(elementTwo);
+    instantiationType elementThree = instantiationType(Element::Three);
+    sut.addFront(elementThree);
 
-//     /* Assert */
-//     EXPECT_EQ(sut.front(), elementOne) << "The element in the front node should be " << elementOne;
-// }
+    /* Act */
+    instantiationType thirdNode = sut.get(2);
 
-// TEST(CircularlyDoublyLinkedList, RemoveBackNode)
-// {
-//     /* Arrange */
-//     LinkedList::DoublyLinkedList<instantiationType> sut;
-//     instantiationType elementOne = instantiationType(Element::One);
-//     sut.addFront(elementOne);
-//     instantiationType elementTwo = instantiationType(Element::Two);
-//     sut.addFront(elementTwo);
+    /* Assert */
+    EXPECT_EQ(thirdNode, elementOne) << "The element in the third node should be " << elementOne;
+}
 
-//     /* Act */
-//     sut.removeBack();
+TEST(CircularlyDoublyLinkedList, RemoveFrontNode)
+{
+    /* Arrange */
+    LinkedList::CircularlyDoublyLinkedList<instantiationType> sut;
+    instantiationType elementOne = instantiationType(Element::One);
+    sut.addFront(elementOne);
+    instantiationType elementTwo = instantiationType(Element::Two);
+    sut.addFront(elementTwo);
 
-//     /* Assert */
-//     EXPECT_EQ(sut.front(), elementTwo) << "The element in the front node should be " << elementTwo;
-// }
+    /* Act */
+    sut.removeFront();
 
-// TEST(CircularlyDoublyLinkedList, RemoveAllNodes)
-// {
-//     /* Arrange */
-//     LinkedList::DoublyLinkedList<instantiationType> sut;
-//     instantiationType elementOne = instantiationType(Element::One);
-//     sut.addFront(elementOne);
-//     instantiationType elementTwo = instantiationType(Element::Two);
-//     sut.addFront(elementTwo);
-//     instantiationType elementThree = instantiationType(Element::Three);
-//     sut.addFront(elementThree);
+    /* Assert */
+    EXPECT_EQ(sut.front(), elementOne) << "The element in the front node should be " << elementOne;
+}
 
-//     /* Act */
-//     sut.clear();
+TEST(CircularlyDoublyLinkedList, RemoveBackNode)
+{
+    /* Arrange */
+    LinkedList::CircularlyDoublyLinkedList<instantiationType> sut;
+    instantiationType elementOne = instantiationType(Element::One);
+    sut.addFront(elementOne);
+    instantiationType elementTwo = instantiationType(Element::Two);
+    sut.addFront(elementTwo);
 
-//     /* Assert */
-//     EXPECT_EQ(sut.size(), 0) << "The size of doubly linked list should be 0";
-// }
+    /* Act */
+    sut.removeBack();
+
+    /* Assert */
+    EXPECT_EQ(sut.front(), elementTwo) << "The element in the front node should be " << elementTwo;
+}
+
+TEST(CircularlyDoublyLinkedList, RemoveAllNodes)
+{
+    /* Arrange */
+    LinkedList::CircularlyDoublyLinkedList<instantiationType> sut;
+    instantiationType elementOne = instantiationType(Element::One);
+    sut.addFront(elementOne);
+    instantiationType elementTwo = instantiationType(Element::Two);
+    sut.addFront(elementTwo);
+    instantiationType elementThree = instantiationType(Element::Three);
+    sut.addFront(elementThree);
+
+    /* Act */
+    sut.clear();
+
+    /* Assert */
+    EXPECT_EQ(sut.size(), 0) << "The size of doubly linked list should be 0";
+}
 
 int main(int argc, char** argv)
 {

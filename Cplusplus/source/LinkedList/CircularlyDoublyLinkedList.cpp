@@ -151,6 +151,69 @@ void CircularlyDoublyLinkedList<T>::clear()
 }
 
 template<class T>
+void CircularlyDoublyLinkedList<T>::addFront(const T& e)
+{
+    add(e);
+}
+
+template<class T>
+void CircularlyDoublyLinkedList<T>::addBack(const T& e)
+{
+    DoublyLinkedListNode<T>* u = new DoublyLinkedListNode<T>; // Create a new node for e
+    assert(u != nullptr);
+    u->element = e;
+    if (empty()) // List is empty
+    {
+        u->next     = u; // The u points to itself
+        u->previous = u;
+        cursor      = u; // The cursor points to u
+    }
+    else
+    {
+        DoublyLinkedListNode<T>* v = cursor->next;
+        /** @note Link u in between cursor and v */
+        // Link u node <-> v node
+        u->next                    = v;
+        v->previous                = u;
+
+        // Link cursor <-> u node
+        u->previous                = cursor;
+        cursor->next               = u;
+
+        cursor                     = u; // The cursor points to u
+    }
+    list_size++;
+}
+
+template<class T>
+void CircularlyDoublyLinkedList<T>::removeFront()
+{
+    remove();
+}
+
+template<class T>
+void CircularlyDoublyLinkedList<T>::removeBack()
+{
+    assert(! empty());
+    DoublyLinkedListNode<T>* old = cursor; // The node being removed
+    if (cursor->next == cursor)            // Remove the only node
+    {
+        cursor = nullptr; // The list is now empty
+    }
+    else
+    {
+        DoublyLinkedListNode<T>* v = old->next;
+        // Link out the old node
+        cursor->previous->next     = v;
+        v->previous                = cursor->previous;
+
+        cursor                     = cursor->previous; // The cursor points to the previous node
+    }
+    delete old; // Delete the old node
+    list_size--;
+}
+
+template<class T>
 CircularlyDoublyLinkedList<T>& CircularlyDoublyLinkedList<T>::operator=(const CircularlyDoublyLinkedList<T>& v1)
 {
     if (this != &v1) // Avoid self-assignment
