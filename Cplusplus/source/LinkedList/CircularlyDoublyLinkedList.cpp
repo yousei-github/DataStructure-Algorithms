@@ -142,15 +142,6 @@ void CircularlyDoublyLinkedList<T>::remove()
 }
 
 template<class T>
-void CircularlyDoublyLinkedList<T>::clear()
-{
-    while (! empty())
-    {
-        remove();
-    }
-}
-
-template<class T>
 void CircularlyDoublyLinkedList<T>::addFront(const T& e)
 {
     add(e);
@@ -211,6 +202,15 @@ void CircularlyDoublyLinkedList<T>::removeBack()
     }
     delete old; // Delete the old node
     list_size--;
+}
+
+template<class T>
+void CircularlyDoublyLinkedList<T>::clear()
+{
+    while (! empty())
+    {
+        remove();
+    }
 }
 
 template<class T>

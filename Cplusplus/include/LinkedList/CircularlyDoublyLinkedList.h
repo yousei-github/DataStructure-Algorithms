@@ -48,6 +48,25 @@ public:
     void removeBack();         // Remove from back
     void clear();              // Remove all the nodes
 
+    static void reverseList(CircularlyDoublyLinkedList<T>& list) // Reverse the elements of the list
+    {
+        CircularlyDoublyLinkedList<T> temp;
+
+        while (! list.empty())
+        {
+            T element = list.front();
+            list.removeFront();
+            temp.addFront(element);
+        }
+
+        while (! temp.empty())
+        {
+            T element = temp.front();
+            temp.removeFront();
+            list.addBack(element);
+        }
+    }
+
     CircularlyDoublyLinkedList<T>& operator=(const CircularlyDoublyLinkedList<T>& v1); // Overload the assignment operator in case of the shallow copy since this class allocates memory
 
 private:
