@@ -55,6 +55,25 @@ public:
     void removeBack();         // Remove from back
     void clear();              // Remove all the nodes
 
+    static void reverseList(DoublyLinkedList<T>& list) // Reverse the elements of the list (@todo)
+    {
+        DoublyLinkedList<T> temp;
+
+        while (! list.empty())
+        {
+            T element = list.front();
+            list.removeFront();
+            temp.addFront(element);
+        }
+
+        while (! temp.empty())
+        {
+            T element = temp.front();
+            temp.removeFront();
+            list.addBack(element);
+        }
+    }
+
     DoublyLinkedList<T>& operator=(const DoublyLinkedList<T>& v1); // Overload the assignment operator in case of the shallow copy since this class allocates memory
 
 private:

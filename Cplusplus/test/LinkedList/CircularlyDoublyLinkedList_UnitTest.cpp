@@ -362,7 +362,7 @@ TEST_F(CircularlyDoublyLinkedList_TestSuite, RemoveAllNodes)
     sut.clear();
 
     /* Assert */
-    EXPECT_EQ(sut.size(), 0) << "The size of doubly linked list should be 0";
+    EXPECT_EQ(sut.size(), 0) << "The size of circularly doubly linked list should be 0";
 }
 
 TEST_F(CircularlyDoublyLinkedList_TestSuite, ReverseList)

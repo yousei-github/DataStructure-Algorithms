@@ -8,25 +8,79 @@
 
 typedef int instantiationType;
 
-enum class Element : instantiationType
+class DoublyLinkedList_TestSuite : public testing::Test
 {
-    One = 0,
-    Two,
-    Three,
-    Max
+#define NUMBER_OF_ELEMENTS (50)
+
+public:
+    /**
+     * Per-test-suite set-up.
+     * Called before the first test in this test suite.
+     * Can be omitted if not needed.
+     */
+    static void SetUpTestSuite()
+    {
+        instantiationType elementOne = 0;
+        for (size_t index = 0; index < elementArray.size(); index++)
+        {
+            elementArray[index] = elementOne;
+            elementOne += 2;
+        }
+    }
+
+    /**
+     * Per-test-suite tear-down.
+     * Called after the last test in this test suite.
+     * Can be omitted if not needed.
+     */
+    static void TearDownTestSuite()
+    {
+    }
+
+protected:
+    // You can remove any or all of the following functions if their bodies would be empty.
+
+    DoublyLinkedList_TestSuite()
+    {
+        // You can do set-up work for each test here.
+    }
+
+    ~DoublyLinkedList_TestSuite()
+    {
+        // You can do clean-up work that doesn't throw exceptions here.
+    }
+
+    // If the constructor and destructor are not enough for setting up and cleaning up each test, you can define the following methods:
+    void SetUp() override
+    {
+        // Code here will be called immediately after the constructor (right before each test, which means the per-test set-up).
+    }
+
+    void TearDown() override
+    {
+        // Code here will be called immediately after each test (right before the destructor, which means the per-test tear-down).
+    }
+
+    // Class members declared here can be used by all tests in the test suite for DoublyLinkedList_TestSuite.
+
+    static std::array<instantiationType, NUMBER_OF_ELEMENTS> elementArray;
 };
 
 /* Prototype */
 
 /* Variable */
 
+// Define the shared resource of member variables
+
+std::array<instantiationType, NUMBER_OF_ELEMENTS> DoublyLinkedList_TestSuite::elementArray;
+
 /* Function */
 
-TEST(DoublyLinkedListNode, CopyByConstructor)
+TEST(DoublyLinkedListNode_TestSuite, CopyByConstructor)
 {
     /* Arrange */
     LinkedList::DoublyLinkedListNode<instantiationType> nodeA;
-    nodeA.element = instantiationType(Element::Two);
+    nodeA.element = instantiationType(2);
 
     /* Act */
     LinkedList::DoublyLinkedListNode<instantiationType> sut(nodeA);
@@ -37,11 +91,11 @@ TEST(DoublyLinkedListNode, CopyByConstructor)
     EXPECT_EQ(sut.next, nodeA.next);
 }
 
-TEST(DoublyLinkedListNode, CopyByOperator)
+TEST(DoublyLinkedListNode_TestSuite, CopyByOperator)
 {
     /* Arrange */
     LinkedList::DoublyLinkedListNode<instantiationType> nodeA;
-    nodeA.element = instantiationType(Element::Two);
+    nodeA.element = instantiationType(2);
 
     LinkedList::DoublyLinkedListNode<instantiationType> sut;
 
@@ -54,11 +108,11 @@ TEST(DoublyLinkedListNode, CopyByOperator)
     EXPECT_EQ(sut.next, nodeA.next);
 }
 
-TEST(DoublyLinkedListNode, SecondCopy)
+TEST(DoublyLinkedListNode_TestSuite, SecondCopy)
 {
     /* Arrange */
     LinkedList::DoublyLinkedListNode<instantiationType> nodeA, nodeB;
-    nodeA.element = instantiationType(Element::Two);
+    nodeA.element = instantiationType(2);
 
     LinkedList::DoublyLinkedListNode<instantiationType> sut;
 
@@ -71,16 +125,14 @@ TEST(DoublyLinkedListNode, SecondCopy)
     EXPECT_EQ(sut.next, nodeA.next);
 }
 
-TEST(DoublyLinkedList, CopyByConstructor)
+TEST_F(DoublyLinkedList_TestSuite, CopyByConstructor)
 {
     /* Arrange */
     LinkedList::DoublyLinkedList<instantiationType> listA;
-    instantiationType elementOne = instantiationType(Element::One);
-    listA.addFront(elementOne);
-    instantiationType elementTwo = instantiationType(Element::Two);
-    listA.addFront(elementTwo);
-    instantiationType elementThree = instantiationType(Element::Three);
-    listA.addFront(elementThree);
+    for (const auto entry : elementArray)
+    {
+        listA.addFront(entry);
+    }
 
     /* Act */
     LinkedList::DoublyLinkedList<instantiationType> sut(listA);
@@ -88,20 +140,21 @@ TEST(DoublyLinkedList, CopyByConstructor)
     /* Assert */
     EXPECT_EQ(sut.size(), listA.size());
     EXPECT_EQ(sut.front(), listA.front());
-    EXPECT_EQ(sut.get(1), listA.get(1));
     EXPECT_EQ(sut.back(), listA.back());
+    for (size_t index = 0; index < elementArray.size(); index++)
+    {
+        EXPECT_EQ(sut.get(index), listA.get(index));
+    }
 }
 
-TEST(DoublyLinkedList, CopyByOperator)
+TEST_F(DoublyLinkedList_TestSuite, CopyByOperator)
 {
     /* Arrange */
     LinkedList::DoublyLinkedList<instantiationType> listA;
-    instantiationType elementOne = instantiationType(Element::One);
-    listA.addFront(elementOne);
-    instantiationType elementTwo = instantiationType(Element::Two);
-    listA.addFront(elementTwo);
-    instantiationType elementThree = instantiationType(Element::Three);
-    listA.addFront(elementThree);
+    for (const auto entry : elementArray)
+    {
+        listA.addFront(entry);
+    }
 
     LinkedList::DoublyLinkedList<instantiationType> sut;
 
@@ -111,20 +164,21 @@ TEST(DoublyLinkedList, CopyByOperator)
     /* Assert */
     EXPECT_EQ(sut.size(), listA.size());
     EXPECT_EQ(sut.front(), listA.front());
-    EXPECT_EQ(sut.get(1), listA.get(1));
     EXPECT_EQ(sut.back(), listA.back());
+    for (size_t index = 0; index < elementArray.size(); index++)
+    {
+        EXPECT_EQ(sut.get(index), listA.get(index));
+    }
 }
 
-TEST(DoublyLinkedList, SecondCopy)
+TEST_F(DoublyLinkedList_TestSuite, SecondCopy)
 {
     /* Arrange */
     LinkedList::DoublyLinkedList<instantiationType> listA, listB;
-    instantiationType elementOne = instantiationType(Element::One);
-    listA.addFront(elementOne);
-    instantiationType elementTwo = instantiationType(Element::Two);
-    listA.addFront(elementTwo);
-    instantiationType elementThree = instantiationType(Element::Three);
-    listA.addFront(elementThree);
+    for (const auto entry : elementArray)
+    {
+        listA.addFront(entry);
+    }
 
     LinkedList::DoublyLinkedList<instantiationType> sut;
 
@@ -134,11 +188,14 @@ TEST(DoublyLinkedList, SecondCopy)
     /* Assert */
     EXPECT_EQ(sut.size(), listA.size());
     EXPECT_EQ(sut.front(), listA.front());
-    EXPECT_EQ(sut.get(1), listA.get(1));
     EXPECT_EQ(sut.back(), listA.back());
+    for (size_t index = 0; index < elementArray.size(); index++)
+    {
+        EXPECT_EQ(sut.get(index), listA.get(index));
+    }
 }
 
-TEST(DoublyLinkedList, Empty)
+TEST_F(DoublyLinkedList_TestSuite, Empty)
 {
     /* Arrange */
     LinkedList::DoublyLinkedList<instantiationType> sut;
@@ -150,26 +207,27 @@ TEST(DoublyLinkedList, Empty)
     EXPECT_TRUE(isEmpty) << "The doubly linked list should be empty";
 }
 
-TEST(DoublyLinkedList, MaximumSize)
+TEST_F(DoublyLinkedList_TestSuite, MaximumSize)
 {
     /* Arrange */
     LinkedList::DoublyLinkedList<instantiationType> sut;
-    sut.addFront(instantiationType(Element::One));
-    sut.addFront(instantiationType(Element::Two));
-    sut.addFront(instantiationType(Element::Three));
+    for (const auto entry : elementArray)
+    {
+        sut.addFront(entry);
+    }
 
     /* Act */
     uint32_t size = sut.size();
 
     /* Assert */
-    EXPECT_EQ(size, instantiationType(Element::Max)) << "The size of doubly linked list should be " << instantiationType(Element::Max);
+    EXPECT_EQ(size, elementArray.size()) << "The size of doubly linked list should be " << elementArray.size();
 }
 
-TEST(DoublyLinkedList, AddOneNodeInFront)
+TEST_F(DoublyLinkedList_TestSuite, AddOneNodeInFront)
 {
     /* Arrange */
     LinkedList::DoublyLinkedList<instantiationType> sut;
-    instantiationType element = instantiationType(Element::One);
+    instantiationType element = elementArray.at(0);
 
     /* Act */
     sut.addFront(element);
@@ -178,11 +236,11 @@ TEST(DoublyLinkedList, AddOneNodeInFront)
     EXPECT_EQ(sut.front(), element) << "The element in the front node should be " << element;
 }
 
-TEST(DoublyLinkedList, AddOneNodeInBack)
+TEST_F(DoublyLinkedList_TestSuite, AddOneNodeInBack)
 {
     /* Arrange */
     LinkedList::DoublyLinkedList<instantiationType> sut;
-    instantiationType element = instantiationType(Element::Two);
+    instantiationType element = elementArray.at(1);
 
     /* Act */
     sut.addBack(element);
@@ -191,14 +249,14 @@ TEST(DoublyLinkedList, AddOneNodeInBack)
     EXPECT_EQ(sut.back(), element) << "The element in the back node should be " << element;
 }
 
-TEST(DoublyLinkedList, AddSecondNodeInFront)
+TEST_F(DoublyLinkedList_TestSuite, AddSecondNodeInFront)
 {
     /* Arrange */
     LinkedList::DoublyLinkedList<instantiationType> sut;
-    instantiationType elementOne = instantiationType(Element::One);
+    instantiationType elementOne = elementArray.at(0);
     sut.addFront(elementOne);
 
-    instantiationType elementTwo = instantiationType(Element::Two);
+    instantiationType elementTwo = elementArray.at(1);
 
     /* Act */
     sut.addFront(elementTwo);
@@ -207,15 +265,31 @@ TEST(DoublyLinkedList, AddSecondNodeInFront)
     EXPECT_EQ(sut.front(), elementTwo) << "The element in the front node should be " << elementTwo;
 }
 
-TEST(DoublyLinkedList, GetThirdNode)
+TEST_F(DoublyLinkedList_TestSuite, AddSecondNodeInBack)
 {
     /* Arrange */
     LinkedList::DoublyLinkedList<instantiationType> sut;
-    instantiationType elementOne = instantiationType(Element::One);
+    instantiationType elementOne = elementArray.at(0);
+    sut.addBack(elementOne);
+
+    instantiationType elementTwo = elementArray.at(1);
+
+    /* Act */
+    sut.addBack(elementTwo);
+
+    /* Assert */
+    EXPECT_EQ(sut.back(), elementTwo) << "The element in the back node should be " << elementTwo;
+}
+
+TEST_F(DoublyLinkedList_TestSuite, GetThirdNode)
+{
+    /* Arrange */
+    LinkedList::DoublyLinkedList<instantiationType> sut;
+    instantiationType elementOne = elementArray.at(0);
     sut.addFront(elementOne);
-    instantiationType elementTwo = instantiationType(Element::Two);
+    instantiationType elementTwo = elementArray.at(1);
     sut.addFront(elementTwo);
-    instantiationType elementThree = instantiationType(Element::Three);
+    instantiationType elementThree = elementArray.at(2);
     sut.addFront(elementThree);
 
     /* Act */
@@ -225,13 +299,13 @@ TEST(DoublyLinkedList, GetThirdNode)
     EXPECT_EQ(thirdNode, elementOne) << "The element in the third node should be " << elementOne;
 }
 
-TEST(DoublyLinkedList, RemoveFrontNode)
+TEST_F(DoublyLinkedList_TestSuite, RemoveFrontNode)
 {
     /* Arrange */
     LinkedList::DoublyLinkedList<instantiationType> sut;
-    instantiationType elementOne = instantiationType(Element::One);
+    instantiationType elementOne = elementArray.at(0);
     sut.addFront(elementOne);
-    instantiationType elementTwo = instantiationType(Element::Two);
+    instantiationType elementTwo = elementArray.at(1);
     sut.addFront(elementTwo);
 
     /* Act */
@@ -241,13 +315,13 @@ TEST(DoublyLinkedList, RemoveFrontNode)
     EXPECT_EQ(sut.front(), elementOne) << "The element in the front node should be " << elementOne;
 }
 
-TEST(DoublyLinkedList, RemoveBackNode)
+TEST_F(DoublyLinkedList_TestSuite, RemoveBackNode)
 {
     /* Arrange */
     LinkedList::DoublyLinkedList<instantiationType> sut;
-    instantiationType elementOne = instantiationType(Element::One);
+    instantiationType elementOne = elementArray.at(0);
     sut.addFront(elementOne);
-    instantiationType elementTwo = instantiationType(Element::Two);
+    instantiationType elementTwo = elementArray.at(1);
     sut.addFront(elementTwo);
 
     /* Act */
@@ -257,22 +331,39 @@ TEST(DoublyLinkedList, RemoveBackNode)
     EXPECT_EQ(sut.front(), elementTwo) << "The element in the front node should be " << elementTwo;
 }
 
-TEST(DoublyLinkedList, RemoveAllNodes)
+TEST_F(DoublyLinkedList_TestSuite, RemoveAllNodes)
 {
     /* Arrange */
     LinkedList::DoublyLinkedList<instantiationType> sut;
-    instantiationType elementOne = instantiationType(Element::One);
-    sut.addFront(elementOne);
-    instantiationType elementTwo = instantiationType(Element::Two);
-    sut.addFront(elementTwo);
-    instantiationType elementThree = instantiationType(Element::Three);
-    sut.addFront(elementThree);
+    for (const auto entry : elementArray)
+    {
+        sut.addFront(entry);
+    }
 
     /* Act */
     sut.clear();
 
     /* Assert */
     EXPECT_EQ(sut.size(), 0) << "The size of doubly linked list should be 0";
+}
+
+TEST_F(DoublyLinkedList_TestSuite, ReverseList)
+{
+    /* Arrange */
+    LinkedList::DoublyLinkedList<instantiationType> sut;
+    for (const auto entry : elementArray)
+    {
+        sut.addBack(entry);
+    }
+
+    /* Act */
+    LinkedList::DoublyLinkedList<instantiationType>::reverseList(sut);
+
+    /* Assert */
+    for (size_t index = 0; index < elementArray.size(); index++)
+    {
+        EXPECT_EQ(sut.get(index), elementArray.at(elementArray.size() - index - 1));
+    }
 }
 
 int main(int argc, char** argv)
