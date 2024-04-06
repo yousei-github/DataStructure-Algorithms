@@ -55,7 +55,7 @@ public:
     void removeBack();         // Remove from back
     void clear();              // Remove all the nodes
 
-    static void reverseList(DoublyLinkedList<T>& list) // Reverse the elements of the list (@todo)
+    static void reverseList(DoublyLinkedList<T>& list) // Reverse the elements of the list
     {
         DoublyLinkedList<T> temp;
 

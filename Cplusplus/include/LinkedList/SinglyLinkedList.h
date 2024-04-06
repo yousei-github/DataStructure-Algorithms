@@ -51,6 +51,32 @@ public:
     void removeFront();        // Remove from front
     void clear();              // Remove all the nodes
 
+    static void reverseList(SinglyLinkedList<T>& list) // Reverse the elements of the list
+    {
+        SinglyLinkedList<T> firstReversedTemp, secondReversedTemp;
+
+        while (! list.empty())
+        {
+            T element = list.front();
+            list.removeFront();
+            firstReversedTemp.addFront(element);
+        }
+
+        while (! firstReversedTemp.empty())
+        {
+            T element = firstReversedTemp.front();
+            firstReversedTemp.removeFront();
+            secondReversedTemp.addFront(element);
+        }
+
+        while (! secondReversedTemp.empty())
+        {
+            T element = secondReversedTemp.front();
+            secondReversedTemp.removeFront();
+            list.addFront(element);
+        }
+    }
+
     SinglyLinkedList<T>& operator=(const SinglyLinkedList<T>& v1); // Overload the assignment operator in case of the shallow copy since this class allocates memory
 
 private:
