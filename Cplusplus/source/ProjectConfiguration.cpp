@@ -1,13 +1,18 @@
 /* Header */
 #include "ProjectConfiguration.h"
 
+#include <errno.h>
 #include <stddef.h>
+#include <string.h>
 
 #include <cassert>
 #include <cstdlib>
 #include <iostream>
+#include <string>
 
 /* Macro */
+
+#define FILE_OPEN_RETRY_TIME (2u)
 
 /* Type */
 
@@ -53,7 +58,27 @@ DATA_OUTPUT::~DATA_OUTPUT()
 void DATA_OUTPUT::output_file_initialization(const char* string)
 {
     file_handler = fopen(string, "w");
-    file_name    = (char*) malloc(strlen(string) + 1);
+
+    for (size_t i = 0; i < FILE_OPEN_RETRY_TIME; i++)
+    {
+        if (file_handler == nullptr)
+        {
+            std::cerr << __func__ << ": File Open Error: " << strerror(errno) << std::endl;
+            if (i == (FILE_OPEN_RETRY_TIME - 1))
+            {
+                abort();
+            }
+
+            std::string new_file_name = "file_open_retry_" + std::to_string(i);
+            file_handler              = fopen(new_file_name.c_str(), "w");
+        }
+        else
+        {
+            break; // Open file successfully
+        }
+    }
+
+    file_name = (char*) malloc(strlen(string) + 1);
 
     if (file_name == nullptr)
     {
@@ -103,7 +128,27 @@ void DATA_OUTPUT::output_file_initialization(char** string_array, uint32_t numbe
     benchmark_names += file_extension.c_str();
 
     file_handler = fopen(benchmark_names.c_str(), "w");
-    file_name    = (char*) malloc(benchmark_names.size() + 1);
+
+    for (size_t i = 0; i < FILE_OPEN_RETRY_TIME; i++)
+    {
+        if (file_handler == nullptr)
+        {
+            std::cerr << __func__ << ": File Open Error: " << strerror(errno) << std::endl;
+            if (i == (FILE_OPEN_RETRY_TIME - 1))
+            {
+                abort();
+            }
+
+            std::string new_file_name = "file_open_retry_" + std::to_string(i);
+            file_handler              = fopen(new_file_name.c_str(), "w");
+        }
+        else
+        {
+            break; // Open file successfully
+        }
+    }
+
+    file_name = (char*) malloc(benchmark_names.size() + 1);
 
     if (file_name == nullptr)
     {
