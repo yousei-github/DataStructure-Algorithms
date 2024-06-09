@@ -34,6 +34,8 @@
 				"${workspaceFolder}/Cplusplus/include/Array/",
 				"-I",
 				"${workspaceFolder}/Cplusplus/include/SortingAlgorithm/",
+				"-I",
+				"${workspaceFolder}/Cplusplus/include/Recursion/",
 				// "-L", // e.g., -L dir. Add directory [dir] to the list of directories to be searched for [-l].
 				// "${workspaceFolder}/vcpkg_installed/x64-linux/lib",
 				/**
@@ -44,6 +46,7 @@
 				"${workspaceFolder}/Cplusplus/source/Vector/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/Array/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/SortingAlgorithm/*.cpp",
+				"${workspaceFolder}/Cplusplus/source/Recursion/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/*.cpp",
 				/**
 				 * Below are library names:
@@ -107,6 +110,8 @@
 				"${workspaceFolder}/Cplusplus/include/Array/",
 				"-I",
 				"${workspaceFolder}/Cplusplus/include/SortingAlgorithm/",
+				"-I",
+				"${workspaceFolder}/Cplusplus/include/Recursion/",
 				// "-L", // e.g., -L dir. Add directory [dir] to the list of directories to be searched for [-l].
 				// "${workspaceFolder}/vcpkg_installed/x64-linux/lib",
 				/**
@@ -117,6 +122,7 @@
 				"${workspaceFolder}/Cplusplus/source/Vector/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/Array/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/SortingAlgorithm/*.cpp",
+				"${workspaceFolder}/Cplusplus/source/Recursion/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/*.cpp",
 				/**
 				 * Below are library names:
@@ -180,6 +186,8 @@
 				"${workspaceFolder}/Cplusplus/include/Array/",
 				"-I",
 				"${workspaceFolder}/Cplusplus/include/SortingAlgorithm/",
+				"-I",
+				"${workspaceFolder}/Cplusplus/include/Recursion/",
 				// "-L", // e.g., -L dir. Add directory [dir] to the list of directories to be searched for [-l].
 				// "${workspaceFolder}/vcpkg_installed/x64-linux/lib",
 				/**
@@ -190,6 +198,7 @@
 				"${workspaceFolder}/Cplusplus/source/Vector/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/Array/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/SortingAlgorithm/*.cpp",
+				"${workspaceFolder}/Cplusplus/source/Recursion/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/*.cpp",
 				/**
 				 * Below are library names:
@@ -252,6 +261,8 @@
 				"${workspaceFolder}/Cplusplus/include/Array/",
 				"-I",
 				"${workspaceFolder}/Cplusplus/include/SortingAlgorithm/",
+				"-I",
+				"${workspaceFolder}/Cplusplus/include/Recursion/",
 				"-L", // e.g., -L dir. Add directory [dir] to the list of directories to be searched for [-l].
 				"/usr/local/include/gtest/",
 				"-L",
@@ -264,6 +275,7 @@
 				"${workspaceFolder}/Cplusplus/source/Vector/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/Array/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/SortingAlgorithm/*.cpp",
+				"${workspaceFolder}/Cplusplus/source/Recursion/*.cpp",
 				"${workspaceFolder}/Cplusplus/source/ProjectConfiguration.cpp",
 				"${file}",
 				/**
