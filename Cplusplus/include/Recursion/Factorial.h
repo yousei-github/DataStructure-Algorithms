@@ -28,7 +28,8 @@ namespace Recursion
 
 /* Function */
 
-uint32_t recursiveFactorial(const uint32_t number);
+template<class T>
+T recursiveFactorial(const T number);
 
 } // namespace Recursion
 

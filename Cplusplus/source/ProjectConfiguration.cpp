@@ -27,6 +27,7 @@ STATISTICS output_statistics("DataStructure-Algorithms statistics", ".statistics
 DATA_OUTPUT::DATA_OUTPUT(std::string v1, std::string v2)
 : data_name(v1), file_extension(v2)
 {
+    output_file_initialization("default_file");
 }
 
 DATA_OUTPUT::DATA_OUTPUT(std::string v1, std::string v2, const char* string)
@@ -57,8 +58,15 @@ DATA_OUTPUT::~DATA_OUTPUT()
 
 void DATA_OUTPUT::output_file_initialization(const char* string)
 {
+    if (file_handler)
+    {
+        // The file handler is already open
+        fclose(file_handler);
+    }
+
     file_handler = fopen(string, "w");
 
+    // Check file handler's status
     for (size_t i = 0; i < FILE_OPEN_RETRY_TIME; i++)
     {
         if (file_handler == nullptr)
@@ -127,36 +135,7 @@ void DATA_OUTPUT::output_file_initialization(char** string_array, uint32_t numbe
     // Append file_extension to benchmark_names.
     benchmark_names += file_extension.c_str();
 
-    file_handler = fopen(benchmark_names.c_str(), "w");
-
-    for (size_t i = 0; i < FILE_OPEN_RETRY_TIME; i++)
-    {
-        if (file_handler == nullptr)
-        {
-            std::cerr << __func__ << ": File Open Error: " << strerror(errno) << std::endl;
-            if (i == (FILE_OPEN_RETRY_TIME - 1))
-            {
-                abort();
-            }
-
-            std::string new_file_name = "file_open_retry_" + std::to_string(i);
-            file_handler              = fopen(new_file_name.c_str(), "w");
-        }
-        else
-        {
-            break; // Open file successfully
-        }
-    }
-
-    file_name = (char*) malloc(benchmark_names.size() + 1);
-
-    if (file_name == nullptr)
-    {
-        std::cerr << __func__ << ": Memory Allocation Error." << std::endl;
-        abort();
-    }
-
-    strcpy(file_name, benchmark_names.c_str());
+    output_file_initialization(benchmark_names.c_str());
 }
 
 STATISTICS::STATISTICS(std::string v1, std::string v2)

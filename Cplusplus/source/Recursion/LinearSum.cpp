@@ -1,5 +1,5 @@
 /* Header */
-#include "Recursion/Factorial.h"
+#include "Recursion/LinearSum.h"
 
 /* Macro */
 
@@ -15,22 +15,20 @@ namespace Recursion
 {
 
 template<class T>
-T recursiveFactorial(const T number)
+T linearSum(T* array, const uint32_t number)
 {
-    // Recursive factorial function
-    if (number == 0)
+    if (number == 1)
     {
-        // Basis case
-        return 1;
+        return array[0];
     }
     else
     {
-        // Recursive case
-        return number * recursiveFactorial(number - 1);
+        return linearSum(array, number - 1) + array[number - 1];
     }
 }
 
 // Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template function]
-template int recursiveFactorial<int>(const int number);
+template int linearSum<int>(int* array, const uint32_t number);
+template uint32_t linearSum<uint32_t>(uint32_t* array, const uint32_t number);
 
 } // namespace Recursion
