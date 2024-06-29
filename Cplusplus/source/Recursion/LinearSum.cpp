@@ -1,6 +1,9 @@
 /* Header */
 #include "Recursion/LinearSum.h"
 
+// C++ standard libraries:
+#include <cassert>
+
 /* Macro */
 
 /* Type */
@@ -17,6 +20,8 @@ namespace Recursion
 template<class T>
 T linearSum(T* array, const uint32_t number)
 {
+    assert(array != nullptr);
+
     if (number == 1)
     {
         return array[0];
