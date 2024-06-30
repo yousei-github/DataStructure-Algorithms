@@ -28,6 +28,14 @@ namespace Recursion
 
 /* Function */
 
+/**
+ * @brief
+ * The factorial function
+ * 
+ * @param[in] number A positive integer for factorial
+ * 
+ * @return The result of the factorial of @p number
+ */
 template<class T>
 T recursiveFactorial(const T number);
 

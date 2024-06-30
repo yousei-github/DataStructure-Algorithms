@@ -24,6 +24,15 @@ namespace Recursion
 
 /* Function */
 
+/**
+ * @brief
+ * The linear sum
+ * 
+ * @param[in] array The pointer of an array
+ * @param[in] number The number of elements in the array
+ * 
+ * @return The result of linear sum
+ */
 template<class T>
 T linearSum(T* array, const uint32_t number);
 
