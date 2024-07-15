@@ -26,15 +26,16 @@ namespace Recursion
 
 /**
  * @brief
- * The linear sum
+ * The binary sum
  * 
- * @param[in] array  The pointer of an array
- * @param[in] number The number of elements (or length) in the array
+ * @param[in] array      The pointer of an array
+ * @param[in] startIndex The starting index of the array
+ * @param[in] number     The number of elements (or length) in the array
  * 
  * @return The result of linear sum
  */
 template<class T>
-T linearSum(T* array, const uint32_t number);
+T binarySum(T* array, const uint32_t startIndex, const uint32_t number);
 
 } // namespace Recursion
 

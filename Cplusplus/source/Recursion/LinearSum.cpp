@@ -21,6 +21,7 @@ template<class T>
 T linearSum(T* array, const uint32_t number)
 {
     assert(array != nullptr);
+    assert(number != 0);
 
     if (number == 1)
     {
