@@ -36,6 +36,10 @@ public:
     PuzzleSolver(testPuzzle v1); // Constructor
     ~PuzzleSolver();             // Destructor
 
+    bool empty() const;                                 // Check whether the answer is empty
+    uint32_t size() const;                              // Get the number of the answers
+    const std::queue<std::deque<T>>& GetAnswer() const; // Return the array stores all results
+
     /**
      * @brief Solve the puzzle recursively
      * 
@@ -44,9 +48,7 @@ public:
      * @param[in] set The element set
      */
     void solvePuzzle(uint32_t k, std::deque<T>& sequence, std::vector<T>& set);
-
-    uint32_t size() const;                              // Get the number of the answers
-    const std::queue<std::deque<T>>& GetAnswer() const; // Return the array stores all results
+    void clear(); // Remove all answers
 
 private:
     testPuzzle puzzle                 = nullptr; // The function to test the puzzle

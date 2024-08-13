@@ -62,7 +62,7 @@ TEST(PuzzleSolver, SummationPuzzleOne)
 
     std::queue<std::deque<uint32_t>> answers = sut.GetAnswer();
     size_t index                             = 0;
-    while (answers.empty() == false)
+    while (! answers.empty())
     {
         std::deque<uint32_t>& element = answers.front();
         std::cout << index << ": ";
@@ -113,7 +113,7 @@ TEST(PuzzleSolver, SummationPuzzleTwo)
 
     std::queue<std::deque<uint32_t>> answers = sut.GetAnswer();
     size_t index                             = 0;
-    while (answers.empty() == false)
+    while (! answers.empty())
     {
         std::deque<uint32_t>& element = answers.front();
         std::cout << index << ": ";
@@ -126,4 +126,41 @@ TEST(PuzzleSolver, SummationPuzzleTwo)
         answers.pop();
         index++;
     }
+}
+
+TEST(PuzzleSolver, Clear)
+{
+    /* Arrange */
+    const uint32_t lengthOfSequence = 4;
+
+    auto testPuzzle                 = [](std::deque<uint32_t>& sequence) -> bool
+    {
+        assert(sequence.size() == lengthOfSequence);
+        /**
+         * Puzzle:
+         * a + b  = c + d
+         * 
+         * The ordering of sequence:
+         * a, b, c, d
+         */
+        if ((sequence[0] + sequence[1]) != (sequence[2] + sequence[3]))
+        {
+            return false;
+        }
+
+        return true;
+    };
+
+    Recursion::PuzzleSolver<uint32_t> sut(testPuzzle);
+    std::deque<uint32_t> sequence = {};
+    std::vector<uint32_t> set     = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+    sut.solvePuzzle(lengthOfSequence, sequence, set);
+    std::cout << "The number of the answers is " << sut.size() << std::endl;
+
+    /* Act */
+    sut.clear();
+
+    /* Assert */
+    EXPECT_EQ(0, sut.size());
 }

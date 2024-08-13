@@ -29,12 +29,29 @@ PuzzleSolver<T>::~PuzzleSolver()
 }
 
 template<class T>
+bool PuzzleSolver<T>::empty() const
+{
+    return answers.empty();
+}
+
+template<class T>
+uint32_t PuzzleSolver<T>::size() const
+{
+    return answers.size();
+}
+
+template<class T>
+const std::queue<std::deque<T>>& PuzzleSolver<T>::GetAnswer() const
+{
+    return answers;
+}
+
+template<class T>
 void PuzzleSolver<T>::solvePuzzle(uint32_t k, std::deque<T>& sequence, std::vector<T>& set)
 {
     assert(k != 0);
     assert(set.size() != 0);
 
-    // for (auto iterator = set.begin(); iterator != set.end(); iterator++)
     for (size_t index = 0; index < set.size(); index++)
     {
         if (set.at(index) == INVALID_ELEMENT)
@@ -68,15 +85,12 @@ void PuzzleSolver<T>::solvePuzzle(uint32_t k, std::deque<T>& sequence, std::vect
 }
 
 template<class T>
-uint32_t PuzzleSolver<T>::size() const
+void PuzzleSolver<T>::clear()
 {
-    return answers.size();
-}
-
-template<class T>
-const std::queue<std::deque<T>>& PuzzleSolver<T>::GetAnswer() const
-{
-    return answers;
+    while (! answers.empty())
+    {
+        answers.pop();
+    }
 }
 
 } // namespace Recursion
