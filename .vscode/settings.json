@@ -68,7 +68,8 @@
         "variant": "cpp",
         "unordered_set": "cpp",
         "complex": "cpp",
-        "forward_list": "cpp"
+        "forward_list": "cpp",
+        "queue": "cpp"
     },
     "editor.tabSize": 4,
     "editor.indentSize": "tabSize",
