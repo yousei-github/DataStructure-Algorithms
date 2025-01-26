@@ -1,7 +1,6 @@
 # Calculator_OneOperand.py
 
-print("""Wellcome!
-This is the calculator with one operand\n""")
+print("""Wellcome! This is the calculator with one operand\n""")
 
 value1 = input('Enter the number: ')
 
@@ -18,3 +17,6 @@ elif ((operator == 'square root') or (operator == 'Square root')):
     print('The result is:', float(value1) ** (0.5))
 else:
     print('Unknown operator:', operator)
+
+# Finish
+print('Finish')

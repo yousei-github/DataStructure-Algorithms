@@ -1,7 +1,6 @@
 # Calculator_TwoOperands.py
 
-print("""Wellcome!
-This is the calculator with two operands\n""")
+print("""Wellcome! This is the calculator with two operands\n""")
 
 value1 = input('Enter first number: ')
 
@@ -25,3 +24,6 @@ elif ((operator == 'max') or (operator == 'Max')):
     print('The minimum is:', max(float(value1), float(value2)))
 else:
     print('Unknown operator:', operator)
+
+# Finish
+print('Finish')

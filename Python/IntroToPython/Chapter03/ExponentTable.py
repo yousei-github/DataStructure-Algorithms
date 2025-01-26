@@ -5,8 +5,7 @@ maximumExponrnt = 10
 
 print('\nExponent or power Table.')
 
-print("""A power is defined as:
-    Power = Base^Exponent\n""")
+print("""A power is defined as: Power = Base^Exponent\n""")
 
 print('| Base | Exponent ', end='(')
 for exponent in range(maximumExponrnt):
@@ -25,3 +24,6 @@ for base in range(maximumBase):
             print((base + 1)**(exponent + 1), end=', ')
         else:
             print((base + 1)**(exponent + 1), end='\n')
+
+# Finish
+print('Finish')
