@@ -355,7 +355,8 @@
 			"command": "rm",
 			"args": [
 				"-f",
-				"Cplusplus/bin/*"
+				"Cplusplus/bin/*",
+				"Python/Bokeh/*.html"
 			],
 			"options": {
 				"cwd": "${workspaceFolder}"

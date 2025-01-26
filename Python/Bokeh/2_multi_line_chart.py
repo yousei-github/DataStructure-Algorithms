@@ -4,7 +4,11 @@
 # Bokeh
 from bokeh.plotting import *
 
-# Creating multi-line chart
+# 1. Creating multi-line chart
+
+# Apply theme to current document.
+# Bokeh comes with five built-in themes: caliber, dark_minimal, light_minimal, night_sky, and contrast.
+curdoc().theme = "caliber"
 
 # Prepare data:
 x = [1, 2, 3, 4, 5]
@@ -20,7 +24,7 @@ plot.line(x, y1, legend_label="Line 1.", color="blue", line_width=2)
 plot.line(x, y2, legend_label="Line 2.", color="red", line_width=2)
 plot.line(x, y3, legend_label="Line 3.", color="green", line_width=2)
 
-# Adding and styling a legend
+# 2. Adding and styling a legend
 # Use the properties of the Legend object to customize the legend. For example:
 # (1) Display legend in top left corner (default is top right corner)
 plot.legend.location = "top_left"

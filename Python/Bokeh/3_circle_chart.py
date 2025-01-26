@@ -4,7 +4,11 @@
 # Bokeh
 from bokeh.plotting import *
 
-# Creating a circle chart
+# 1. Creating a circle chart
+
+# Apply theme to current document.
+# Bokeh comes with five built-in themes: caliber, dark_minimal, light_minimal, night_sky, and contrast.
+curdoc().theme = "light_minimal"
 
 # Prepare data:
 x = [1, 2, 3, 4, 5]
@@ -34,7 +38,7 @@ scatter = plot.scatter(
     line_color="blue",  # The fill color of the circles' outlines
 )
 
-# Altering properties of existing glyphs
+# 2. Altering properties of existing glyphs
 # If you want to change any property after creating an object, you can define and overwrite the object's attributes directly.
 # To change the color of your circles from red to blue, you first need to assign a variable name (such as scatter)
 # Next, use that variable to access the object's glyph attribute and change its properties:

@@ -12,8 +12,12 @@ from bokeh.plotting import *
 # (1) A Python library for defining the content and interactive functionalities of your visualization.
 # (2) A JavaScript library called BokehJS that is working in the background to display your interactive visualizations in a web browser.
 
-# Creating a simple line chart
+# 1. Creating a simple line chart
 # When you execute these lines of code, Bokeh creates an output file "1_simple_line_chart.html"
+
+# Apply theme to current document.
+# Bokeh comes with five built-in themes: caliber, dark_minimal, light_minimal, night_sky, and contrast.
+curdoc().theme = "caliber"
 
 # Define two lists containing the data for your line chart:
 x = [1, 2, 3, 4, 5]
@@ -26,7 +30,7 @@ plot = figure(title="simpleline example", x_axis_label='x', y_axis_label='y')
 # Bokeh automatically adds a legend to your plot if you include the legend_label attribute when calling the renderer function.
 plot.line(x, y, legend_label="Line 1.", line_width=2)
 
-# Customizing headlines
+# 2. Customizing headlines
 # There are various ways to style the text for your headline. For example:
 # (1) Change headline location to the left
 plot.title_location = "left"
