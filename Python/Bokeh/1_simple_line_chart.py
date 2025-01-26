@@ -20,10 +20,25 @@ x = [1, 2, 3, 4, 5]
 y = [6, 7, 2, 4, 5]
 
 # Create a new plot with a title and axis labels
-plot = figure(title="Simple line example", x_axis_label='x', y_axis_label='y')
+plot = figure(title="simpleline example", x_axis_label='x', y_axis_label='y')
 
 # Add a line renderer with legend and line thickness to the plot
-plot.line(x, y, legend_label="Temp.", line_width=2)
+# Bokeh automatically adds a legend to your plot if you include the legend_label attribute when calling the renderer function.
+plot.line(x, y, legend_label="Line 1.", line_width=2)
+
+# Customizing headlines
+# There are various ways to style the text for your headline. For example:
+# (1) Change headline location to the left
+plot.title_location = "left"
+
+# (2) Change headline text
+plot.title.text = "Simple line example"
+
+# (3) Style the headline
+plot.title.text_font_size = "25px"
+plot.title.align = "right"
+plot.title.background_fill_color = "darkgrey"
+plot.title.text_color = "white"
 
 # Show the results
 show(plot)
