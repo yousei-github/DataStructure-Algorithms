@@ -16,8 +16,8 @@ y1 = [6, 7, 2, 4, 5]
 y2 = [2, 3, 4, 5, 6]
 y3 = [4, 5, 5, 7, 2]
 
-# Create a new plot with a title and axis labels
-plot = figure(title="Multiple line example", x_axis_label='x', y_axis_label='y')
+# Create a new plot with a title, size (Responsive plot sizing), and axis labels
+plot = figure(title="Multiple line example", sizing_mode="stretch_width", height=250, x_axis_label='x', y_axis_label='y')
 
 # Add multiple renderers with legend and line thickness to the plot
 plot.line(x, y1, legend_label="Line 1.", color="blue", line_width=2)

@@ -23,8 +23,8 @@ curdoc().theme = "caliber"
 x = [1, 2, 3, 4, 5]
 y = [6, 7, 2, 4, 5]
 
-# Create a new plot with a title and axis labels
-plot = figure(title="simpleline example", x_axis_label='x', y_axis_label='y')
+# Create a new plot with a title, size (width & height), and axis labels
+plot = figure(title="simpleline example", width=350, height=250, x_axis_label='x', y_axis_label='y')
 
 # Add a line renderer with legend and line thickness to the plot
 # Bokeh automatically adds a legend to your plot if you include the legend_label attribute when calling the renderer function.

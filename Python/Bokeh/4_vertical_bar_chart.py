@@ -15,8 +15,8 @@ curdoc().theme = "caliber"
 x = [1, 2, 3, 4, 5]
 y = [10, 30, 50, 75, 90]
 
-# Create a new plot with a title and axis labels
-plot = figure(title="Vertical bar example", x_axis_label='x', y_axis_label='y')
+# Create a new plot with a title, size (Responsive plot sizing), and axis labels
+plot = figure(title="Vertical bar example", sizing_mode="stretch_width",  x_axis_label='x', y_axis_label='y')
 
 # Add a vertical bar renderer with legend and line thickness to the plot
 plot.vbar(x=x, top=y, legend_label="Vertical bar 1", width=0.5, bottom=0, color="red")

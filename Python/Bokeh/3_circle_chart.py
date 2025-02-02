@@ -15,8 +15,8 @@ x = [1, 2, 3, 4, 5]
 y = [4, 5, 5, 7, 2]
 y2 = [6, 2, 2, 4, 7]
 
-# Create a new plot with a title and axis labels
-plot = figure(title="Circle example", x_axis_label='x', y_axis_label='y')
+# Create a new plot with a title, size (Responsive plot sizing), and axis labels
+plot = figure(title="Circle example", sizing_mode="stretch_width", x_axis_label='x', y_axis_label='y')
 
 # Add circle renderers with legend and line thickness to the plot
 plot.scatter(x, y, legend_label="Circle 1", color="#bb5566", size=16)  # Color is an alias that automatically sets all color properties of an object to the same color
