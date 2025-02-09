@@ -5,17 +5,19 @@
 from bokeh.plotting import *
 from bokeh.models import NumeralTickFormatter
 
-# 1. Creating a horizontal bar chart
+"""
+1. Creating a horizontal bar chart
 
-# Apply theme to current document.
-# Bokeh comes with five built-in themes: caliber, dark_minimal, light_minimal, night_sky, and contrast.
+Apply theme to current document.
+Bokeh comes with five built-in themes: caliber, dark_minimal, light_minimal, night_sky, and contrast.
+"""
 curdoc().theme = "caliber"
 
 # Prepare data:
-left = [1, 2, 3, 4, 5]
-right = [2, 4, 9, 10, 20]
-y = [1, 2, 3, 4, 5]
-source = ColumnDataSource(dict(y=y, left=left, right=right))
+X_LEFT_DATA = [1, 2, 3, 4, 5]
+X_RIGHT_DATA = [2, 4, 9, 10, 20]
+Y_DATA = [1, 2, 3, 4, 5]
+source = ColumnDataSource(dict(y=Y_DATA, left=X_LEFT_DATA, right=X_RIGHT_DATA))
 
 # Create a new plot with a title, size (Responsive plot sizing), axis labels, and axis range
 plot = figure(title="Horizaontal bar example", sizing_mode="stretch_width",  x_axis_label='x', y_axis_label='y', y_range=(0, 25))
@@ -23,11 +25,13 @@ plot = figure(title="Horizaontal bar example", sizing_mode="stretch_width",  x_a
 # Add a circle renderer with legend and line thickness to the plot
 plot.hbar(y="y", left="left", right="right", height=0.5, fill_color="#b3de69", source=source)
 
-# 2. Setting your axes' appearance
-# Options for customizing the appearance of your plot include:
-# - Setting labels for your axes
-# - Styling the numbers displayed with your axes
-# - Defining colors and other layout properties for the axes themselves
+"""
+2. Setting your axes' appearance
+Options for customizing the appearance of your plot include:
+- Setting labels for your axes
+- Styling the numbers displayed with your axes
+- Defining colors and other layout properties for the axes themselves
+"""
 
 # Change some things about the x-axis
 plot.xaxis.axis_label = "Time"

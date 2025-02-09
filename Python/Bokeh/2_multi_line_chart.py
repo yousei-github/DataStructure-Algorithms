@@ -4,29 +4,33 @@
 # Bokeh
 from bokeh.plotting import *
 
-# 1. Creating multi-line chart
+"""
+1. Creating multi-line chart
 
-# Apply theme to current document.
-# Bokeh comes with five built-in themes: caliber, dark_minimal, light_minimal, night_sky, and contrast.
+Apply theme to current document.
+Bokeh comes with five built-in themes: caliber, dark_minimal, light_minimal, night_sky, and contrast.
+"""
 curdoc().theme = "caliber"
 
 # Prepare data:
-x = [1, 2, 3, 4, 5]
-y1 = [6, 7, 2, 4, 5]
-y2 = [2, 3, 4, 5, 6]
-y3 = [4, 5, 5, 7, 2]
+X_DATA = [1, 2, 3, 4, 5]
+Y_LINE_1_DATA = [6, 7, 2, 4, 5]
+Y_LINE_2_DATA = [2, 3, 4, 5, 6]
+Y_LINE_3_DATA = [4, 5, 5, 7, 2]
 
 # Create a new plot with a title, size (Responsive plot sizing), and axis labels
 plot = figure(title="Multiple line example", sizing_mode="stretch_width", height=250, x_axis_label='x', y_axis_label='y')
 
 # Add multiple renderers with legend and line thickness to the plot
-plot.line(x, y1, legend_label="Line 1.", color="blue", line_width=2)
-plot.line(x, y2, legend_label="Line 2.", color="red", line_width=2)
-plot.line(x, y3, legend_label="Line 3.", color="green", line_width=2)
+plot.line(X_DATA, Y_LINE_1_DATA, legend_label="Line 1.", color="blue", line_width=2)
+plot.line(X_DATA, Y_LINE_2_DATA, legend_label="Line 2.", color="red", line_width=2)
+plot.line(X_DATA, Y_LINE_3_DATA, legend_label="Line 3.", color="green", line_width=2)
 
-# 2. Adding and styling a legend
-# Use the properties of the Legend object to customize the legend. For example:
-# (1) Display legend in top left corner (default is top right corner)
+"""
+2. Adding and styling a legend
+Use the properties of the Legend object to customize the legend. For example:
+(1) Display legend in top left corner (default is top right corner)
+"""
 plot.legend.location = "top_left"
 
 # (2) Add a title to your legend

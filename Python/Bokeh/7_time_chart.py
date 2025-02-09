@@ -8,10 +8,12 @@ from datetime import datetime, timedelta
 from bokeh.plotting import *
 from bokeh.models import DatetimeTickFormatter, NumeralTickFormatter
 
-# 1. Creating a time chart
+"""
+1. Creating a time chart
 
-# Apply theme to current document.
-# Bokeh comes with five built-in themes: caliber, dark_minimal, light_minimal, night_sky, and contrast.
+Apply theme to current document.
+Bokeh comes with five built-in themes: caliber, dark_minimal, light_minimal, night_sky, and contrast.
+"""
 curdoc().theme = "caliber"
 
 # Prepare data:
@@ -21,9 +23,12 @@ LOWEST_INCOME = 0
 HIGHEST_INCOME = 500
 y = random.sample(range(LOWEST_INCOME, HIGHEST_INCOME), NUMBER_OF_DAY_IN_A_MONTH)  # Generate [NUMBER_OF_DAY_IN_A_MONTH] random data points
 
-# Create a new plot with a title, size (Responsive plot sizing), axis labels, and axis type
-# 2. Enabling datetime axes
-# Set the x_axis_type or y_axis_type to datetime to display date or time information on an axis
+"""
+2. Enabling datetime axes
+Set the x_axis_type or y_axis_type to datetime to display date or time information on an axis
+
+Create a new plot with a title, size (Responsive plot sizing), axis labels, and axis type
+"""
 plot = figure(title="Time example", sizing_mode="stretch_width",  x_axis_label='Date', y_axis_label='Average Income', x_axis_type="datetime")
 
 # Add some renderers with legend and line thickness to the plot
