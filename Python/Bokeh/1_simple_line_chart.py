@@ -3,6 +3,7 @@
 
 # Bokeh
 from bokeh.plotting import *
+from bokeh.layouts import row
 
 """
 The basic idea of Bokeh is a two-step process:
@@ -28,7 +29,7 @@ X_DATA = [1, 2, 3, 4, 5]
 Y_DATA = [6, 7, 2, 4, 5]
 
 # Create a new plot with a title, size (width & height), and axis labels
-plot = figure(title="simpleline example", width=350, height=250, x_axis_label='x', y_axis_label='y')
+plot = figure(title="Simpleline example", width=350, height=250, x_axis_label='x', y_axis_label='y')
 
 # Add a line renderer with legend and line thickness to the plot
 # Bokeh automatically adds a legend to your plot if you include the legend_label attribute when calling the renderer function.
@@ -50,5 +51,25 @@ plot.title.align = "right"
 plot.title.background_fill_color = "darkgrey"
 plot.title.text_color = "white"
 
+"""
+3. Creating rows, columns, and grids
+The easiest way to combine individual plots is to assign them to rows or columns.
+
+To combine several plots into a horizontal row layout, you first need to import row. Then use the row() function when calling show().
+
+To display several plots in a vertical column layout, use the column() function instead.
+A more flexible way to arrange elements in Bokeh is to use the gridplot() function.
+
+(1) Defining sizing behavior
+You can use the functions row(), column(), and gridplot() with additional arguments to define how Bokeh scales the individual plots.
+See sizing_mode for a list of all sizing modes that Bokeh supports.
+
+For example: To make all plots in a row responsively fill the available width of the browser window, assign scale_width to sizing_mode.
+"""
+plot2 = figure(title="Second figure example", x_axis_label='x', y_axis_label='y')
+Y_LINE_2_DATA = [value * (-1) + 10 for value in Y_DATA]
+plot2.line(X_DATA, Y_LINE_2_DATA, legend_label="Line 2.", line_width=2)
+
 # Show the results
-show(plot)
+# show(plot)
+show(row(children=[plot, plot2], sizing_mode="scale_width"))

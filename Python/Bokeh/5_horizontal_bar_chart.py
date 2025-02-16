@@ -3,7 +3,9 @@
 
 # Bokeh
 from bokeh.plotting import *
+from bokeh.palettes import *
 from bokeh.models import NumeralTickFormatter
+from bokeh.transform import linear_cmap
 
 """
 1. Creating a horizontal bar chart
@@ -17,16 +19,30 @@ curdoc().theme = "caliber"
 X_LEFT_DATA = [1, 2, 3, 4, 5]
 X_RIGHT_DATA = [2, 4, 9, 10, 20]
 Y_DATA = [1, 2, 3, 4, 5]
-source = ColumnDataSource(dict(y=Y_DATA, left=X_LEFT_DATA, right=X_RIGHT_DATA))
+SOURCE = ColumnDataSource(dict(y=Y_DATA, left=X_LEFT_DATA, right=X_RIGHT_DATA))
 
 # Create a new plot with a title, size (Responsive plot sizing), axis labels, and axis range
-plot = figure(title="Horizaontal bar example", sizing_mode="stretch_width",  x_axis_label='x', y_axis_label='y', y_range=(0, 25))
-
-# Add a circle renderer with legend and line thickness to the plot
-plot.hbar(y="y", left="left", right="right", height=0.5, fill_color="#b3de69", source=source)
+plot = figure(title="Horizaontal bar example", sizing_mode="stretch_width",  x_axis_label='x', y_axis_label='y', y_range=(0, max(Y_DATA) + 5))
 
 """
-2. Setting your axes' appearance
+2. Color mapping with palettess
+Bokeh comes with dozens of pre-defined color palettes that you can use to map colors to your data.
+This includes palettes from Brewer, D3, or Matplotlib. See palettes for a list of all available palettes.
+
+First, use the linear_cmap() function to create a color map for your data. The required attributes for this function are:
+- field: the data sequence to map colors to
+- palette: the palette to use
+- low: the lowest value to map a color to
+- high: the highest value to map a color to
+"""
+MAPPER = linear_cmap(field_name="y", palette=Turbo256, low=min(Y_DATA), high=max(Y_DATA))
+
+
+# Add a circle renderer with legend and line thickness to the plot
+plot.hbar(y="y", left="left", right="right", height=0.5, color=MAPPER, source=SOURCE)
+
+"""
+3. Setting your axes' appearance
 Options for customizing the appearance of your plot include:
 - Setting labels for your axes
 - Styling the numbers displayed with your axes
