@@ -1,11 +1,19 @@
 # 5_horizontal_bar_chart.py
 """Horizontal bar chart."""
 
+import platform
+
 # Bokeh
 from bokeh.plotting import *
 from bokeh.palettes import *
 from bokeh.models import NumeralTickFormatter
 from bokeh.transform import linear_cmap
+
+# Check python version requirement of Bokeh
+PYTHON_VERSION = list(map(int, platform.python_version_tuple()))
+if PYTHON_VERSION < [3, 10, 0]:
+    print("Error: Running Python below 3.10.0, current is " + str(PYTHON_VERSION))
+    exit(1)
 
 """
 1. Creating a horizontal bar chart

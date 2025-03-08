@@ -1,9 +1,17 @@
 # 1_simple_line_chart.py
 """Simple line chart."""
 
+import platform
+
 # Bokeh
 from bokeh.plotting import *
 from bokeh.layouts import row
+
+# Check python version requirement of Bokeh
+PYTHON_VERSION = list(map(int, platform.python_version_tuple()))
+if PYTHON_VERSION < [3, 10, 0]:
+    print("Error: Running Python below 3.10.0, current is " + str(PYTHON_VERSION))
+    exit(1)
 
 """
 The basic idea of Bokeh is a two-step process:

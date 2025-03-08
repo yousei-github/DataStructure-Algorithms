@@ -4,9 +4,17 @@
 import random
 from datetime import datetime, timedelta
 
+import platform
+
 # Bokeh
 from bokeh.plotting import *
 from bokeh.models import DatetimeTickFormatter, NumeralTickFormatter
+
+# Check python version requirement of Bokeh
+PYTHON_VERSION = list(map(int, platform.python_version_tuple()))
+if PYTHON_VERSION < [3, 10, 0]:
+    print("Error: Running Python below 3.10.0, current is " + str(PYTHON_VERSION))
+    exit(1)
 
 """
 1. Creating a time chart
