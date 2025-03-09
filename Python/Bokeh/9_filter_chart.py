@@ -27,6 +27,9 @@ Follow these steps to create a ColumnDataSource directly:
 """
 curdoc().theme = "caliber"
 
+FIGURE_HEIGHT = 800
+FIGURE_WIDTH = 800
+
 # Prepare data:
 DATA = {"x_values": [1, 2, 3, 4, 5],
         "y_values": [6, 7, 2, 3, 6]}
@@ -42,7 +45,7 @@ TOOLTIPS = [
     ("index", "$index"),
     ("Data point (x,y)", "Data point ($x, $y)"),
 ]
-plot = figure(title="Filter data example (Original)", sizing_mode="stretch_width",  x_axis_label='x', y_axis_label='y', toolbar_location="left", tools=TOOLS_IN_CHART, tooltips=TOOLTIPS)
+plot = figure(title="Filter data example (Original)", height=FIGURE_HEIGHT, width=FIGURE_WIDTH,  x_axis_label='x', y_axis_label='y', toolbar_location="left", tools=TOOLS_IN_CHART, tooltips=TOOLTIPS)
 
 # Add some renderers with legend and line thickness to the plot
 plot.scatter(x="x_values", y="y_values", size=20, source=SOURCE_1)
@@ -70,10 +73,10 @@ An IndexFilter uses a list of index positions and creates a view that contains n
 For example, if your ColumnDataSource contains a list of five values and you apply an IndexFilter with [0,2,4], the resulting view contains only the first, the third, and the fifth value of your riginal list.
 """
 VIEW = CDSView(filter=IndexFilter([0, 2, 4]))
-plot_filtered = figure(title="Filter data example (Filtered)", sizing_mode="stretch_width",  x_axis_label='x', y_axis_label='y', toolbar_location="left", tools=TOOLS_IN_CHART, tooltips=TOOLTIPS)
+plot_filtered = figure(title="Filter data example (Filtered)", height=FIGURE_HEIGHT, width=FIGURE_WIDTH,  x_axis_label='x', y_axis_label='y', toolbar_location="left", tools=TOOLS_IN_CHART, tooltips=TOOLTIPS)
 plot_filtered.scatter(x="x_values", y="y_values", size=20, source=SOURCE_1, view=VIEW)
 plot_filtered.toolbar.autohide = True
 plot_filtered.toolbar.logo = None
 
-# Show the results
-show(row(children=[plot, plot_filtered], sizing_mode="scale_width"))
+# Show both plots next to each other in a gridplot layout
+show(gridplot([[plot, plot_filtered]]))
