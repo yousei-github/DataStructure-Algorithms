@@ -2,6 +2,7 @@
 
 print("""Wellcome! This is the calculator with one operand\n""")
 
+# The built-in input function requests and obtains user input
 value1 = input('Enter the number: ')
 
 operator = input('Enter the operator: ')

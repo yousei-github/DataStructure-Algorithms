@@ -82,5 +82,6 @@
     "autopep8.args": [
         // Arguments passed to autopep8 to format Python files
         "--max-line-length=256"
+        // "ignore=E266", // E266 - Fix too many leading '#' for block comments.
     ]
 }
