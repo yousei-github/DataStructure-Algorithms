@@ -1,4 +1,4 @@
-# Calculator_TwoOperands.py
+# 3_Calculator_TwoOperands.py
 
 print("""Wellcome! This is the calculator with two operands\n""")
 

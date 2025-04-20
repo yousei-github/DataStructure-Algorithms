@@ -1,4 +1,4 @@
-# ArithmeticOperators.py
+# 2_AverageNumber.py
 
 # autopep8: off
 ## Triple-quoted strings begin and end with three double quotes (""") or three single quotes (''').

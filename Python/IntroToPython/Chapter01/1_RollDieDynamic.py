@@ -1,4 +1,4 @@
-# RollDieDynamic.py
+# 1_RollDieDynamic.py
 """Dynamically graphing frequencies of die rolls."""
 from matplotlib import animation
 import matplotlib.pyplot as plt
