@@ -74,7 +74,8 @@
     "editor.tabSize": 4,
     "editor.indentSize": "tabSize",
     "editor.formatOnSave": true, // To format when you save your file
-    "C_Cpp.clang_format_path": "/usr/bin/clang-format", // The full path of the clang-format executable. For Linux: "/usr/bin/clang-format".
+    // Use https://marketplace.visualstudio.com/items?itemName=xaver.clang-format extension
+    "clang-format.executable": "/usr/bin/clang-format", // The full path of the clang-format executable. For Linux: "/usr/bin/clang-format".
     "[python]": {
         "editor.formatOnSave": true, // Automatically format your Python files on save
         "editor.defaultFormatter": "ms-python.autopep8", // Integrated formatting, this extension ships with a autopep8 binary
