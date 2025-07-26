@@ -1,6 +1,9 @@
 /* Header */
 #include "Array/BasicArray.h"
 
+// C standard libraries:
+#include <stddef.h>
+
 /* Macro */
 
 /* Type */

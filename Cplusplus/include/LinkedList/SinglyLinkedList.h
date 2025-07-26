@@ -2,8 +2,8 @@
  * @brief Singly Linked List
  *
  */
-#ifndef _SINGLYLINKEDLIST_H
-#define _SINGLYLINKEDLIST_H 1
+#ifndef _SINGLY_LINKED_LIST_H
+#define _SINGLY_LINKED_LIST_H 1
 
 /* Header */
 // Project configuration
@@ -96,4 +96,4 @@ template class SinglyLinkedListNode<int>;
 
 } /* namespace LinkedList */
 
-#endif /* _SINGLYLINKEDLIST_H */
+#endif /* _SINGLY_LINKED_LIST_H */

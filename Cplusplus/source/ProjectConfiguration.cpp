@@ -1,10 +1,12 @@
 /* Header */
 #include "ProjectConfiguration.h"
 
+// C standard libraries:
 #include <errno.h>
 #include <stddef.h>
 #include <string.h>
 
+// C++ standard libraries:
 #include <cassert>
 #include <cstdlib>
 #include <iostream>

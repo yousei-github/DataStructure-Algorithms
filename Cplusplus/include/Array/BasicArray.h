@@ -2,10 +2,9 @@
  * @brief Basic Array
  * 
  * Arrays are the concrete data structures that access their entries using integer indices.
- *
  */
-#ifndef _BASICARRAY_H
-#define _BASICARRAY_H 1
+#ifndef _BASIC_ARRAY_H
+#define _BASIC_ARRAY_H 1
 
 /* Header */
 // Project configuration
@@ -98,4 +97,4 @@ template class BasicArray<int>;
 
 } // namespace Array
 
-#endif /* _BASICARRAY_H */
+#endif /* _BASIC_ARRAY_H */

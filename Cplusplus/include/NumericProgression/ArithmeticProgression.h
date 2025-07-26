@@ -2,8 +2,8 @@
  * @brief Arithmetic Progression
  *
  */
-#ifndef _ARITHMETICPROGRESSION_H
-#define _ARITHMETICPROGRESSION_H 1
+#ifndef _ARITHMETIC_PROGRESSION_H
+#define _ARITHMETIC_PROGRESSION_H 1
 
 /* Header */
 // Project configuration
@@ -45,4 +45,4 @@ protected:
 
 } // namespace NumericProgression
 
-#endif /* _ARITHMETICPROGRESSION_H */
+#endif /* _ARITHMETIC_PROGRESSION_H */

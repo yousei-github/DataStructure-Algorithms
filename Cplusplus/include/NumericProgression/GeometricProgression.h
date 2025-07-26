@@ -2,8 +2,8 @@
  * @brief Geometric Progression
  *
  */
-#ifndef _GEOMETRICPROGRESSION_H
-#define _GEOMETRICPROGRESSION_H 1
+#ifndef _GEOMETRIC_PROGRESSION_H
+#define _GEOMETRIC_PROGRESSION_H 1
 
 /* Header */
 // Project configuration
@@ -45,4 +45,4 @@ protected:
 
 } // namespace NumericProgression
 
-#endif /* _GEOMETRICPROGRESSION_H */
+#endif /* _GEOMETRIC_PROGRESSION_H */

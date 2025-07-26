@@ -2,8 +2,8 @@
  * @brief Circularly Doubly Linked List
  *
  */
-#ifndef _CIRCULARLYDOUBLYLINKEDLIST_H
-#define _CIRCULARLYDOUBLYLINKEDLIST_H 1
+#ifndef _CIRCULARLY_DOUBLY_LINKED_LIST_H
+#define _CIRCULARLY_DOUBLY_LINKED_LIST_H 1
 
 /* Header */
 // Project configuration
@@ -86,4 +86,4 @@ template class CircularlyDoublyLinkedList<int>;
 
 } /* namespace LinkedList */
 
-#endif /* _CIRCULARLYDOUBLYLINKEDLIST_H */
+#endif /* _CIRCULARLY_DOUBLY_LINKED_LIST_H */

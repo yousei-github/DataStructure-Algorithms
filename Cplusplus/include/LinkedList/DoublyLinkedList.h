@@ -2,8 +2,8 @@
  * @brief Doubly Linked List
  *
  */
-#ifndef _DOUBLYLINKEDLIST_H
-#define _DOUBLYLINKEDLIST_H 1
+#ifndef _DOUBLY_LINKED_LIST_H
+#define _DOUBLY_LINKED_LIST_H 1
 
 /* Header */
 // Project configuration
@@ -100,4 +100,4 @@ template class DoublyLinkedListNode<int>;
 
 } /* namespace LinkedList */
 
-#endif /* _DOUBLYLINKEDLIST_H */
+#endif /* _DOUBLY_LINKED_LIST_H */

@@ -1,8 +1,9 @@
 /**
  * @brief Reverse an Array
+ * 
  */
-#ifndef _REVERSEARRAY_H
-#define _REVERSEARRAY_H 1
+#ifndef _REVERSE_ARRAY_H
+#define _REVERSE_ARRAY_H 1
 
 /* Header */
 // Project configuration
@@ -51,4 +52,4 @@ void iterativeReverseArray(T* array, const uint32_t startIndex, const uint32_t e
 
 } // namespace Recursion
 
-#endif /* _REVERSEARRAY_H */
+#endif /* _REVERSE_ARRAY_H */

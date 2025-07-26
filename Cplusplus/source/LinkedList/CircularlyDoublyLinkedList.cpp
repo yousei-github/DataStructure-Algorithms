@@ -1,6 +1,9 @@
 /* Header */
 #include "LinkedList/CircularlyDoublyLinkedList.h"
 
+// C standard libraries:
+#include <stddef.h>
+
 /* Macro */
 
 /* Type */

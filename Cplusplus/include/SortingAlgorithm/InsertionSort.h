@@ -2,8 +2,8 @@
  * @brief Insertion-Sort Algorithm
  *
  */
-#ifndef _INSERTIONSORTALGORITHM_H
-#define _INSERTIONSORTALGORITHM_H 1
+#ifndef _INSERTION_SORT_ALGORITHM_H
+#define _INSERTION_SORT_ALGORITHM_H 1
 
 /* Header */
 // Project configuration
@@ -29,4 +29,4 @@ void insertionSort(T* array, const uint32_t length);
 
 } // namespace SortingAlgorithm
 
-#endif /* _INSERTIONSORTALGORITHM_H */
+#endif /* _INSERTION_SORT_ALGORITHM_H */

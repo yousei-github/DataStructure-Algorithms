@@ -4,6 +4,9 @@
 // C++ standard libraries:
 #include <cassert>
 
+// C standard libraries:
+#include <stddef.h>
+
 /* Macro */
 
 /* Type */

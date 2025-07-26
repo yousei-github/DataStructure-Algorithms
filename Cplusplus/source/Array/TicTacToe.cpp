@@ -5,6 +5,9 @@
 #include <cassert>
 #include <iostream>
 
+// C standard libraries:
+#include <stddef.h>
+
 /* Macro */
 
 /* Type */

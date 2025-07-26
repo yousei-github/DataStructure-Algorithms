@@ -2,8 +2,8 @@
  * @brief Linear Sum
  * Sum the elements of an array recursively
  */
-#ifndef _LINEARSUM_H
-#define _LINEARSUM_H 1
+#ifndef _LINEAR_SUM_H
+#define _LINEAR_SUM_H 1
 
 /* Header */
 // Project configuration
@@ -38,4 +38,4 @@ T linearSum(T* array, const uint32_t number);
 
 } // namespace Recursion
 
-#endif /* _LINEARSUM_H */
+#endif /* _LINEAR_SUM_H */

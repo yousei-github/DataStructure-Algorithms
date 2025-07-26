@@ -2,6 +2,9 @@
 #include "Recursion/BinarySum.h"
 #include "gtest/gtest.h"
 
+// C standard libraries:
+#include <stddef.h>
+
 /* Macro */
 
 /* Type */
@@ -37,7 +40,7 @@ TEST(BinarySum, Sum50Elements)
 
 TEST(BinarySum, Sum51Elements)
 {
-/* Arrange */
+    /* Arrange */
 #ifdef NUMBER_OF_ELEMENTS
 #undef NUMBER_OF_ELEMENTS
 #endif /* NUMBER_OF_ELEMENTS */

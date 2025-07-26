@@ -1,6 +1,9 @@
 /* Header */
 #include "Vector/BasicVector.h"
 
+// C standard libraries:
+#include <stddef.h>
+
 /* Macro */
 
 /* Type */

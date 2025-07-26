@@ -6,8 +6,8 @@
  * If either player succeeds in getting three of his or her marks in a row, column, or diagonal, then that player wins.
  * Otherwise, the game is tie.
  */
-#ifndef _TICTACTOE_H
-#define _TICTACTOE_H 1
+#ifndef _TIC_TAC_TOE_H
+#define _TIC_TAC_TOE_H 1
 
 /* Header */
 // Project configuration
@@ -69,4 +69,4 @@ private:
 
 } // namespace Game
 
-#endif /* _TICTACTOE_H */
+#endif /* _TIC_TAC_TOE_H */

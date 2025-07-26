@@ -1,5 +1,5 @@
-#ifndef _PROJECTCONFIGURATION_H
-#define _PROJECTCONFIGURATION_H
+#ifndef _PROJECT_CONFIGURATION_H
+#define _PROJECT_CONFIGURATION_H
 
 /* Header */
 #ifdef LOGICAL_VERIFICATION
@@ -7,7 +7,7 @@
 
 #include "gtest/gtest.h" // The main header of GoogleTest. Reference: https://github.com/google/googletest
 
-#endif // LOGICAL_VERIFICATION
+#endif /* LOGICAL_VERIFICATION */
 
 // Standard libraries
 #include <stdbool.h>
@@ -105,4 +105,4 @@ extern STATISTICS output_statistics;
 
 /* Function */
 
-#endif /* _PROJECTCONFIGURATION_H */
+#endif /* _PROJECT_CONFIGURATION_H */

@@ -2,8 +2,8 @@
  * @brief Binary Sum
  * Sum the elements of an array recursively
  */
-#ifndef _BINARYSUM_H
-#define _BINARYSUM_H 1
+#ifndef _BINARY_SUM_H
+#define _BINARY_SUM_H 1
 
 /* Header */
 // Project configuration
@@ -39,4 +39,4 @@ T binarySum(T* array, const uint32_t startIndex, const uint32_t number);
 
 } // namespace Recursion
 
-#endif /* _BINARYSUM_H */
+#endif /* _BINARY_SUM_H */

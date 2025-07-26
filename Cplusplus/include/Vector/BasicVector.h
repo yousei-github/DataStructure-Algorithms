@@ -2,8 +2,8 @@
  * @brief Basic Vector
  *
  */
-#ifndef _BASICVECTOR_H
-#define _BASICVECTOR_H 1
+#ifndef _BASIC_VECTOR_H
+#define _BASIC_VECTOR_H 1
 
 /* Header */
 // Project configuration
@@ -64,4 +64,4 @@ template class BasicVector<BasicVector<int>>; // Templated arguments
 
 } // namespace Vector
 
-#endif /* _BASICVECTOR_H */
+#endif /* _BASIC_VECTOR_H */

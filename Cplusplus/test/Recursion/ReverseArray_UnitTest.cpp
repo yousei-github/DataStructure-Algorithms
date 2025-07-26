@@ -2,6 +2,9 @@
 #include "Recursion/ReverseArray.h"
 #include "gtest/gtest.h"
 
+// C standard libraries:
+#include <stddef.h>
+
 /* Macro */
 
 /* Type */

@@ -2,8 +2,8 @@
  * @brief Fibonacci Progression
  *
  */
-#ifndef _FIBONACCIPROGRESSION_H
-#define _FIBONACCIPROGRESSION_H 1
+#ifndef _FIBONACCI_PROGRESSION_H
+#define _FIBONACCI_PROGRESSION_H 1
 
 /* Header */
 // Project configuration
@@ -48,4 +48,4 @@ protected:
 
 } // namespace NumericProgression
 
-#endif /* _FIBONACCIPROGRESSION_H */
+#endif /* _FIBONACCI_PROGRESSION_H */
