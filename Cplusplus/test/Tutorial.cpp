@@ -12,7 +12,7 @@
 
 /* Macro */
 
-/* Type */
+/* Test */
 
 class Environment : public testing::Environment
 {
@@ -32,109 +32,62 @@ public:
     static int g_environment_tear_down_count;
 };
 
-class FixtureClass : public testing::Test
-{
-public:
-    /**
-     * Per-test-suite set-up.
-     * Called before the first test in this test suite.
-     * Can be omitted if not needed.
-     */
-    static void SetUpTestSuite()
-    {
-        shared_resource = new double;
-    }
-
-    /**
-     * Per-test-suite tear-down.
-     * Called after the last test in this test suite.
-     * Can be omitted if not needed.
-     */
-    static void TearDownTestSuite()
-    {
-        delete shared_resource;
-        shared_resource = {};
-    }
-
-protected:
-    // You can remove any or all of the following functions if their bodies would be empty.
-
-    FixtureClass()
-    {
-        // You can do set-up work for each test here.
-    }
-
-    ~FixtureClass()
-    {
-        // You can do clean-up work that doesn't throw exceptions here.
-    }
-
-    // If the constructor and destructor are not enough for setting up and cleaning up each test, you can define the following methods:
-    void SetUp() override
-    {
-        // Code here will be called immediately after the constructor (right before each test, which means the per-test set-up).
-    }
-
-    void TearDown() override
-    {
-        // Code here will be called immediately after each test (right before the destructor, which means the per-test tear-down).
-    }
-
-    // Set up the mock
-    void MockSetUp(MockRepository& mocks)
-    {
-        // You can do mock set-up work for each test here.
-
-        mocks.OnCallFunc(clock).Return(CURRENT_CLOCK);
-    }
-
-    // Class members declared here can be used by all tests in the test suite for FixtureClass.
-    const char name[12]            = "Hello World";
-    const uint32_t name_length     = sizeof(name);
-    const clock_t CURRENT_CLOCK    = 10000;
-    const uint32_t TIMER_FREQUENCY = 50;
-    const clock_t CURRENT_TIME     = CURRENT_CLOCK / TIMER_FREQUENCY;
-
-    // Declare some expensive resource shared by all tests.
-    static double* shared_resource;
-};
-
-/** 
- * Two ways to define a fixture class for value-parameterized tests:
- * (1) Implement all the usual fixture class members;
- * (2) Add parameters to a pre-existing fixture class.
- */
-
-// class ValueParameterizedClass : public testing ::TestWithParam<int>
-// {
-//     // You can implement all the usual fixture class members here.
-//     // To access the test parameter, call GetParam() from class TestWithParam<T>.
-// };
-
-class ValueParameterizedClass : public FixtureClass, public testing::WithParamInterface<int>
-{
-    // The usual test fixture members go here too.
-protected:
-    ValueParameterizedClass(): count(0) {}
-
-    int count;
-    static int global_count;
-};
-
-/* Prototype */
-INSTANTIATE_TEST_SUITE_P(InstantiationOne, ValueParameterizedClass, testing::Range(0, 5));
-
-/* Variable */
 // Global environment variables
 int Environment::g_environment_set_up_count    = {};
 int Environment::g_environment_tear_down_count = {};
 
-// Define the shared resource of member variables
-double* FixtureClass::shared_resource          = {};
+/**
+ * @brief
+ * Check if all values in an array are the same as the specified element
+ * 
+ * @param[in] array   The pointer of an array
+ * @param[in] number  The number of elements (or length) in the array
+ * @param[in] element The specified element
+ * 
+ * @retval true  All values are the same as the specified element
+ * @retval false Otherwise
+ */
+template<class T>
+bool areAllSame(T* const array, const uint32_t number, const T element)
+{
+    // Handle empty array
+    if (number == 0)
+    {
+        return false;
+    }
 
-int ValueParameterizedClass::global_count      = {};
+    // Compare each element to the target element
+    for (size_t index = 0; index < number; index++)
+    {
+        if (array[index] != element)
+        {
+            return false; // Found a different element
+        }
+    }
 
-/* Function */
+    return true; // All elements are the same
+}
+
+/**
+ * @brief
+ * Check if the value in an even number
+ * 
+ * @param[in] n The value
+ * 
+ * @return The result
+ */
+template<class T>
+testing::AssertionResult IsEven(T n)
+{
+    if ((n % 2) == 0)
+    {
+        return testing::AssertionSuccess() << n << " is even";
+    }
+    else
+    {
+        return testing::AssertionFailure() << n << " is odd";
+    }
+}
 
 // Simple Tests
 TEST(TestSuiteName, TestName)
@@ -216,6 +169,23 @@ TEST(TestSuiteName, TestName)
             int quotient = dividend / divisor;
             SUCCEED() << "The quotient is " << quotient;
         });
+
+    /* Predicate Assertions for Better Error Messages */
+
+    /**
+     * GoogleTest gives you three different options to show you the values of the parts of the expression in case somrthing went wrong
+     * (1) Using an Existing Boolean Function
+     * (2) Using a Function That Returns an AssertionResult
+     * (3) Using a Predicate-Formatter
+     */
+
+    // Option one
+    const int array[5] = {1, 1, 1, 1, 1};
+    EXPECT_PRED3(areAllSame<int>, (int*) array, sizeof(array) / sizeof(int), 1); // To use a template function
+
+    // Option two
+    const int even_number = 4;
+    EXPECT_TRUE(IsEven<int>(even_number));
 }
 
 TEST(TestSuiteName, SkippedTest)
@@ -231,6 +201,76 @@ TEST(TestSuiteName, GlobalEnvironment)
 }
 
 // Test Fixtures
+class FixtureClass : public testing::Test
+{
+public:
+    /**
+     * Per-test-suite set-up.
+     * Called before the first test in this test suite.
+     * Can be omitted if not needed.
+     */
+    static void SetUpTestSuite()
+    {
+        shared_resource = new double;
+    }
+
+    /**
+     * Per-test-suite tear-down.
+     * Called after the last test in this test suite.
+     * Can be omitted if not needed.
+     */
+    static void TearDownTestSuite()
+    {
+        delete shared_resource;
+        shared_resource = {};
+    }
+
+protected:
+    // You can remove any or all of the following functions if their bodies would be empty.
+
+    FixtureClass()
+    {
+        // You can do set-up work for each test here.
+    }
+
+    ~FixtureClass()
+    {
+        // You can do clean-up work that doesn't throw exceptions here.
+    }
+
+    // If the constructor and destructor are not enough for setting up and cleaning up each test, you can define the following methods:
+    void SetUp() override
+    {
+        // Code here will be called immediately after the constructor (right before each test, which means the per-test set-up).
+    }
+
+    void TearDown() override
+    {
+        // Code here will be called immediately after each test (right before the destructor, which means the per-test tear-down).
+    }
+
+    // Set up the mock
+    void MockSetUp(MockRepository& mocks)
+    {
+        // You can do mock set-up work for each test here.
+
+        mocks.OnCallFunc(clock).Return(CURRENT_CLOCK);
+    }
+
+    // Class members declared here can be used by all tests in the test suite for FixtureClass.
+    const char name[12]            = "Hello World";
+    const uint32_t name_length     = sizeof(name);
+    const clock_t CURRENT_CLOCK    = 10000;
+    const uint32_t TIMER_FREQUENCY = 50;
+    const clock_t CURRENT_TIME     = CURRENT_CLOCK / TIMER_FREQUENCY;
+
+    // Declare some expensive resource shared by all tests.
+    static double* shared_resource;
+};
+
+// Define the shared resource of member variables
+double* FixtureClass::shared_resource = {};
+
 TEST_F(FixtureClass, Factorial)
 {
     // Access class members
@@ -266,6 +306,35 @@ TEST_F(FixtureClass, Factorial)
 }
 
 // Value-Parameterized Tests
+
+/** 
+ * Two ways to define a fixture class for value-parameterized tests:
+ * (1) Implement all the usual fixture class members;
+ * (2) Add parameters to a pre-existing fixture class.
+ */
+
+// Way One
+// class ValueParameterizedClass : public testing ::TestWithParam<int>
+// {
+//     // You can implement all the usual fixture class members here.
+//     // To access the test parameter, call GetParam() from class TestWithParam<T>.
+// };
+
+// Way Two
+class ValueParameterizedClass : public FixtureClass, public testing::WithParamInterface<int>
+{
+    // The usual test fixture members go here too.
+protected:
+    ValueParameterizedClass(): count(0) {}
+
+    int count;
+    static int global_count;
+};
+
+int ValueParameterizedClass::global_count = {};
+
+INSTANTIATE_TEST_SUITE_P(InstantiationOne, ValueParameterizedClass, testing::Range(0, 5));
+
 TEST_P(ValueParameterizedClass, Counting)
 {
     count++;

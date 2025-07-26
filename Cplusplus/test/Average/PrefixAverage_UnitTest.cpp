@@ -12,27 +12,6 @@
 
 /* Test */
 
-template<class T>
-bool areAllSame(T* const array, const uint32_t number, const T element)
-{
-    // Handle empty array
-    if (number == 0)
-    {
-        return false;
-    }
-
-    // Compare each element to the target element
-    for (size_t index = 0; index < number; index++)
-    {
-        if (array[index] != element)
-        {
-            return false; // Found a different element
-        }
-    }
-
-    return true; // All elements are the same
-}
-
 TEST(PrefixAverage, Calculate1Element)
 {
     /* Arrange */
