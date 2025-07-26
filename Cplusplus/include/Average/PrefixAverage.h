@@ -29,15 +29,27 @@ namespace Average
 
 /**
  * @brief
- * The prefix average
+ * The prefix average calculation, which takes O(n^2) time
  * 
- * @param[inout] array  The pointer of an array
- * @param[in] number    The number of elements (or length) in the array
+ * @param[inout] array The pointer of an array
+ * @param[in] number   The number of elements (or length) in the array
  * 
  * @note The result of prefix average is saved in the @p array
  */
 template<class T>
 void prefixAverage(T* const array, const uint32_t number);
+
+/**
+ * @brief
+ * The prefix average calculation utilizing prefix sum for performance, which takes O(n) time
+ * 
+ * @param[inout] array The pointer of an array
+ * @param[in] number   The number of elements (or length) in the array
+ * 
+ * @note The result of prefix average is saved in the @p array
+ */
+template<class T>
+void fastPrefixAverage(T* const array, const uint32_t number);
 
 } // namespace Average
 

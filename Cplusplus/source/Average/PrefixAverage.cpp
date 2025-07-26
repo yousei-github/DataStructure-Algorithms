@@ -1,6 +1,9 @@
 /* Header */
 #include "Average/PrefixAverage.h"
 
+// C++ standard libraries:
+#include <cassert>
+
 // C standard libraries:
 #include <stddef.h>
 #include <string.h>
@@ -21,6 +24,13 @@ namespace Average
 template<class T>
 void prefixAverage(T* const array, const uint32_t number)
 {
+    assert(array);
+
+    if (number == 0)
+    {
+        return;
+    }
+
     T* const input = new T[number];
     memcpy(input, array, sizeof(T) * number);
 
@@ -41,5 +51,32 @@ void prefixAverage(T* const array, const uint32_t number)
 
 // Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template function]
 template void prefixAverage<int>(int* const array, const uint32_t number);
+
+template<class T>
+void fastPrefixAverage(T* const array, const uint32_t number)
+{
+    assert(array);
+
+    if (number == 0)
+    {
+        return;
+    }
+
+    T* const input = new T[number];
+    memcpy(input, array, sizeof(T) * number);
+
+    T prefixSum {}; // Zero initialization
+    for (size_t index = 0; index < number; index++)
+    {
+        prefixSum += input[index];
+
+        array[index] = prefixSum / (index + 1);
+    }
+
+    delete[] input;
+}
+
+// Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template function]
+template void fastPrefixAverage<int>(int* const array, const uint32_t number);
 
 } // namespace Average
