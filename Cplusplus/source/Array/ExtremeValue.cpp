@@ -43,6 +43,29 @@ T findMax(const T* const array, const uint32_t number)
 template int findMax<int>(const int* const array, const uint32_t number);
 
 template<class T>
+T findMax(const std::vector<T>& array)
+{
+    if (array.size() == 0)
+    {
+        return T {};
+    }
+
+    T max = array[0];
+    for (size_t index = 1; index < array.size(); index++)
+    {
+        if (max < array[index])
+        {
+            max = array[index];
+        }
+    }
+
+    return max;
+}
+
+// Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template function]
+template int findMax<int>(const std::vector<int>& array);
+
+template<class T>
 T findMin(const T* const array, const uint32_t number)
 {
     assert(array);
@@ -66,5 +89,28 @@ T findMin(const T* const array, const uint32_t number)
 
 // Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template function]
 template int findMin<int>(const int* const array, const uint32_t number);
+
+template<class T>
+T findMin(const std::vector<T>& array)
+{
+    if (array.size() == 0)
+    {
+        return T {};
+    }
+
+    T min = array[0];
+    for (size_t index = 1; index < array.size(); index++)
+    {
+        if (array[index] < min)
+        {
+            min = array[index];
+        }
+    }
+
+    return min;
+}
+
+// Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template function]
+template int findMin<int>(const std::vector<int>& array);
 
 } // namespace Array
