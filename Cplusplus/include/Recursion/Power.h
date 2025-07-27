@@ -38,7 +38,7 @@ namespace Recursion
 
 /**
  * @brief
- * The power function
+ * The power function, which takes O(n) time
  * 
  * @param[in] number   A positive integer for the variable of power
  * @param[in] exponent A nonnegative integer for the exponent of power
@@ -50,7 +50,7 @@ T recursivePower(const T number, const T exponent);
 
 /**
  * @brief
- * The power function employing a squaring technique
+ * The power function employing a squaring technique, which takes O(log(n)) time
  * 
  * @param[in] number   A positive integer for the variable of power
  * @param[in] exponent A nonnegative integer for the exponent of power

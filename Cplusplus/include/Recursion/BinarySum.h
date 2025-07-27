@@ -30,7 +30,7 @@ namespace Recursion
  * 
  * @param[in] array      The pointer of an array
  * @param[in] startIndex The starting index of the array
- * @param[in] number     The number of elements (or length) in the array
+ * @param[in] number     The number of elements (or length) of the array
  * 
  * @return The result of binary sum
  */

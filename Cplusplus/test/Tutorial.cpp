@@ -41,7 +41,7 @@ int Environment::g_environment_tear_down_count = {};
  * Check if all values in an array are the same as the specified element
  * 
  * @param[in] array   The pointer of an array
- * @param[in] number  The number of elements (or length) in the array
+ * @param[in] number  The number of elements (or length) of the array
  * @param[in] element The specified element
  * 
  * @retval true  All values are the same as the specified element

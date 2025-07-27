@@ -29,7 +29,7 @@ namespace Recursion
  * The linear sum
  * 
  * @param[in] array  The pointer of an array
- * @param[in] number The number of elements (or length) in the array
+ * @param[in] number The number of elements (or length) of the array
  * 
  * @return The result of linear sum
  */
