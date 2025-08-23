@@ -1,6 +1,68 @@
 {
+	/**
+	 * The configuration's version number
+	 */
 	"version": "2.0.0",
+	/**
+	 * Override the defaults for cwd (current working directory), env (environment variables), or shell (default shell).
+	 * Options can be set per task but also globally or per platform.
+	 */
+	"options": {
+		"env": {
+			/* Header files */
+			"PROJECT_INCLUDE_PATH": "${workspaceFolder}/Cplusplus/include/",
+			"GOOGLE_TEST_LIBRARY_PATH": "/usr/local/include/gtest/",
+			"HIPPOMOCKS_LIBRARY_PATH": "/usr/include/HippoMocks/hippomocks.h",
+			/* Module */
+			"PROJECT_MODULE_SOURCE_PATH": "${workspaceFolder}/Cplusplus/source/LinkedList/*.cpp ${workspaceFolder}/Cplusplus/source/NumericProgression/*.cpp ${workspaceFolder}/Cplusplus/source/Vector/*.cpp ${workspaceFolder}/Cplusplus/source/Array/*.cpp ${workspaceFolder}/Cplusplus/source/SortingAlgorithm/*.cpp ${workspaceFolder}/Cplusplus/source/Recursion/*.cpp ${workspaceFolder}/Cplusplus/source/Average/*.cpp",
+			/* Configuration */
+			"PROJECT_CONFIGURATION_SOURCE_PATH": "${workspaceFolder}/Cplusplus/source/ProjectConfiguration.cpp",
+			/* Executable files */
+			"PROJECT_EXECUTABLE_PATH": "Cplusplus/bin",
+		}
+	},
+	/**
+	 * Tasks in VS Code can be configured to run scripts and start processes so that many of these existing tools can be used from within VS Code without having to enter a command line or write new code. 
+	 */
 	"tasks": [
+		{
+			"type": "shell",
+			"label": "Create ${PROJECT_EXECUTABLE_PATH} directory",
+			"command": "mkdir -p ${PROJECT_EXECUTABLE_PATH}/; echo 'Created ${PROJECT_EXECUTABLE_PATH}/ directory'",
+			"args": [],
+			"problemMatcher": [],
+			/**
+			 * Any Windows specific properties
+			 * It will be used instead of the default properties when the command is executed on the Windows operating system
+			 */
+			"windows": {
+				"command": "If (!(test-path '${PROJECT_EXECUTABLE_PATH}/')) {mkdir '${PROJECT_EXECUTABLE_PATH}/'}",
+				"args": [],
+				"options": {
+					"cwd": "${workspaceFolder}" // define the cwd command, such as ${fileDirname}
+				},
+				"problemMatcher": []
+			},
+			// Defines to which group the task belongs
+			"group": {
+				"kind": "none",
+				"isDefault": false
+			},
+			// Defines how the task output is handled in the user interface
+			"presentation": {
+				"reveal": "always", // The panel is always brought to front.
+				"revealProblems": "onProblem", // Only reveals the Problems panel if a problem is found
+				"focus": false,
+				"echo": true,
+				"showReuseMessage": false, // Don't show the "Terminal will be reused by tasks, press any key to close it" message
+				"panel": "shared", // The terminal is shared and the output of other task runs are added to the same terminal
+				"clear": false,
+				"close": false
+			},
+			// Hides the task from the Run Task Quick Pick, which can be useful for elements of a compound task that are not independently runnable.
+			"hide": true,
+			"detail": "Create directory to store executable files",
+		},
 		{
 			"type": "shell",
 			"label": "C/C++: g++ build this project in default optimization",
@@ -240,10 +302,11 @@
 		},
 		{
 			"type": "shell",
-			"label": "C/C++: g++ build the active unit test",
+			"label": "C/C++: Build the active unit test",
 			"command": "/usr/bin/g++", // The path of compiler
 			"args": [
 				"-fdiagnostics-color=always",
+				"${input:variable0}", // -O0/-O1/-O2/-O3
 				"-g", // Produce debugging information in the operationg system's native format
 				"-Wall", // Turns on all optional warnings which are desirable for normal code
 				"-Werror", // Make all warnings into hard errors. Source code which triggers warnings will be rejected
@@ -259,36 +322,16 @@
 				 * Below are header files: (can be from multiples folders)
 				 */
 				"-I", // e.g., -I dir. This means adding the directory [dir] to the list of directories to be searched for header files during preprocessing
-				"${workspaceFolder}/Cplusplus/include/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/LinkedList/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/NumericProgression/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/Vector/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/Array/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/SortingAlgorithm/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/Recursion/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/Average/",
+				"${PROJECT_INCLUDE_PATH}",
 				"-L", // e.g., -L dir. Add directory [dir] to the list of directories to be searched for [-l].
-				"/usr/local/include/gtest/",
+				"${GOOGLE_TEST_LIBRARY_PATH}",
 				"-L",
-				"/usr/include/HippoMocks/hippomocks.h",
+				"${HIPPOMOCKS_LIBRARY_PATH}",
 				/**
 				 * Below are source files: (can be from multiples folders)
 				 */
-				"${workspaceFolder}/Cplusplus/source/LinkedList/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/NumericProgression/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/Vector/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/Array/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/SortingAlgorithm/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/Recursion/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/Average/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/ProjectConfiguration.cpp",
+				"${PROJECT_MODULE_SOURCE_PATH}",
+				"${PROJECT_CONFIGURATION_SOURCE_PATH}",
 				"${file}",
 				/**
 				 * Below are library names:
@@ -311,18 +354,54 @@
 				 * Below is the executable file's name
 				 */
 				"-o", // e.g., -o file1. This means placing the primary output in file [file1].
-				"${workspaceFolder}/Cplusplus/bin/${fileBasenameNoExtension}"
+				"${workspaceFolder}/${PROJECT_EXECUTABLE_PATH}/${fileBasenameNoExtension}"
 			],
-			"options": {
-				"cwd": "${workspaceFolder}" // Define the cwd command, such as ${fileDirname}
-			},
 			"problemMatcher": [
 				"$gcc"
 			],
+			/**
+			 * Any Windows specific properties
+			 * It will be used instead of the default properties when the command is executed on the Windows operating system
+			 */
+			"windows": {
+				"command": "cl.exe",
+				"args": [
+					"/Zi", // Generates complete debugging information.
+					"-openmp",
+					// "/I", // e.g., /I directory. Searches a directory for include files.
+					// "${workspaceFolder}\\Codes_C\\inc\\",
+					// Below are input files (can be from multiples folders)
+					"${fileDirname}\\${fileBasename}",
+					"/Fo:", // e.g., /Fo: pathname. Specifies an object (.obj) file name or directory to be used
+					"${workspaceFolder}\\Cplusplus\\bin\\",
+					"/Fe:", // e.g., /Fe: pathname. Renames the executable file.
+					"${workspaceFolder}\\Cplusplus\\bin\\${fileBasename}.exe"
+				],
+				"options": {
+					"cwd": "${workspaceFolder}" // define the cwd command, such as ${fileDirname}
+				},
+				"problemMatcher": [
+					"$msCompile"
+				]
+			},
+			// Defines to which group the task belongs
 			"group": {
 				"kind": "build",
 				"isDefault": false
 			},
+			// Defines how the task output is handled in the user interface
+			"presentation": {
+				"reveal": "always", // The panel is always brought to front.
+				"revealProblems": "onProblem", // Only reveals the Problems panel if a problem is found
+				"focus": false,
+				"echo": true,
+				"showReuseMessage": false, // Don't show the "Terminal will be reused by tasks, press any key to close it" message
+				"panel": "shared", // The terminal is shared and the output of other task runs are added to the same terminal
+				"clear": false,
+				"close": false
+			},
+			// Hides the task from the Run Task Quick Pick, which can be useful for elements of a compound task that are not independently runnable.
+			"hide": true,
 			"detail": "compiler: /usr/bin/g++"
 		},
 		{
@@ -347,7 +426,7 @@
 				"${workspaceFolder}/Cplusplus/Source/*.cpp",
 				// Below is the executable file's name
 				"-o",
-				"${workspaceFolder}/Cplusplus/bin/project_entry"
+				"${workspaceFolder}/Cplusplus/bin/${input:variable1}"
 			],
 			"options": {
 				"cwd": "${workspaceFolder}" // Define the cwd command, such as ${fileDirname}
@@ -367,13 +446,172 @@
 			"command": "rm",
 			"args": [
 				"-f",
-				"Cplusplus/bin/*",
+				"${PROJECT_EXECUTABLE_PATH}/*",
 				"Python/Bokeh/*.html"
 			],
 			"options": {
 				"cwd": "${workspaceFolder}"
 			},
-			"problemMatcher": []
+			"problemMatcher": [],
+			"windows": {
+				"command": "rd",
+				"args": [
+					"-r", // Remove contents recursively
+					".\\Cplusplus\\bin\\*",
+					".\\Python\\Bokeh\\*.html"
+				],
+				"options": {
+					"cwd": "${workspaceFolder}"
+				},
+				"problemMatcher": []
+			},
+			"group": "none",
+			"hide": false,
+			"dependsOn": [
+				"Show binary folder"
+			],
+			"dependsOrder": "sequence"
 		},
+		{
+			"type": "shell",
+			"label": "Show workspace",
+			"command": "ls",
+			"args": [
+				"-la",
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"windows": {
+				"command": "dir",
+				"args": [],
+				"options": {
+					"cwd": "${workspaceFolder}"
+				},
+				"problemMatcher": []
+			},
+			"group": "none",
+			"hide": false
+		},
+		{
+			"type": "shell",
+			"label": "Show binary folder",
+			"command": "ls",
+			"args": [
+				"-l",
+				"${PROJECT_EXECUTABLE_PATH}/",
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"windows": {
+				"command": "dir",
+				"args": [
+					".\\Cplusplus\\bin\\"
+				],
+				"options": {
+					"cwd": "${workspaceFolder}"
+				},
+				"problemMatcher": []
+			},
+			"group": "none",
+			// Defines how the task output is handled in the user interface
+			"presentation": {
+				"showReuseMessage": false, // Don't show the "Terminal will be reused by tasks, press any key to close it" message
+			},
+			"hide": true
+		},
+		{
+			"type": "shell",
+			"label": "Build active test by specified optimization",
+			"command": "echo",
+			"args": [
+				"Finish build",
+			],
+			/**
+			 * Override the defaults for cwd (current working directory), env (environment variables), or shell (default shell).
+			 * Options can be set per task but also globally or per platform.
+			 */
+			"options": {
+				"cwd": "${workspaceFolder}", // define the cwd command, such as ${fileDirname}
+				// "env": {},
+				// "shell": {}
+			},
+			"problemMatcher": [],
+			// Defines to which group the task belongs
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			// Defines how the task output is handled in the user interface
+			"presentation": {
+				"reveal": "always", // The panel is always brought to front.
+				"revealProblems": "onProblem", // Only reveals the Problems panel if a problem is found
+				"focus": false,
+				"echo": true,
+				"showReuseMessage": true, // Show the "Terminal will be reused by tasks, press any key to close it" message
+				"panel": "shared", // The terminal is shared and the output of other task runs are added to the same terminal
+				"clear": false,
+				"close": false
+			},
+			// Defines when and how a task is run
+			"runOptions": {
+				"reevaluateOnRerun": true, // Variables will be reevaluated when a task is rerun
+				"runOn": "default", // The task will only be run when executed through the Run Task command
+				"instanceLimit": 1, // The number of instances of the task that are allowed to run simultaneously
+			},
+			// Hides the task from the Run Task Quick Pick, which can be useful for elements of a compound task that are not independently runnable.
+			"hide": false,
+			"detail": "Use g++ in Linux and cl.exe in Windows (Windows settings are not supported yet)",
+			"dependsOn": [
+				"Create ${PROJECT_EXECUTABLE_PATH} directory",
+				"C/C++: Build the active unit test",
+				"Show binary folder",
+			],
+			"dependsOrder": "sequence"
+		}
+	],
+	/**
+	 * Input variables is a mechanism to configure the command being run for a specific use case.
+     *
+	 * It has the syntax ${input:variableID}.
+	 * The variableID refers to entries in the inputs section of launch.json and tasks.json, where additional configuration attributes are specified.
+	 */
+	"inputs": [
+		{
+			/* Optimization level */
+			"type": "pickString", // Show a Quick Pick dropdown to let the user select from several options
+			"id": "variable0",
+			"description": "Which level of optimization do you want to use?",
+			// An array of options for the user to pick from
+			"options": [
+				{
+					"label": "Level 0 (Reduce compilation time)",
+					"value": "-O0"
+				},
+				{
+					"label": "Level 1 (Reduce code size and execution time)",
+					"value": "-O1"
+				},
+				{
+					"label": "Level 2 (Optimize more than level 1)",
+					"value": "-O2"
+				},
+				{
+					"label": "Level 3 (Optimize more than level 2)",
+					"value": "-O3"
+				}
+			],
+			"default": "Level 0 (Reduce compilation time)", // Default value that will be used if the user doesn't enter something else. It must be one of the option values
+		},
+		{
+			/* Name of executable file */
+			"type": "promptString", // Show an input box to get a string from the user
+			"id": "variable1",
+			"description": "Name your executable file",
+			"default": "project_entry", // Default value that will be used if the user doesn't enter something else
+		}
 	]
 }
