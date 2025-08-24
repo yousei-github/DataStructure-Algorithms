@@ -15,6 +15,8 @@
 			"HIPPOMOCKS_LIBRARY_PATH": "/usr/include/HippoMocks/hippomocks.h",
 			/* Module */
 			"PROJECT_MODULE_SOURCE_PATH": "${workspaceFolder}/Cplusplus/source/LinkedList/*.cpp ${workspaceFolder}/Cplusplus/source/NumericProgression/*.cpp ${workspaceFolder}/Cplusplus/source/Vector/*.cpp ${workspaceFolder}/Cplusplus/source/Array/*.cpp ${workspaceFolder}/Cplusplus/source/SortingAlgorithm/*.cpp ${workspaceFolder}/Cplusplus/source/Recursion/*.cpp ${workspaceFolder}/Cplusplus/source/Average/*.cpp",
+			/* Main */
+			"PROJECT_SOURCE_PATH": "${workspaceFolder}/Cplusplus/source/*.cpp",
 			/* Configuration */
 			"PROJECT_CONFIGURATION_SOURCE_PATH": "${workspaceFolder}/Cplusplus/source/ProjectConfiguration.cpp",
 			/* Executable files */
@@ -65,11 +67,11 @@
 		},
 		{
 			"type": "shell",
-			"label": "C/C++: g++ build this project in default optimization",
-			"command": "/usr/bin/g++", // The path of compiler
+			"label": "C/C++: Build all files",
+			"command": "/usr/bin/g++", // The path of compiler (@todo add clang++)
 			"args": [
 				"-fdiagnostics-color=always",
-				//"-O3", // O1/O2/O3
+				"${input:variable0}", // -O0/-O1/-O2/-O3
 				"-g", // Produce debugging information in the operationg system's native format
 				"-Wall", // Turns on all optional warnings which are desirable for normal code
 				"-Werror", // Make all warnings into hard errors. Source code which triggers warnings will be rejected
@@ -79,40 +81,19 @@
 				 * Below are predefine names:
 				 * e.g., -D name. Predefine [name] as a macro, with definition 1.
 				 */
-				//  "-D",
-				//  "NDEBUG",
+				"${input:variable2}",
 				/**
 				 * Below are header files: (can be from multiples folders)
 				 */
 				"-I", // e.g., -I dir. This means adding the directory [dir] to the list of directories to be searched for header files during preprocessing
-				"${workspaceFolder}/Cplusplus/include/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/LinkedList/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/NumericProgression/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/Vector/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/Array/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/SortingAlgorithm/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/Recursion/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/Average/",
+				"${PROJECT_INCLUDE_PATH}",
 				// "-L", // e.g., -L dir. Add directory [dir] to the list of directories to be searched for [-l].
 				// "${workspaceFolder}/vcpkg_installed/x64-linux/lib",
 				/**
 				 * Below are source files: (can be from multiples folders)
 				 */
-				"${workspaceFolder}/Cplusplus/source/LinkedList/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/NumericProgression/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/Vector/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/Array/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/SortingAlgorithm/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/Recursion/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/Average/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/*.cpp",
+				"${PROJECT_MODULE_SOURCE_PATH}",
+				"${PROJECT_SOURCE_PATH}",
 				/**
 				 * Below are library names:
 				 * e.g., -l library. Search the library named [library] when linking.
@@ -128,176 +109,53 @@
 				 * Below is the executable file's name
 				 */
 				"-o", // e.g., -o file1. This means placing the primary output in file [file1].
-				"${workspaceFolder}/Cplusplus/bin/project_entry"
+				"${workspaceFolder}/${PROJECT_EXECUTABLE_PATH}/${input:variable1}"
 			],
-			"options": {
-				"cwd": "${workspaceFolder}" // Define the cwd command, such as ${fileDirname}
-			},
 			"problemMatcher": [
 				"$gcc"
 			],
-			"group": {
-				"kind": "build",
-				"isDefault": true
+			/**
+			 * Any Windows specific properties
+			 * It will be used instead of the default properties when the command is executed on the Windows operating system
+			 */
+			"windows": {
+				"command": "cl.exe", // Microsoft Visual C++ (MSVC)
+				"args": [
+					"/Zi", // Generates complete debugging information.
+					"-openmp",
+					// "/I", // e.g., /I directory. Searches a directory for include files.
+					// "${workspaceFolder}\\Codes_C\\inc\\",
+					// Below are input files (can be from multiples folders)
+					"${fileDirname}\\${fileBasename}",
+					"/Fo:", // e.g., /Fo: pathname. Specifies an object (.obj) file name or directory to be used
+					"${workspaceFolder}\\Cplusplus\\bin\\",
+					"/Fe:", // e.g., /Fe: pathname. Renames the executable file.
+					"${workspaceFolder}\\Cplusplus\\bin\\${fileBasename}.exe"
+				],
+				"options": {
+					"cwd": "${workspaceFolder}" // define the cwd command, such as ${fileDirname}
+				},
+				"problemMatcher": [
+					"$msCompile"
+				]
 			},
-			"detail": "compiler: /usr/bin/g++"
-		},
-		{
-			"type": "shell",
-			"label": "C/C++: g++ build this project in optimization level 3",
-			"command": "/usr/bin/g++", // The path of compiler
-			"args": [
-				"-fdiagnostics-color=always",
-				"-O3", // O1/O2/O3
-				"-g", // Produce debugging information in the operationg system's native format
-				"-Wall", // Turns on all optional warnings which are desirable for normal code
-				"-Werror", // Make all warnings into hard errors. Source code which triggers warnings will be rejected
-				"-fopenmp", // Enables #pragma omp in source code
-				//"-std=c++17", // c++11/c++17
-				/**
-				 * Below are predefine names:
-				 * e.g., -D name. Predefine [name] as a macro, with definition 1.
-				 */
-				//  "-D",
-				//  "NDEBUG",
-				/**
-				 * Below are header files: (can be from multiples folders)
-				 */
-				"-I", // e.g., -I dir. This means adding the directory [dir] to the list of directories to be searched for header files during preprocessing
-				"${workspaceFolder}/Cplusplus/include/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/LinkedList/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/NumericProgression/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/Vector/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/Array/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/SortingAlgorithm/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/Recursion/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/Average/",
-				// "-L", // e.g., -L dir. Add directory [dir] to the list of directories to be searched for [-l].
-				// "${workspaceFolder}/vcpkg_installed/x64-linux/lib",
-				/**
-				 * Below are source files: (can be from multiples folders)
-				 */
-				"${workspaceFolder}/Cplusplus/source/LinkedList/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/NumericProgression/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/Vector/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/Array/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/SortingAlgorithm/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/Recursion/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/Average/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/*.cpp",
-				/**
-				 * Below are library names:
-				 * e.g., -l library. Search the library named [library] when linking.
-				 * 
-				 * The linker searches and processes libraries and object files in the order they are specified.
-				 * Thus, [foo.o -lz bar.o] searches library [z] after file [foo.o] but before [bar.o]. If bar.o refers to functions in [z], those functions may not be loaded.
-				 *
-				 * The linker searches a standard list of directories plus any that you specify with [-L] for the library, which is actually a file named [liblibrary.a]=[a file name library surrounded with lib and .a].
-				 */
-				//  "-l",
-				//  "fmt",
-				/**
-				 * Below is the executable file's name
-				 */
-				"-o", // e.g., -o file1. This means placing the primary output in file [file1].
-				"${workspaceFolder}/Cplusplus/bin/project_entry_O3"
-			],
-			"options": {
-				"cwd": "${workspaceFolder}" // Define the cwd command, such as ${fileDirname}
-			},
-			"problemMatcher": [
-				"$gcc"
-			],
 			"group": {
 				"kind": "build",
 				"isDefault": false
 			},
-			"detail": "compiler: /usr/bin/g++"
-		},
-		{
-			"type": "shell",
-			"label": "C/C++: g++ build this project in optimization level 3 without debugging",
-			"command": "/usr/bin/g++", // The path of compiler
-			"args": [
-				"-fdiagnostics-color=always",
-				"-O3", // O1/O2/O3
-				"-g", // Produce debugging information in the operationg system's native format
-				"-Wall", // Turns on all optional warnings which are desirable for normal code
-				"-Werror", // Make all warnings into hard errors. Source code which triggers warnings will be rejected
-				"-fopenmp", // Enables #pragma omp in source code
-				//"-std=c++17", // c++11/c++17
-				/**
-				 * Below are predefine names:
-				 * e.g., -D name. Predefine [name] as a macro, with definition 1.
-				 */
-				"-D",
-				"NDEBUG",
-				/**
-				 * Below are header files: (can be from multiples folders)
-				 */
-				"-I", // e.g., -I dir. This means adding the directory [dir] to the list of directories to be searched for header files during preprocessing
-				"${workspaceFolder}/Cplusplus/include/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/LinkedList/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/NumericProgression/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/Vector/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/Array/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/SortingAlgorithm/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/Recursion/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/include/Average/",
-				// "-L", // e.g., -L dir. Add directory [dir] to the list of directories to be searched for [-l].
-				// "${workspaceFolder}/vcpkg_installed/x64-linux/lib",
-				/**
-				 * Below are source files: (can be from multiples folders)
-				 */
-				"${workspaceFolder}/Cplusplus/source/LinkedList/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/NumericProgression/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/Vector/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/Array/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/SortingAlgorithm/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/Recursion/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/Average/*.cpp",
-				"${workspaceFolder}/Cplusplus/source/*.cpp",
-				/**
-				 * Below are library names:
-				 * e.g., -l library. Search the library named [library] when linking.
-				 * 
-				 * The linker searches and processes libraries and object files in the order they are specified.
-				 * Thus, [foo.o -lz bar.o] searches library [z] after file [foo.o] but before [bar.o]. If bar.o refers to functions in [z], those functions may not be loaded.
-				 *
-				 * The linker searches a standard list of directories plus any that you specify with [-L] for the library, which is actually a file named [liblibrary.a]=[a file name library surrounded with lib and .a].
-				 */
-				//  "-l",
-				//  "fmt",
-				/**
-				 * Below is the executable file's name
-				 */
-				"-o", // e.g., -o file1. This means placing the primary output in file [file1].
-				"${workspaceFolder}/Cplusplus/bin/project_entry_O3_NDEBUG"
-			],
-			"options": {
-				"cwd": "${workspaceFolder}" // Define the cwd command, such as ${fileDirname}
+			// Defines how the task output is handled in the user interface
+			"presentation": {
+				"reveal": "always", // The panel is always brought to front.
+				"revealProblems": "onProblem", // Only reveals the Problems panel if a problem is found
+				"focus": false,
+				"echo": true,
+				"showReuseMessage": false, // Don't show the "Terminal will be reused by tasks, press any key to close it" message
+				"panel": "shared", // The terminal is shared and the output of other task runs are added to the same terminal
+				"clear": false,
+				"close": false
 			},
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": {
-				"kind": "build",
-				"isDefault": false
-			},
+			// Hides the task from the Run Task Quick Pick, which can be useful for elements of a compound task that are not independently runnable.
+			"hide": true,
 			"detail": "compiler: /usr/bin/g++"
 		},
 		{
@@ -364,7 +222,7 @@
 			 * It will be used instead of the default properties when the command is executed on the Windows operating system
 			 */
 			"windows": {
-				"command": "cl.exe",
+				"command": "cl.exe", // Microsoft Visual C++ (MSVC)
 				"args": [
 					"/Zi", // Generates complete debugging information.
 					"-openmp",
@@ -403,42 +261,6 @@
 			// Hides the task from the Run Task Quick Pick, which can be useful for elements of a compound task that are not independently runnable.
 			"hide": true,
 			"detail": "compiler: /usr/bin/g++"
-		},
-		{
-			"type": "shell",
-			"label": "C/C++: clang build this project in default optimization",
-			"command": "/usr/bin/clang++", // The path of compiler
-			"args": [
-				//"-fdiagnostics-color=always",
-				//"-O3",	// O1/O2/O3
-				"-g",
-				"-Wall",
-				// "-MM",
-				// "-MT",
-				//"-fopenmp",
-				//"-std=c++17", // c++11/c++17
-				"-I", // e.g., -I dir. This means adding the directory dir to the list of directories to be searched for header files during preprocessing
-				"${workspaceFolder}/Cplusplus/Include/",
-				"-I",
-				"${workspaceFolder}/Cplusplus/Include/LinkedList/",
-				// Below are input files (can be from multiples folders)
-				"${workspaceFolder}/Cplusplus/Source/LinkedList/*.cpp",
-				"${workspaceFolder}/Cplusplus/Source/*.cpp",
-				// Below is the executable file's name
-				"-o",
-				"${workspaceFolder}/Cplusplus/bin/${input:variable1}"
-			],
-			"options": {
-				"cwd": "${workspaceFolder}" // Define the cwd command, such as ${fileDirname}
-			},
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": {
-				"kind": "build",
-				"isDefault": false
-			},
-			"detail": "compiler: /usr/bin/clang++"
 		},
 		{
 			"type": "shell",
@@ -522,6 +344,55 @@
 				"showReuseMessage": false, // Don't show the "Terminal will be reused by tasks, press any key to close it" message
 			},
 			"hide": true
+		},
+		{
+			"type": "shell",
+			"label": "Build by specified optimization",
+			"command": "echo",
+			"args": [
+				"Finish build",
+			],
+			/**
+			 * Override the defaults for cwd (current working directory), env (environment variables), or shell (default shell).
+			 * Options can be set per task but also globally or per platform.
+			 */
+			"options": {
+				"cwd": "${workspaceFolder}", // define the cwd command, such as ${fileDirname}
+				// "env": {},
+				// "shell": {}
+			},
+			"problemMatcher": [],
+			// Defines to which group the task belongs
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			// Defines how the task output is handled in the user interface
+			"presentation": {
+				"reveal": "always", // The panel is always brought to front.
+				"revealProblems": "onProblem", // Only reveals the Problems panel if a problem is found
+				"focus": false,
+				"echo": true,
+				"showReuseMessage": true, // Show the "Terminal will be reused by tasks, press any key to close it" message
+				"panel": "shared", // The terminal is shared and the output of other task runs are added to the same terminal
+				"clear": false,
+				"close": false
+			},
+			// Defines when and how a task is run
+			"runOptions": {
+				"reevaluateOnRerun": true, // Variables will be reevaluated when a task is rerun
+				"runOn": "default", // The task will only be run when executed through the Run Task command
+				"instanceLimit": 1, // The number of instances of the task that are allowed to run simultaneously
+			},
+			// Hides the task from the Run Task Quick Pick, which can be useful for elements of a compound task that are not independently runnable.
+			"hide": false,
+			"detail": "Use g++ in Linux and cl.exe in Windows (Windows settings are not supported yet)",
+			"dependsOn": [
+				"Create ${PROJECT_EXECUTABLE_PATH} directory",
+				"C/C++: Build all files",
+				"Show binary folder",
+			],
+			"dependsOrder": "sequence"
 		},
 		{
 			"type": "shell",
@@ -612,6 +483,24 @@
 			"id": "variable1",
 			"description": "Name your executable file",
 			"default": "project_entry", // Default value that will be used if the user doesn't enter something else
+		},
+		{
+			/* Debuggability */
+			"type": "pickString", // Show a Quick Pick dropdown to let the user select from several options
+			"id": "variable2",
+			"description": "Enable debugging?",
+			// An array of options for the user to pick from
+			"options": [
+				{
+					"label": "Yes",
+					"value": ""
+				},
+				{
+					"label": "No",
+					"value": "-D NDEBUG"
+				}
+			],
+			"default": "Yes", // Default value that will be used if the user doesn't enter something else. It must be one of the option values
 		}
 	]
 }
