@@ -26,6 +26,7 @@
 
 #define USE_OPENMP                 (ENABLE) // Whether use OpenMP to speedup this project
 #define PRINT_STATISTICS_INTO_FILE (ENABLE) // Whether print the statistics into files
+#define USE_EXCEPTION              (ENABLE) // Whether use exception to handle errors
 
 /* Type */
 

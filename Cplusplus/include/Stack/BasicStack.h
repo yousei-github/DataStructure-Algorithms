@@ -22,6 +22,10 @@
 // C standard libraries:
 #include <stdint.h>
 
+#if (USE_EXCEPTION == ENABLE)
+#include "Exception/BasicException.h"
+#endif /* USE_EXCEPTION */
+
 /* Macro */
 
 /* Type */
@@ -61,13 +65,8 @@ public:
     void clear();              // Remove all the elements
 
     BasicStack<T>& operator=(const BasicStack<T>& v1); // Overload the assignment operator in case of the shallow copy since this class allocates memory
-
     /** Read element at the @p index */
-    T operator[](uint32_t index)
-    {
-        assert(index < array_length);
-        return array[index];
-    }
+    T operator[](uint32_t index);
 
 private:
     /* Data */

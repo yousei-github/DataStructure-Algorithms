@@ -14,7 +14,7 @@
 			"GOOGLE_TEST_LIBRARY_PATH": "/usr/local/include/gtest/",
 			"HIPPOMOCKS_LIBRARY_PATH": "/usr/include/HippoMocks/hippomocks.h",
 			/* Module */
-			"PROJECT_MODULE_SOURCE_PATH": "${workspaceFolder}/Cplusplus/source/LinkedList/*.cpp ${workspaceFolder}/Cplusplus/source/NumericProgression/*.cpp ${workspaceFolder}/Cplusplus/source/Vector/*.cpp ${workspaceFolder}/Cplusplus/source/Array/*.cpp ${workspaceFolder}/Cplusplus/source/SortingAlgorithm/*.cpp ${workspaceFolder}/Cplusplus/source/Recursion/*.cpp ${workspaceFolder}/Cplusplus/source/Average/*.cpp ${workspaceFolder}/Cplusplus/source/Stack/*.cpp",
+			"PROJECT_MODULE_SOURCE_PATH": "${workspaceFolder}/Cplusplus/source/LinkedList/*.cpp ${workspaceFolder}/Cplusplus/source/NumericProgression/*.cpp ${workspaceFolder}/Cplusplus/source/Vector/*.cpp ${workspaceFolder}/Cplusplus/source/Array/*.cpp ${workspaceFolder}/Cplusplus/source/SortingAlgorithm/*.cpp ${workspaceFolder}/Cplusplus/source/Recursion/*.cpp ${workspaceFolder}/Cplusplus/source/Average/*.cpp ${workspaceFolder}/Cplusplus/source/Stack/*.cpp ${workspaceFolder}/Cplusplus/source/Exception/*.cpp",
 			/* Main */
 			"PROJECT_SOURCE_PATH": "${workspaceFolder}/Cplusplus/source/*.cpp",
 			/* Configuration */

@@ -24,6 +24,12 @@ BasicStack<T>::BasicStack(uint32_t v1)
     if (array_length != 0)
     {
         assert(array != nullptr);
+#if (USE_EXCEPTION == ENABLE)
+        if (array == nullptr)
+        {
+            throw Exception::RuntimeException("Run out of memory");
+        }
+#endif /* USE_EXCEPTION */
     }
 }
 
@@ -36,6 +42,12 @@ BasicStack<T>::BasicStack(const BasicStack<T>& v1)
     if (array_length != 0)
     {
         assert(array != nullptr);
+#if (USE_EXCEPTION == ENABLE)
+        if (array == nullptr)
+        {
+            throw Exception::RuntimeException("Run out of memory");
+        }
+#endif /* USE_EXCEPTION */
     }
 
     for (size_t i = 0; i < array_length; i++)
@@ -79,6 +91,12 @@ const T& BasicStack<T>::top() const
 {
     // Top of empty stack
     assert(empty() == false);
+#if (USE_EXCEPTION == ENABLE)
+    if (empty())
+    {
+        throw Exception::RuntimeException("Top of empty stack");
+    }
+#endif /* USE_EXCEPTION */
 
     const uint32_t top_index = number_of_element - 1;
     return array[top_index];
@@ -89,6 +107,12 @@ void BasicStack<T>::push(const T& e)
 {
     // Push to full stack
     assert(size() != array_length);
+#if (USE_EXCEPTION == ENABLE)
+    if (size() == array_length)
+    {
+        throw Exception::RuntimeException("Push to full stack");
+    }
+#endif /* USE_EXCEPTION */
 
     array[number_of_element] = e;
     ++number_of_element;
@@ -99,6 +123,12 @@ void BasicStack<T>::pop()
 {
     // Pop from empty stack
     assert(empty() == false);
+#if (USE_EXCEPTION == ENABLE)
+    if (empty())
+    {
+        throw Exception::RuntimeException("Pop from empty stack");
+    }
+#endif /* USE_EXCEPTION */
 
     --number_of_element;
 }
@@ -127,6 +157,12 @@ BasicStack<T>& BasicStack<T>::operator=(const BasicStack<T>& v1)
         if (array_length != 0)
         {
             assert(array != nullptr);
+#if (USE_EXCEPTION == ENABLE)
+            if (array == nullptr)
+            {
+                throw Exception::RuntimeException("Run out of memory");
+            }
+#endif /* USE_EXCEPTION */
         }
 
         for (size_t i = 0; i < array_length; i++)
@@ -138,6 +174,20 @@ BasicStack<T>& BasicStack<T>::operator=(const BasicStack<T>& v1)
     }
 
     return *this; // Allow to chain together assignments
+}
+
+template<class T>
+T BasicStack<T>::operator[](uint32_t index)
+{
+    assert(index < array_length);
+#if (USE_EXCEPTION == ENABLE)
+    if (index >= array_length)
+    {
+        throw Exception::RuntimeException("Index is out of bound");
+    }
+#endif /* USE_EXCEPTION */
+
+    return array[index];
 }
 
 } // namespace Stack
