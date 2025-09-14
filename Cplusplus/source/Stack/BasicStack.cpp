@@ -179,15 +179,16 @@ BasicStack<T>& BasicStack<T>::operator=(const BasicStack<T>& v1)
 template<class T>
 T BasicStack<T>::operator[](uint32_t index)
 {
-    assert(index < array_length);
+    assert(index < number_of_element);
 #if (USE_EXCEPTION == ENABLE)
-    if (index >= array_length)
+    if (index >= number_of_element)
     {
         throw Exception::RuntimeException("Index is out of bound");
     }
 #endif /* USE_EXCEPTION */
 
-    return array[index];
+    const uint32_t top_index = number_of_element - 1;
+    return array[top_index - index];
 }
 
 } // namespace Stack

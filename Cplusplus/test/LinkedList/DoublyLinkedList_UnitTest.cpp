@@ -79,7 +79,7 @@ std::array<instantiationType, NUMBER_OF_ELEMENTS> DoublyLinkedList_TestSuite::el
 
 /* Function */
 
-TEST(DoublyLinkedListNode_TestSuite, CopyByConstructor)
+TEST(DoublyLinkedListNode, CopyByConstructor)
 {
     /* Arrange */
     LinkedList::DoublyLinkedListNode<instantiationType> nodeA;
@@ -94,7 +94,7 @@ TEST(DoublyLinkedListNode_TestSuite, CopyByConstructor)
     EXPECT_EQ(sut.next, nodeA.next);
 }
 
-TEST(DoublyLinkedListNode_TestSuite, CopyByOperator)
+TEST(DoublyLinkedListNode, CopyByOperator)
 {
     /* Arrange */
     LinkedList::DoublyLinkedListNode<instantiationType> nodeA;
@@ -111,7 +111,7 @@ TEST(DoublyLinkedListNode_TestSuite, CopyByOperator)
     EXPECT_EQ(sut.next, nodeA.next);
 }
 
-TEST(DoublyLinkedListNode_TestSuite, SecondCopy)
+TEST(DoublyLinkedListNode, SecondCopy)
 {
     /* Arrange */
     LinkedList::DoublyLinkedListNode<instantiationType> nodeA, nodeB;

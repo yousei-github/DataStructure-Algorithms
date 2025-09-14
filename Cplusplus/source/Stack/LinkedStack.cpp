@@ -1,5 +1,5 @@
 /* Header */
-#include "LinkedList/SinglyLinkedList.h"
+#include "Stack/LinkedStack.h"
 
 // C standard libraries:
 #include <stddef.h>
@@ -14,9 +14,9 @@
 
 /* Function */
 
-namespace LinkedList
+namespace Stack
 {
 
 /** No code here */
 
-} /* namespace LinkedList */
+} // namespace Stack

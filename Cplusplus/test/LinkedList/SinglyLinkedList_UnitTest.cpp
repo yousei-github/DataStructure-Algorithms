@@ -79,7 +79,7 @@ std::array<instantiationType, NUMBER_OF_ELEMENTS> SinglyLinkedList_TestSuite::el
 
 /* Function */
 
-TEST(SinglyLinkedListNode, CopyByConstructor) // @todo
+TEST(SinglyLinkedListNode, CopyByConstructor)
 {
     /* Arrange */
     LinkedList::SinglyLinkedListNode<instantiationType> nodeA;

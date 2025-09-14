@@ -1,5 +1,5 @@
 /* Header */
-#include "Stack/BasicStack.h"
+#include "Stack/LinkedStack.h"
 #include "gtest/gtest.h"
 
 // C standard libraries:
@@ -19,17 +19,17 @@ enum class Element : instantiationType
 
 /* Test case */
 
-TEST(BasicStack, CopyByConstructor)
+TEST(LinkedStack, CopyByConstructor)
 {
     /* Arrange */
-    Stack::BasicStack<instantiationType> stackA(instantiationType(Element::Max));
+    Stack::LinkedStack<instantiationType> stackA;
     for (size_t i = instantiationType(Element::One); i < instantiationType(Element::Max); i++)
     {
         stackA.push(i);
     }
 
     /* Act */
-    Stack::BasicStack<instantiationType> sut(stackA);
+    Stack::LinkedStack<instantiationType> sut(stackA);
 
     /* Assert */
     EXPECT_EQ(sut.size(), stackA.size());
@@ -39,16 +39,16 @@ TEST(BasicStack, CopyByConstructor)
     }
 }
 
-TEST(BasicStack, CopyByOperator)
+TEST(LinkedStack, CopyByOperator)
 {
     /* Arrange */
-    Stack::BasicStack<instantiationType> stackA(instantiationType(Element::Max));
+    Stack::LinkedStack<instantiationType> stackA;
     for (size_t i = instantiationType(Element::One); i < instantiationType(Element::Max); i++)
     {
         stackA.push(i);
     }
 
-    Stack::BasicStack<instantiationType> sut;
+    Stack::LinkedStack<instantiationType> sut;
 
     /* Act */
     sut = stackA;
@@ -61,16 +61,16 @@ TEST(BasicStack, CopyByOperator)
     }
 }
 
-TEST(BasicStack, SecondCopy)
+TEST(LinkedStack, SecondCopy)
 {
     /* Arrange */
-    Stack::BasicStack<instantiationType> stackA(instantiationType(Element::Max)), stackB;
+    Stack::LinkedStack<instantiationType> stackA, stackB;
     for (size_t i = instantiationType(Element::One); i < instantiationType(Element::Max); i++)
     {
         stackA.push(i);
     }
 
-    Stack::BasicStack<instantiationType> sut;
+    Stack::LinkedStack<instantiationType> sut;
 
     /* Act */
     sut = stackB = stackA;
@@ -83,10 +83,10 @@ TEST(BasicStack, SecondCopy)
     }
 }
 
-TEST(BasicStack, Empty)
+TEST(LinkedStack, Empty)
 {
     /* Arrange */
-    Stack::BasicStack<instantiationType> sut;
+    Stack::LinkedStack<instantiationType> sut;
 
     /* Act */
     bool isEmpty = sut.empty();
@@ -95,10 +95,10 @@ TEST(BasicStack, Empty)
     EXPECT_TRUE(isEmpty) << "The stack should be empty";
 }
 
-TEST(BasicStack, MaximumSize)
+TEST(LinkedStack, MaximumSize)
 {
     /* Arrange */
-    Stack::BasicStack<instantiationType> sut(instantiationType(Element::Max));
+    Stack::LinkedStack<instantiationType> sut;
     for (size_t i = instantiationType(Element::One); i < instantiationType(Element::Max); i++)
     {
         sut.push(i);
@@ -111,22 +111,10 @@ TEST(BasicStack, MaximumSize)
     EXPECT_EQ(size, instantiationType(Element::Max)) << "The size of stack should be " << instantiationType(Element::Max);
 }
 
-TEST(BasicStack, MaximumCapacity)
+TEST(LinkedStack, GetTopElement)
 {
     /* Arrange */
-    Stack::BasicStack<instantiationType> sut(instantiationType(Element::Max));
-
-    /* Act */
-    const uint32_t capacity = sut.capacity();
-
-    /* Assert */
-    EXPECT_EQ(capacity, instantiationType(Element::Max)) << "The capacity of stack should be " << instantiationType(Element::Max);
-}
-
-TEST(BasicStack, GetTopElement)
-{
-    /* Arrange */
-    Stack::BasicStack<instantiationType> sut(instantiationType(Element::Max));
+    Stack::LinkedStack<instantiationType> sut;
     sut.push(instantiationType(Element::One));
 
     /* Act */
@@ -146,7 +134,7 @@ INSTANTIATE_TEST_SUITE_P(InstantiationOne, PushParameterizedTest, testing::Range
 TEST_P(PushParameterizedTest, PushElement)
 {
     /* Arrange */
-    Stack::BasicStack<instantiationType> sut(instantiationType(Element::Max));
+    Stack::LinkedStack<instantiationType> sut;
     const instantiationType expect_element = GetParam();
 
     for (size_t i = instantiationType(Element::One); i < static_cast<size_t>(expect_element); i++)
@@ -172,7 +160,7 @@ INSTANTIATE_TEST_SUITE_P(InstantiationOne, PopParameterizedTest, testing::Range(
 TEST_P(PopParameterizedTest, PopElement)
 {
     /* Arrange */
-    Stack::BasicStack<instantiationType> sut(instantiationType(Element::Max));
+    Stack::LinkedStack<instantiationType> sut;
     const instantiationType expect_element = GetParam();
 
     for (size_t i = instantiationType(Element::One); i <= static_cast<size_t>(expect_element); i++)
@@ -187,10 +175,10 @@ TEST_P(PopParameterizedTest, PopElement)
     EXPECT_EQ(sut.size(), expect_element);
 }
 
-TEST(BasicStack, GetThirdElement)
+TEST(LinkedStack, GetThirdElement)
 {
     /* Arrange */;
-    Stack::BasicStack<instantiationType> sut(instantiationType(Element::Max));
+    Stack::LinkedStack<instantiationType> sut;
     for (size_t i = instantiationType(Element::One); i < instantiationType(Element::Max); i++)
     {
         sut.push(i);
@@ -203,10 +191,10 @@ TEST(BasicStack, GetThirdElement)
     EXPECT_EQ(thirdElement, instantiationType(Element::One)) << "The third element should be " << instantiationType(Element::One);
 }
 
-TEST(BasicStack, RemoveAllElements)
+TEST(LinkedStack, RemoveAllElements)
 {
     /* Arrange */
-    Stack::BasicStack<instantiationType> sut(instantiationType(Element::Max));
+    Stack::LinkedStack<instantiationType> sut;
     for (size_t i = instantiationType(Element::One); i < instantiationType(Element::Max); i++)
     {
         sut.push(i);
@@ -219,16 +207,16 @@ TEST(BasicStack, RemoveAllElements)
     EXPECT_EQ(sut.size(), 0) << "The size of stack should be 0";
 }
 
-TEST(BasicStack, TemplatedArguments)
+TEST(LinkedStack, TemplatedArguments)
 {
     /* Arrange */
-    Stack::BasicStack<instantiationType> stackA(instantiationType(Element::Max));
+    Stack::LinkedStack<instantiationType> stackA;
     for (size_t i = instantiationType(Element::One); i < instantiationType(Element::Max); i++)
     {
         stackA.push(i);
     }
 
-    Stack::BasicStack<Stack::BasicStack<instantiationType>> sut(instantiationType(Element::Max));
+    Stack::LinkedStack<Stack::LinkedStack<instantiationType>> sut;
 
     /* Act */
     for (size_t row = instantiationType(Element::One); row < instantiationType(Element::Max); row++)
