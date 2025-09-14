@@ -52,10 +52,6 @@ private:
     uint32_t capacity = {}; // Length of array
 };
 
-// Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template class]
-template class BasicVector<int>;
-template class BasicVector<BasicVector<int>>; // Templated arguments
-
 /* Prototype */
 
 /* Variable */

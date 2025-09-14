@@ -96,4 +96,8 @@ void PuzzleSolver<T>::clear()
     }
 }
 
+// Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template class]
+template class PuzzleSolver<int>;
+template class PuzzleSolver<uint32_t>;
+
 } // namespace Recursion

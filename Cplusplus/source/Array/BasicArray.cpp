@@ -180,4 +180,8 @@ BasicArray<T>& BasicArray<T>::operator=(const BasicArray<T>& v1)
     return *this; // Allow to chain together assignments
 }
 
+// Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template class]
+template class ArrayEntry<int>;
+template class BasicArray<int>;
+
 } // namespace Array

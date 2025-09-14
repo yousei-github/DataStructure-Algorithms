@@ -76,10 +76,6 @@ private:
     uint32_t number_of_element = {}; // Number of element in the stack, [number_of_element - 1] is the index of top of the stack
 };
 
-// Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template class]
-template class BasicStack<int>;
-template class BasicStack<BasicStack<int>>; // Templated arguments
-
 /* Prototype */
 
 /* Variable */

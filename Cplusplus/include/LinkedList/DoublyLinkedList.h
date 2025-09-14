@@ -88,10 +88,6 @@ protected:
     void remove(DoublyLinkedListNode<T>* v);          // Remove node v
 };
 
-// Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template class]
-template class DoublyLinkedList<int>;
-template class DoublyLinkedListNode<int>;
-
 /* Prototype */
 
 /* Variable */

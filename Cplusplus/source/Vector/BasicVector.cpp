@@ -102,4 +102,8 @@ BasicVector<T>& BasicVector<T>::operator=(const BasicVector<T>& v1)
     return *this; // Allow to chain together assignments
 }
 
+// Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template class]
+template class BasicVector<int>;
+template class BasicVector<BasicVector<int>>; // Templated arguments
+
 } // namespace Vector

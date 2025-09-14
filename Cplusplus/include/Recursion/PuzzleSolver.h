@@ -55,10 +55,6 @@ private:
     std::queue<std::deque<T>> answers = {};      // The array stores all results
 };
 
-// Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template class]
-template class PuzzleSolver<int>;
-template class PuzzleSolver<uint32_t>;
-
 /* Prototype */
 
 /* Variable */

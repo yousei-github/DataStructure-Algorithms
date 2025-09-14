@@ -75,9 +75,6 @@ private:
     uint32_t list_size              = {}; // The size of the list
 };
 
-// Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template class]
-template class CircularlyDoublyLinkedList<int>;
-
 /* Prototype */
 
 /* Variable */

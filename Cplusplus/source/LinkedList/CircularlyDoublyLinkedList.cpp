@@ -234,4 +234,7 @@ CircularlyDoublyLinkedList<T>& CircularlyDoublyLinkedList<T>::operator=(const Ci
     return *this; // Allow to chain together assignments
 }
 
+// Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template class]
+template class CircularlyDoublyLinkedList<int>;
+
 } /* namespace LinkedList */

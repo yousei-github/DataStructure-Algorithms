@@ -191,4 +191,8 @@ T BasicStack<T>::operator[](uint32_t index)
     return array[top_index - index];
 }
 
+// Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template class]
+template class BasicStack<int>;
+template class BasicStack<BasicStack<int>>; // Templated arguments
+
 } // namespace Stack

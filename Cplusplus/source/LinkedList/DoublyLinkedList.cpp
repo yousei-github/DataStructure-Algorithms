@@ -215,4 +215,8 @@ void DoublyLinkedList<T>::remove(DoublyLinkedListNode<T>* v)
     list_size--;
 }
 
+// Explicitly instantiate the template to solve the compiling problem in C++ programming, which is ["undefined reference to" template class]
+template class DoublyLinkedList<int>;
+template class DoublyLinkedListNode<int>;
+
 } /* namespace LinkedList */
