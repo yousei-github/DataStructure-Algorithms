@@ -281,6 +281,52 @@ TEST_F(SinglyLinkedList_TestSuite, RemoveFrontNode)
 
     /* Assert */
     EXPECT_EQ(sut.front(), elementOne) << "The element in the front node should be " << elementOne;
+    EXPECT_EQ(sut.size(), 1);
+}
+
+class RemoveSpecifiedNodeTest : public SinglyLinkedList_TestSuite, public testing::WithParamInterface<uint32_t>
+{
+    // No code here
+};
+
+INSTANTIATE_TEST_SUITE_P(InstantiationOne, RemoveSpecifiedNodeTest, testing::Range(uint32_t(0), uint32_t(NUMBER_OF_ELEMENTS - 1)));
+
+TEST_P(RemoveSpecifiedNodeTest, RemoveOneNodeExceptTail)
+{
+    /* Arrange */
+    LinkedList::SinglyLinkedList<instantiationType> sut;
+    for (const auto entry : elementArray)
+    {
+        sut.addFront(entry);
+    }
+
+    const uint32_t index = GetParam();
+
+    /* Act */
+    sut.remove(index);
+
+    /* Assert */
+    EXPECT_EQ(sut.get(index), elementArray.at(NUMBER_OF_ELEMENTS - index - 1 - 1));
+    EXPECT_EQ(sut.size(), NUMBER_OF_ELEMENTS - 1);
+}
+
+TEST_F(SinglyLinkedList_TestSuite, RemoveTailNode)
+{
+    /* Arrange */
+    LinkedList::SinglyLinkedList<instantiationType> sut;
+    for (const auto entry : elementArray)
+    {
+        sut.addFront(entry);
+    }
+
+    const uint32_t index = NUMBER_OF_ELEMENTS - 1;
+
+    /* Act */
+    sut.remove(index);
+
+    /* Assert */
+    EXPECT_EQ(sut.get(index - 1), elementArray.at(NUMBER_OF_ELEMENTS - index));
+    EXPECT_EQ(sut.size(), NUMBER_OF_ELEMENTS - 1);
 }
 
 TEST_F(SinglyLinkedList_TestSuite, RemoveAllNodes)

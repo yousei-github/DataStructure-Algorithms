@@ -68,9 +68,10 @@ public:
     const T& front() const;             // Get front element; an error results if the list is empty
     const T& get(uint32_t index) const; // Return the [index]th element; an error results if the list is empty
 
-    void addFront(const T& e); // Add to front of list
-    void removeFront();        // Remove from front
-    void clear();              // Remove all the nodes
+    void addFront(const T& e);   // Add to front of list
+    void removeFront();          // Remove from front
+    void remove(uint32_t index); // Remove the [index]th element
+    void clear();                // Remove all the nodes
 
     static void reverseList(SinglyLinkedList<T>& list) // Reverse the elements of the list
     {
@@ -212,6 +213,31 @@ void SinglyLinkedList<T>::removeFront()
     SinglyLinkedListNode<T>* oldHead = head;          // Save current head
     head                             = oldHead->next; // Skip over old head
     delete oldHead;
+    list_size--;
+}
+
+template<class T>
+void SinglyLinkedList<T>::remove(uint32_t index)
+{
+    assert(! empty());
+    assert(index < list_size);
+
+    if (index == 0)
+    {
+        removeFront();
+        return;
+    }
+
+    SinglyLinkedListNode<T>* previous = head;
+    SinglyLinkedListNode<T>* node     = head->next;
+    for (size_t i = 1; i < index; i++)
+    {
+        previous = node;
+        node     = node->next;
+    }
+
+    previous->next = node->next;
+    delete node;
     list_size--;
 }
 
