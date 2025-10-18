@@ -70,7 +70,9 @@
         "complex": "cpp",
         "forward_list": "cpp",
         "queue": "cpp",
-        "format": "cpp"
+        "format": "cpp",
+        "charconv": "cpp",
+        "iomanip": "cpp"
     },
     "editor.tabSize": 4,
     "editor.indentSize": "tabSize",
