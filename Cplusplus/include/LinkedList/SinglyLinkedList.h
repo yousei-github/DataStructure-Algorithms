@@ -313,7 +313,7 @@ void SinglyLinkedList<T>::insert(uint32_t index, const T& e)
     assert(u != nullptr);
     u->element = e;
 
-    if (list_size <= index)
+    if (list_size < index)
     {
         index = list_size; // Insert to the tail node
     }

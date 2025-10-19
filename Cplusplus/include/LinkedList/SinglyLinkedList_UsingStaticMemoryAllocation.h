@@ -397,7 +397,7 @@ void StaticSinglyLinkedList<T>::insert(uint32_t index, StaticSinglyLinkedList<T>
     uint32_t u_index                 = static_cast<uint32_t>(ArrayIndex::END_NODE_INDEX);
     source.removeFront(u, u_index);
 
-    if (list_size <= index)
+    if (list_size < index)
     {
         index = list_size; // Insert to the tail node
     }
@@ -430,7 +430,7 @@ void StaticSinglyLinkedList<T>::insert(uint32_t index, StaticSinglyLinkedListNod
         return;
     }
 
-    if (list_size <= index)
+    if (list_size < index)
     {
         index = list_size; // Insert to the tail node
     }
