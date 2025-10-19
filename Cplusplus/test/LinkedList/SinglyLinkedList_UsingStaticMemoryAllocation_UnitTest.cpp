@@ -138,6 +138,7 @@ TEST_F(StaticSinglyLinkedList_TestSuite, Empty)
 
     /* Assert */
     EXPECT_TRUE(isEmpty) << "The singly linked list should be empty";
+    EXPECT_EQ(sut.headIndex(), static_cast<uint32_t>(LinkedList::StaticSinglyLinkedList<instantiationType>::ArrayIndex::END_NODE_INDEX)) << "The head index of singly linked list should be invalid";
     EXPECT_EQ(freeList.size(), NUMBER_OF_ELEMENTS) << "The size of free linked list should be " << NUMBER_OF_ELEMENTS;
 
     /* Clean Up */
@@ -161,6 +162,7 @@ TEST_F(StaticSinglyLinkedList_TestSuite, MaximumSize)
 
     /* Assert */
     EXPECT_EQ(size, elementArray.size()) << "The size of singly linked list should be " << elementArray.size();
+    EXPECT_EQ(sut.headIndex(), NUMBER_OF_ELEMENTS - 1) << "The head index of singly linked list should be " << NUMBER_OF_ELEMENTS - 1;
     EXPECT_EQ(freeList.size(), 0) << "The size of free linked list should be 0";
 
     /* Clean Up */
@@ -182,6 +184,7 @@ TEST_F(StaticSinglyLinkedList_TestSuite, AddOneNodeInFrontFromFreeList)
     /* Assert */
     EXPECT_EQ(sut.front().element, element) << "The element in the front node should be " << element;
     EXPECT_EQ(sut.size(), 1) << "The size of singly linked list should be " << 1;
+    EXPECT_EQ(sut.headIndex(), 0) << "The head index of singly linked list should be 0";
     EXPECT_EQ(freeList.size(), NUMBER_OF_ELEMENTS - 1) << "The size of free linked list should be " << NUMBER_OF_ELEMENTS - 1;
 
     /* Clean Up */
@@ -206,6 +209,7 @@ TEST_F(StaticSinglyLinkedList_TestSuite, AddSecondNodeInFrontFromFreeList)
     /* Assert */
     EXPECT_EQ(sut.front().element, elementTwo) << "The element in the front node should be " << elementTwo;
     EXPECT_EQ(sut.size(), 2) << "The size of singly linked list should be " << 2;
+    EXPECT_EQ(sut.headIndex(), 1) << "The head index of singly linked list should be 1";
     EXPECT_EQ(freeList.size(), NUMBER_OF_ELEMENTS - 2) << "The size of free linked list should be " << NUMBER_OF_ELEMENTS - 2;
 
     /* Clean Up */
@@ -231,6 +235,7 @@ TEST_F(StaticSinglyLinkedList_TestSuite, AddOneNodeInFront)
     /* Assert */
     EXPECT_EQ(sut.front().element, element) << "The element in the front node should be " << element;
     EXPECT_EQ(sut.size(), 1) << "The size of singly linked list should be " << 1;
+    EXPECT_EQ(sut.headIndex(), 0) << "The head index of singly linked list should be 0";
     EXPECT_EQ(freeList.size(), NUMBER_OF_ELEMENTS - 1) << "The size of free linked list should be " << NUMBER_OF_ELEMENTS - 1;
 
     /* Clean Up */
@@ -261,6 +266,7 @@ TEST_F(StaticSinglyLinkedList_TestSuite, AddSecondNodeInFront)
     /* Assert */
     EXPECT_EQ(sut.front().element, elementTwo) << "The element in the front node should be " << elementTwo;
     EXPECT_EQ(sut.size(), 2) << "The size of singly linked list should be " << 2;
+    EXPECT_EQ(sut.headIndex(), 1) << "The head index of singly linked list should be 1";
     EXPECT_EQ(freeList.size(), NUMBER_OF_ELEMENTS - 2) << "The size of free linked list should be " << NUMBER_OF_ELEMENTS - 2;
 
     /* Clean Up */
@@ -291,6 +297,33 @@ TEST_F(StaticSinglyLinkedList_TestSuite, GetThirdNode)
     sut.clear(freeList);
 }
 
+TEST_F(StaticSinglyLinkedList_TestSuite, GetHeadIndex)
+{
+    /* Arrange */
+    LinkedList::StaticSinglyLinkedListNode<instantiationType> pool[NUMBER_OF_ELEMENTS];
+    LinkedList::StaticSinglyLinkedList<instantiationType> freeList = LinkedList::StaticSinglyLinkedList<instantiationType>::initializePool(pool, NUMBER_OF_ELEMENTS);
+
+    LinkedList::StaticSinglyLinkedList<instantiationType> sut(pool);
+    for (const auto entry : elementArray)
+    {
+        sut.addFront(freeList, entry);
+    }
+
+    // Remove 1st node
+    LinkedList::StaticSinglyLinkedListNode<instantiationType>* node = {};
+    uint32_t nodeIndex                                              = {};
+    sut.remove(0, node, nodeIndex);
+
+    /* Act */
+    const uint32_t headIndex = sut.headIndex();
+
+    /* Assert */
+    EXPECT_EQ(headIndex, NUMBER_OF_ELEMENTS - 2) << "The head index of singly linked list should be " << NUMBER_OF_ELEMENTS - 2;
+
+    /* Clean Up */
+    sut.clear(freeList);
+}
+
 TEST_F(StaticSinglyLinkedList_TestSuite, RemoveFrontNode)
 {
     /* Arrange */
@@ -312,6 +345,7 @@ TEST_F(StaticSinglyLinkedList_TestSuite, RemoveFrontNode)
     /* Assert */
     EXPECT_EQ(sut.front().element, elementOne) << "The element in the front node should be " << elementOne;
     EXPECT_EQ(sut.size(), 1);
+    EXPECT_EQ(sut.headIndex(), 0) << "The head index of singly linked list should be 0";
     EXPECT_EQ(freeList.size(), NUMBER_OF_ELEMENTS - 2) << "The size of free linked list should be " << NUMBER_OF_ELEMENTS - 2;
 
     /* Clean Up */
@@ -377,6 +411,7 @@ TEST_F(StaticSinglyLinkedList_TestSuite, RemoveTailNode)
     /* Assert */
     EXPECT_EQ(sut.get(index - 1).element, elementArray.at(NUMBER_OF_ELEMENTS - index));
     EXPECT_EQ(sut.size(), NUMBER_OF_ELEMENTS - 1);
+    EXPECT_EQ(sut.headIndex(), NUMBER_OF_ELEMENTS - 1) << "The head index of singly linked list should be " << NUMBER_OF_ELEMENTS - 1;
     EXPECT_EQ(freeList.size(), 0) << "The size of free linked list should be 0";
 
     /* Clean Up */
@@ -401,6 +436,7 @@ TEST_F(StaticSinglyLinkedList_TestSuite, RemoveAllNodes)
 
     /* Assert */
     EXPECT_EQ(sut.size(), 0) << "The size of singly linked list should be 0";
+    EXPECT_EQ(sut.headIndex(), static_cast<uint32_t>(LinkedList::StaticSinglyLinkedList<instantiationType>::ArrayIndex::END_NODE_INDEX)) << "The head index of singly linked list should be invalid";
     EXPECT_EQ(freeList.size(), NUMBER_OF_ELEMENTS) << "The size of free linked list should be " << NUMBER_OF_ELEMENTS;
 }
 
@@ -424,6 +460,7 @@ TEST_F(StaticSinglyLinkedList_TestSuite, ReverseList)
     {
         EXPECT_EQ(sut.get(index).element, elementArray.at(index));
     }
+    EXPECT_EQ(sut.headIndex(), 0) << "The head index of singly linked list should be 0";
 
     /* Clean Up */
     sut.clear(freeList);

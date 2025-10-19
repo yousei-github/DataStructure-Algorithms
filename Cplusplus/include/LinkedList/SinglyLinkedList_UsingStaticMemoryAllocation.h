@@ -112,9 +112,10 @@ public:
     const StaticSinglyLinkedListNode<T>& front() const;
     /**
      * @brief
-     * Return the [index]th node
+     * Return the node at @a index from the head
      * 
-     * @return [index]th node via constant reference
+     * @param[in] index Index of the node in list
+     * @return Node at @a index via constant reference
      * 
      * @note
      * An error results if the list is empty
@@ -154,9 +155,9 @@ public:
     void removeFront(StaticSinglyLinkedListNode<T>*& node, uint32_t& nodeIndex);
     /**
      * @brief
-     * Remove the [index]th element
+     * Remove the node at @a index from the head
      * 
-     * @param[in]  index     Index of the node to be removed in array
+     * @param[in]  index     Index of the node in list
      * @param[out] node      Node removed
      * @param[out] nodeIndex Index of the removed node in array
      */

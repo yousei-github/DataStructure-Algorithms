@@ -40,33 +40,95 @@
 namespace LinkedList
 {
 
-/** A singly linked list node class */
-template<class T> // Class T is the list element type
+/**
+ * @class Singly Linked List Node
+ * 
+ * @brief
+ * A singly linked list node class to use for singly linked list
+ * 
+ * @details
+ * Class T is the list element type
+ */
+template<class T>
 class SinglyLinkedListNode
 {
 public:
     T element {};                            // Node element value
     SinglyLinkedListNode<T>* next = nullptr; // Next node in list
 
-    SinglyLinkedListNode() {};                               // Constructor
-    SinglyLinkedListNode(const SinglyLinkedListNode<T>& v1); // Constructor
+    // Constructor
+    SinglyLinkedListNode() {};
+    /**
+     * @brief
+     * Constructor
+     * 
+     * @param[in] v1 Node to be copied
+     */
+    SinglyLinkedListNode(const SinglyLinkedListNode<T>& v1);
 
     SinglyLinkedListNode<T>& operator=(const SinglyLinkedListNode<T>& v1);
 };
 
-/** A singly linked list class */
-template<class T> // Cass T is the list element type
+/**
+ * @class Singly Linked List
+ * 
+ * @brief
+ * A singly linked list class uses dynamic memory allocation
+ * 
+ * @details
+ * Class T is the list element type
+ */
+template<class T>
 class SinglyLinkedList
 {
 public:
-    SinglyLinkedList();                              // Constructor
-    SinglyLinkedList(const SinglyLinkedList<T>& v1); // A copy constructor in case of the shallow copy since this class allocates memory
-    ~SinglyLinkedList();                             // Destructor
+    // Constructor
+    SinglyLinkedList();
+    /**
+     * @brief
+     * A copy constructor in case of the shallow copy since this class allocates memory
+     * 
+     * @param[in] v1 Node to be copied
+     */
+    SinglyLinkedList(const SinglyLinkedList<T>& v1);
+    // Destructor
+    ~SinglyLinkedList();
 
-    bool empty() const;                 // Check whether the list is empty
-    uint32_t size() const;              // Get the size of the list
-    const T& front() const;             // Get front element; an error results if the list is empty
-    const T& get(uint32_t index) const; // Return the [index]th element; an error results if the list is empty
+    /**
+     * @brief
+     * Check whether the list is empty
+     * 
+     * @retval true  List is empty
+     * @retval false List is not empty
+     */
+    bool empty() const;
+    /**
+     * @brief
+     * Get the size of the list
+     * 
+     * @return Size of the list
+     */
+    uint32_t size() const;
+    /**
+     * @brief
+     * Get front element
+     * 
+     * @return Front element via constant reference
+     * 
+     * @note
+     * An error results if the list is empty
+     */
+    const T& front() const;
+    /**
+     * @brief
+     * Return the [index]th element
+     * 
+     * @return [index]th element via constant reference
+     * 
+     * @note
+     * An error results if the list is empty
+     */
+    const T& get(uint32_t index) const;
 
     void addFront(const T& e);   // Add to front of list
     void removeFront();          // Remove from front
