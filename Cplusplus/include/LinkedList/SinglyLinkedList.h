@@ -121,21 +121,53 @@ public:
     const T& front() const;
     /**
      * @brief
-     * Return the [index]th element
+     * Return the element at @a index from the head
      * 
-     * @return [index]th element via constant reference
+     * @param[in] index Index of the element in list
+     * @return Element at @a index via constant reference
      * 
      * @note
      * An error results if the list is empty
      */
     const T& get(uint32_t index) const;
 
-    void addFront(const T& e);   // Add to front of list
-    void removeFront();          // Remove from front
-    void remove(uint32_t index); // Remove the [index]th element
-    void clear();                // Remove all the nodes
+    /**
+     * @brief
+     * Add an element to the front of list
+     * 
+     * @param[in] e Element to be added
+     */
+    void addFront(const T& e);
+    /**
+     * @brief
+     * Add an element at @a index from the head
+     * 
+     * @param[in] index Index of the list
+     * @param[in] e     Element to be added
+     * 
+     * @note
+     * If @a index exceeds the size of list, the element is added to the tail
+     */
+    void insert(uint32_t index, const T& e);
+    // Remove an element from the front of list
+    void removeFront();
+    /**
+     * @brief
+     * Remove the element at @a index from the head
+     * 
+     * @param[in] index Index of the element in list
+     */
+    void remove(uint32_t index);
+    // Remove all the elements
+    void clear();
 
-    static void reverseList(SinglyLinkedList<T>& list) // Reverse the elements of the list
+    /**
+     * @brief
+     * Reverse the elements of the list
+     * 
+     * @param[in] list List to be reversed
+     */
+    static void reverseList(SinglyLinkedList<T>& list)
     {
         SinglyLinkedList<T> firstReversedTemp, secondReversedTemp;
 
@@ -269,6 +301,40 @@ void SinglyLinkedList<T>::addFront(const T& e)
 }
 
 template<class T>
+void SinglyLinkedList<T>::insert(uint32_t index, const T& e)
+{
+    if (index == 0)
+    {
+        addFront(e);
+        return;
+    }
+
+    SinglyLinkedListNode<T>* u = new SinglyLinkedListNode<T>; // Create a new node for e
+    assert(u != nullptr);
+    u->element = e;
+
+    if (list_size <= index)
+    {
+        index = list_size; // Insert to the tail node
+    }
+
+    SinglyLinkedListNode<T>* previous = head;
+    SinglyLinkedListNode<T>* current  = head->next;
+    for (size_t i = 1; i < index; i++)
+    {
+        previous = current;
+        current  = current->next;
+    }
+
+    // Link previous node <-> u node
+    previous->next = u;
+    // Link u node <-> current node
+    u->next        = current;
+
+    list_size++;
+}
+
+template<class T>
 void SinglyLinkedList<T>::removeFront()
 {
     assert(! empty());
@@ -291,15 +357,15 @@ void SinglyLinkedList<T>::remove(uint32_t index)
     }
 
     SinglyLinkedListNode<T>* previous = head;
-    SinglyLinkedListNode<T>* node     = head->next;
+    SinglyLinkedListNode<T>* current  = head->next;
     for (size_t i = 1; i < index; i++)
     {
-        previous = node;
-        node     = node->next;
+        previous = current;
+        current  = current->next;
     }
 
-    previous->next = node->next;
-    delete node;
+    previous->next = current->next;
+    delete current;
     list_size--;
 }
 

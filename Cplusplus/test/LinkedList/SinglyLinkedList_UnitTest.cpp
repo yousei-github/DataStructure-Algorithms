@@ -198,7 +198,7 @@ TEST_F(SinglyLinkedList_TestSuite, Empty)
     LinkedList::SinglyLinkedList<instantiationType> sut;
 
     /* Act */
-    bool isEmpty = sut.empty();
+    const bool isEmpty = sut.empty();
 
     /* Assert */
     EXPECT_TRUE(isEmpty) << "The singly linked list should be empty";
@@ -214,66 +214,122 @@ TEST_F(SinglyLinkedList_TestSuite, MaximumSize)
     }
 
     /* Act */
-    uint32_t size = sut.size();
+    const uint32_t size = sut.size();
 
     /* Assert */
     EXPECT_EQ(size, elementArray.size()) << "The size of singly linked list should be " << elementArray.size();
 }
 
-TEST_F(SinglyLinkedList_TestSuite, AddOneNodeInFront)
+TEST_F(SinglyLinkedList_TestSuite, GetThirdElement)
 {
     /* Arrange */
     LinkedList::SinglyLinkedList<instantiationType> sut;
-    instantiationType element = elementArray.at(0);
+    const instantiationType elementOne = elementArray.at(0);
+    sut.addFront(elementOne);
+    const instantiationType elementTwo = elementArray.at(1);
+    sut.addFront(elementTwo);
+    const instantiationType elementThree = elementArray.at(2);
+    sut.addFront(elementThree);
+
+    /* Act */
+    const instantiationType thirdNode = sut.get(2);
+
+    /* Assert */
+    EXPECT_EQ(thirdNode, elementOne) << "The element in the third node should be " << elementOne;
+}
+
+TEST_F(SinglyLinkedList_TestSuite, AddOneElementInFront)
+{
+    /* Arrange */
+    LinkedList::SinglyLinkedList<instantiationType> sut;
+    const instantiationType element = elementArray.at(0);
 
     /* Act */
     sut.addFront(element);
 
     /* Assert */
     EXPECT_EQ(sut.front(), element) << "The element in the front node should be " << element;
+    EXPECT_EQ(sut.size(), 1) << "The size of singly linked list should be 1";
 }
 
-TEST_F(SinglyLinkedList_TestSuite, AddSecondNodeInFront)
+TEST_F(SinglyLinkedList_TestSuite, AddSecondElementInFront)
 {
     /* Arrange */
     LinkedList::SinglyLinkedList<instantiationType> sut;
-    instantiationType elementOne = elementArray.at(0);
+    const instantiationType elementOne = elementArray.at(0);
     sut.addFront(elementOne);
 
-    instantiationType elementTwo = elementArray.at(1);
+    const instantiationType elementTwo = elementArray.at(1);
 
     /* Act */
     sut.addFront(elementTwo);
 
     /* Assert */
     EXPECT_EQ(sut.front(), elementTwo) << "The element in the front node should be " << elementTwo;
+    EXPECT_EQ(sut.size(), 2) << "The size of singly linked list should be 2";
 }
 
-TEST_F(SinglyLinkedList_TestSuite, GetThirdNode)
+TEST_F(SinglyLinkedList_TestSuite, InsertOneElement)
 {
     /* Arrange */
     LinkedList::SinglyLinkedList<instantiationType> sut;
-    instantiationType elementOne = elementArray.at(0);
-    sut.addFront(elementOne);
-    instantiationType elementTwo = elementArray.at(1);
-    sut.addFront(elementTwo);
-    instantiationType elementThree = elementArray.at(2);
-    sut.addFront(elementThree);
+    const instantiationType element = elementArray.at(0);
 
     /* Act */
-    instantiationType thirdNode = sut.get(2);
+    sut.insert(0, element);
 
     /* Assert */
-    EXPECT_EQ(thirdNode, elementOne) << "The element in the third node should be " << elementOne;
+    EXPECT_EQ(sut.front(), element) << "The element in the front node should be " << element;
+    EXPECT_EQ(sut.size(), 1) << "The size of singly linked list should be 1";
 }
 
-TEST_F(SinglyLinkedList_TestSuite, RemoveFrontNode)
+TEST_F(SinglyLinkedList_TestSuite, InsertSecondElement)
 {
     /* Arrange */
     LinkedList::SinglyLinkedList<instantiationType> sut;
-    instantiationType elementOne = elementArray.at(0);
+    const instantiationType elementOne = elementArray.at(0);
+    sut.insert(0, elementOne);
+
+    const instantiationType elementTwo = elementArray.at(1);
+
+    /* Act */
+    sut.insert(1, elementTwo);
+
+    /* Assert */
+    EXPECT_EQ(sut.front(), elementOne) << "The element in the front node should be " << elementOne;
+    EXPECT_EQ(sut.get(1), elementTwo) << "The element at index 1 should be " << elementTwo;
+    EXPECT_EQ(sut.size(), 2) << "The size of singly linked list should be 2";
+}
+
+TEST_F(SinglyLinkedList_TestSuite, InsertBeyondList)
+{
+    /* Arrange */
+    LinkedList::SinglyLinkedList<instantiationType> sut;
+    const instantiationType elementOne = elementArray.at(0);
+    sut.insert(0, elementOne);
+
+    const instantiationType elementTwo = elementArray.at(1);
+    sut.insert(1, elementTwo);
+
+    const instantiationType elementThree = elementArray.at(2);
+
+    /* Act */
+    sut.insert(NUMBER_OF_ELEMENTS, elementThree);
+
+    /* Assert */
+    EXPECT_EQ(sut.front(), elementOne) << "The element in the front node should be " << elementOne;
+    EXPECT_EQ(sut.get(1), elementTwo) << "The element at index 1 should be " << elementTwo;
+    EXPECT_EQ(sut.get(2), elementThree) << "The element at index 2 should be " << elementThree;
+    EXPECT_EQ(sut.size(), 3) << "The size of singly linked list should be 3";
+}
+
+TEST_F(SinglyLinkedList_TestSuite, RemoveFrontElement)
+{
+    /* Arrange */
+    LinkedList::SinglyLinkedList<instantiationType> sut;
+    const instantiationType elementOne = elementArray.at(0);
     sut.addFront(elementOne);
-    instantiationType elementTwo = elementArray.at(1);
+    const instantiationType elementTwo = elementArray.at(1);
     sut.addFront(elementTwo);
 
     /* Act */
@@ -291,7 +347,7 @@ class RemoveSpecifiedNodeTest : public SinglyLinkedList_TestSuite, public testin
 
 INSTANTIATE_TEST_SUITE_P(InstantiationOne, RemoveSpecifiedNodeTest, testing::Range(uint32_t(0), uint32_t(NUMBER_OF_ELEMENTS - 1)));
 
-TEST_P(RemoveSpecifiedNodeTest, RemoveOneNodeExceptTail)
+TEST_P(RemoveSpecifiedNodeTest, RemoveOneElementExceptTail)
 {
     /* Arrange */
     LinkedList::SinglyLinkedList<instantiationType> sut;
@@ -310,7 +366,7 @@ TEST_P(RemoveSpecifiedNodeTest, RemoveOneNodeExceptTail)
     EXPECT_EQ(sut.size(), NUMBER_OF_ELEMENTS - 1);
 }
 
-TEST_F(SinglyLinkedList_TestSuite, RemoveTailNode)
+TEST_F(SinglyLinkedList_TestSuite, RemoveTailElement)
 {
     /* Arrange */
     LinkedList::SinglyLinkedList<instantiationType> sut;
@@ -329,7 +385,7 @@ TEST_F(SinglyLinkedList_TestSuite, RemoveTailNode)
     EXPECT_EQ(sut.size(), NUMBER_OF_ELEMENTS - 1);
 }
 
-TEST_F(SinglyLinkedList_TestSuite, RemoveAllNodes)
+TEST_F(SinglyLinkedList_TestSuite, RemoveAllElements)
 {
     /* Arrange */
     LinkedList::SinglyLinkedList<instantiationType> sut;

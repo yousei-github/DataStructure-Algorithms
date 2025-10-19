@@ -244,7 +244,7 @@ TEST_F(CircularlyDoublyLinkedList_TestSuite, RemoveOneNode)
     EXPECT_EQ(sut.front(), elementOne) << "The element in the front node should be " << elementOne;
 }
 
-TEST_F(CircularlyDoublyLinkedList_TestSuite, AddOneNodeInFront)
+TEST_F(CircularlyDoublyLinkedList_TestSuite, AddOneElementInFront)
 {
     /* Arrange */
     LinkedList::CircularlyDoublyLinkedList<instantiationType> sut;
@@ -270,7 +270,7 @@ TEST_F(CircularlyDoublyLinkedList_TestSuite, AddOneNodeInBack)
     EXPECT_EQ(sut.back(), element) << "The element in the back node should be " << element;
 }
 
-TEST_F(CircularlyDoublyLinkedList_TestSuite, AddSecondNodeInFront)
+TEST_F(CircularlyDoublyLinkedList_TestSuite, AddSecondElementInFront)
 {
     /* Arrange */
     LinkedList::CircularlyDoublyLinkedList<instantiationType> sut;
@@ -302,7 +302,7 @@ TEST_F(CircularlyDoublyLinkedList_TestSuite, AddSecondNodeInBack)
     EXPECT_EQ(sut.back(), elementTwo) << "The element in the back node should be " << elementTwo;
 }
 
-TEST_F(CircularlyDoublyLinkedList_TestSuite, GetThirdNode)
+TEST_F(CircularlyDoublyLinkedList_TestSuite, GetThirdElement)
 {
     /* Arrange */
     LinkedList::CircularlyDoublyLinkedList<instantiationType> sut;
@@ -320,7 +320,7 @@ TEST_F(CircularlyDoublyLinkedList_TestSuite, GetThirdNode)
     EXPECT_EQ(thirdNode, elementOne) << "The element in the third node should be " << elementOne;
 }
 
-TEST_F(CircularlyDoublyLinkedList_TestSuite, RemoveFrontNode)
+TEST_F(CircularlyDoublyLinkedList_TestSuite, RemoveFrontElement)
 {
     /* Arrange */
     LinkedList::CircularlyDoublyLinkedList<instantiationType> sut;
@@ -352,7 +352,7 @@ TEST_F(CircularlyDoublyLinkedList_TestSuite, RemoveBackNode)
     EXPECT_EQ(sut.front(), elementTwo) << "The element in the front node should be " << elementTwo;
 }
 
-TEST_F(CircularlyDoublyLinkedList_TestSuite, RemoveAllNodes)
+TEST_F(CircularlyDoublyLinkedList_TestSuite, RemoveAllElements)
 {
     /* Arrange */
     LinkedList::CircularlyDoublyLinkedList<instantiationType> sut;

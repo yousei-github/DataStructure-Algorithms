@@ -135,6 +135,7 @@ public:
      * @param[in] source Source list to which the node to be added previously belonged
      * @param[in] e      Element to be added
      */
+
     void addFront(StaticSinglyLinkedList<T>& source, const T& e);
     /**
      * @brief

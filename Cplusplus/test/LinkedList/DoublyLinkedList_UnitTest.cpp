@@ -226,7 +226,7 @@ TEST_F(DoublyLinkedList_TestSuite, MaximumSize)
     EXPECT_EQ(size, elementArray.size()) << "The size of doubly linked list should be " << elementArray.size();
 }
 
-TEST_F(DoublyLinkedList_TestSuite, AddOneNodeInFront)
+TEST_F(DoublyLinkedList_TestSuite, AddOneElementInFront)
 {
     /* Arrange */
     LinkedList::DoublyLinkedList<instantiationType> sut;
@@ -252,7 +252,7 @@ TEST_F(DoublyLinkedList_TestSuite, AddOneNodeInBack)
     EXPECT_EQ(sut.back(), element) << "The element in the back node should be " << element;
 }
 
-TEST_F(DoublyLinkedList_TestSuite, AddSecondNodeInFront)
+TEST_F(DoublyLinkedList_TestSuite, AddSecondElementInFront)
 {
     /* Arrange */
     LinkedList::DoublyLinkedList<instantiationType> sut;
@@ -284,7 +284,7 @@ TEST_F(DoublyLinkedList_TestSuite, AddSecondNodeInBack)
     EXPECT_EQ(sut.back(), elementTwo) << "The element in the back node should be " << elementTwo;
 }
 
-TEST_F(DoublyLinkedList_TestSuite, GetThirdNode)
+TEST_F(DoublyLinkedList_TestSuite, GetThirdElement)
 {
     /* Arrange */
     LinkedList::DoublyLinkedList<instantiationType> sut;
@@ -302,7 +302,7 @@ TEST_F(DoublyLinkedList_TestSuite, GetThirdNode)
     EXPECT_EQ(thirdNode, elementOne) << "The element in the third node should be " << elementOne;
 }
 
-TEST_F(DoublyLinkedList_TestSuite, RemoveFrontNode)
+TEST_F(DoublyLinkedList_TestSuite, RemoveFrontElement)
 {
     /* Arrange */
     LinkedList::DoublyLinkedList<instantiationType> sut;
@@ -334,7 +334,7 @@ TEST_F(DoublyLinkedList_TestSuite, RemoveBackNode)
     EXPECT_EQ(sut.front(), elementTwo) << "The element in the front node should be " << elementTwo;
 }
 
-TEST_F(DoublyLinkedList_TestSuite, RemoveAllNodes)
+TEST_F(DoublyLinkedList_TestSuite, RemoveAllElements)
 {
     /* Arrange */
     LinkedList::DoublyLinkedList<instantiationType> sut;
