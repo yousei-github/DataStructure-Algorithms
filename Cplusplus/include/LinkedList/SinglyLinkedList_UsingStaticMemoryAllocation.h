@@ -399,7 +399,7 @@ void StaticSinglyLinkedList<T>::insert(uint32_t index, StaticSinglyLinkedList<T>
 
     if (list_size < index)
     {
-        index = list_size; // Insert to the tail node
+        index = list_size; // Insert after tail node
     }
 
     StaticSinglyLinkedListNode<T>* previous = array + head_index;
@@ -432,7 +432,7 @@ void StaticSinglyLinkedList<T>::insert(uint32_t index, StaticSinglyLinkedListNod
 
     if (list_size < index)
     {
-        index = list_size; // Insert to the tail node
+        index = list_size; // Insert after tail node
     }
 
     StaticSinglyLinkedListNode<T>* previous = array + head_index;

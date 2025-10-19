@@ -315,7 +315,7 @@ void SinglyLinkedList<T>::insert(uint32_t index, const T& e)
 
     if (list_size < index)
     {
-        index = list_size; // Insert to the tail node
+        index = list_size; // Insert after tail node
     }
 
     SinglyLinkedListNode<T>* previous = head;

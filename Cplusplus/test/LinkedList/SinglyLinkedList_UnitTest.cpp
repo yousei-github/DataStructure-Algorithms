@@ -299,6 +299,28 @@ TEST_F(SinglyLinkedList_TestSuite, InsertOneElement)
     EXPECT_EQ(sut.size(), 1) << "The size of singly linked list should be 1";
 }
 
+TEST_F(SinglyLinkedList_TestSuite, InsertThirdElement)
+{
+    /* Arrange */
+    LinkedList::SinglyLinkedList<instantiationType> sut;
+    const instantiationType elementOne = elementArray.at(0);
+    sut.insert(0, elementOne);
+
+    const instantiationType elementTwo = elementArray.at(1);
+    sut.insert(1, elementTwo);
+
+    const instantiationType elementThree = elementArray.at(2);
+
+    /* Act */
+    sut.insert(1, elementThree);
+
+    /* Assert */
+    EXPECT_EQ(sut.front(), elementOne) << "The element in the front node should be " << elementOne;
+    EXPECT_EQ(sut.get(1), elementThree) << "The element at index 1 should be " << elementThree;
+    EXPECT_EQ(sut.get(2), elementTwo) << "The element at index 2 should be " << elementTwo;
+    EXPECT_EQ(sut.size(), 3) << "The size of singly linked list should be 3";
+}
+
 TEST_F(SinglyLinkedList_TestSuite, InsertSecondElement)
 {
     /* Arrange */
