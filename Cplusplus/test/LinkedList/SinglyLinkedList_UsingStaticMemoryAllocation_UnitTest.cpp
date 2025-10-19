@@ -169,6 +169,79 @@ TEST_F(StaticSinglyLinkedList_TestSuite, MaximumSize)
     sut.clear(freeList);
 }
 
+TEST_F(StaticSinglyLinkedList_TestSuite, GetFront)
+{
+    /* Arrange */
+    LinkedList::StaticSinglyLinkedListNode<instantiationType> pool[NUMBER_OF_ELEMENTS];
+    LinkedList::StaticSinglyLinkedList<instantiationType> freeList = LinkedList::StaticSinglyLinkedList<instantiationType>::initializePool(pool, NUMBER_OF_ELEMENTS);
+
+    LinkedList::StaticSinglyLinkedList<instantiationType> sut(pool);
+    for (const auto entry : elementArray)
+    {
+        sut.addFront(freeList, entry);
+    }
+
+    /* Act */
+    const LinkedList::StaticSinglyLinkedListNode<instantiationType> front = sut.front();
+
+    /* Assert */
+    EXPECT_EQ(front.element, elementArray.at(NUMBER_OF_ELEMENTS - 1));
+
+    /* Clean Up */
+    sut.clear(freeList);
+}
+
+TEST_F(StaticSinglyLinkedList_TestSuite, GetThirdNode)
+{
+    /* Arrange */
+    LinkedList::StaticSinglyLinkedListNode<instantiationType> pool[NUMBER_OF_ELEMENTS];
+    LinkedList::StaticSinglyLinkedList<instantiationType> freeList = LinkedList::StaticSinglyLinkedList<instantiationType>::initializePool(pool, NUMBER_OF_ELEMENTS);
+
+    LinkedList::StaticSinglyLinkedList<instantiationType> sut(pool);
+    const instantiationType elementOne = elementArray.at(0);
+    sut.addFront(freeList, elementOne);
+    const instantiationType elementTwo = elementArray.at(1);
+    sut.addFront(freeList, elementTwo);
+    const instantiationType elementThree = elementArray.at(2);
+    sut.addFront(freeList, elementThree);
+
+    /* Act */
+    const instantiationType thirdNode = sut.get(2).element;
+
+    /* Assert */
+    EXPECT_EQ(thirdNode, elementOne) << "The element in the third node should be " << elementOne;
+
+    /* Clean Up */
+    sut.clear(freeList);
+}
+
+TEST_F(StaticSinglyLinkedList_TestSuite, GetHeadIndex)
+{
+    /* Arrange */
+    LinkedList::StaticSinglyLinkedListNode<instantiationType> pool[NUMBER_OF_ELEMENTS];
+    LinkedList::StaticSinglyLinkedList<instantiationType> freeList = LinkedList::StaticSinglyLinkedList<instantiationType>::initializePool(pool, NUMBER_OF_ELEMENTS);
+
+    LinkedList::StaticSinglyLinkedList<instantiationType> sut(pool);
+    for (const auto entry : elementArray)
+    {
+        sut.addFront(freeList, entry);
+    }
+
+    // Remove 1st node
+    LinkedList::StaticSinglyLinkedListNode<instantiationType>* node = {};
+    uint32_t nodeIndex                                              = {};
+    sut.remove(0, node, nodeIndex);
+
+    /* Act */
+    const uint32_t headIndex = sut.headIndex();
+
+    /* Assert */
+    EXPECT_EQ(headIndex, NUMBER_OF_ELEMENTS - 2) << "The head index of singly linked list should be " << NUMBER_OF_ELEMENTS - 2;
+
+    /* Clean Up */
+    sut.clear(freeList);
+}
+
 TEST_F(StaticSinglyLinkedList_TestSuite, AddOneNodeInFrontFromFreeList)
 {
     /* Arrange */
@@ -273,7 +346,29 @@ TEST_F(StaticSinglyLinkedList_TestSuite, AddSecondNodeInFront)
     sut.clear(freeList);
 }
 
-TEST_F(StaticSinglyLinkedList_TestSuite, GetThirdNode)
+TEST_F(StaticSinglyLinkedList_TestSuite, InsertOneElementFromFreeList)
+{
+    /* Arrange */
+    LinkedList::StaticSinglyLinkedListNode<instantiationType> pool[NUMBER_OF_ELEMENTS];
+    LinkedList::StaticSinglyLinkedList<instantiationType> freeList = LinkedList::StaticSinglyLinkedList<instantiationType>::initializePool(pool, NUMBER_OF_ELEMENTS);
+
+    LinkedList::StaticSinglyLinkedList<instantiationType> sut(pool);
+    const instantiationType element = elementArray.at(0);
+
+    /* Act */
+    sut.insert(0, freeList, element);
+
+    /* Assert */
+    EXPECT_EQ(sut.front().element, element) << "The element in the front node should be " << element;
+    EXPECT_EQ(sut.size(), 1) << "The size of singly linked list should be 1";
+    EXPECT_EQ(sut.headIndex(), 0) << "The head index of singly linked list should be 0";
+    EXPECT_EQ(freeList.size(), NUMBER_OF_ELEMENTS - 1) << "The size of free linked list should be " << NUMBER_OF_ELEMENTS - 1;
+
+    /* Clean Up */
+    sut.clear(freeList);
+}
+
+TEST_F(StaticSinglyLinkedList_TestSuite, InsertSecondElementFromFreeList)
 {
     /* Arrange */
     LinkedList::StaticSinglyLinkedListNode<instantiationType> pool[NUMBER_OF_ELEMENTS];
@@ -281,44 +376,142 @@ TEST_F(StaticSinglyLinkedList_TestSuite, GetThirdNode)
 
     LinkedList::StaticSinglyLinkedList<instantiationType> sut(pool);
     const instantiationType elementOne = elementArray.at(0);
-    sut.addFront(freeList, elementOne);
+    sut.insert(0, freeList, elementOne);
+
     const instantiationType elementTwo = elementArray.at(1);
-    sut.addFront(freeList, elementTwo);
-    const instantiationType elementThree = elementArray.at(2);
-    sut.addFront(freeList, elementThree);
 
     /* Act */
-    const instantiationType thirdNode = sut.get(2).element;
+    sut.insert(1, freeList, elementTwo);
 
     /* Assert */
-    EXPECT_EQ(thirdNode, elementOne) << "The element in the third node should be " << elementOne;
+    EXPECT_EQ(sut.front().element, elementOne) << "The element in the front node should be " << elementOne;
+    EXPECT_EQ(sut.get(1).element, elementTwo) << "The element at index 1 should be " << elementTwo;
+    EXPECT_EQ(sut.size(), 2) << "The size of singly linked list should be 2";
+    EXPECT_EQ(sut.headIndex(), 0) << "The head index of singly linked list should be 0";
+    EXPECT_EQ(freeList.size(), NUMBER_OF_ELEMENTS - 2) << "The size of free linked list should be " << NUMBER_OF_ELEMENTS - 2;
 
     /* Clean Up */
     sut.clear(freeList);
 }
 
-TEST_F(StaticSinglyLinkedList_TestSuite, GetHeadIndex)
+TEST_F(StaticSinglyLinkedList_TestSuite, InsertBeyondListFromFreeList)
 {
     /* Arrange */
     LinkedList::StaticSinglyLinkedListNode<instantiationType> pool[NUMBER_OF_ELEMENTS];
     LinkedList::StaticSinglyLinkedList<instantiationType> freeList = LinkedList::StaticSinglyLinkedList<instantiationType>::initializePool(pool, NUMBER_OF_ELEMENTS);
 
     LinkedList::StaticSinglyLinkedList<instantiationType> sut(pool);
-    for (const auto entry : elementArray)
-    {
-        sut.addFront(freeList, entry);
-    }
+    const instantiationType elementOne = elementArray.at(0);
+    sut.insert(0, freeList, elementOne);
 
-    // Remove 1st node
-    LinkedList::StaticSinglyLinkedListNode<instantiationType>* node = {};
-    uint32_t nodeIndex                                              = {};
-    sut.remove(0, node, nodeIndex);
+    const instantiationType elementTwo = elementArray.at(1);
+    sut.insert(1, freeList, elementTwo);
+
+    const instantiationType elementThree = elementArray.at(2);
 
     /* Act */
-    const uint32_t headIndex = sut.headIndex();
+    sut.insert(NUMBER_OF_ELEMENTS, freeList, elementThree);
 
     /* Assert */
-    EXPECT_EQ(headIndex, NUMBER_OF_ELEMENTS - 2) << "The head index of singly linked list should be " << NUMBER_OF_ELEMENTS - 2;
+    EXPECT_EQ(sut.front().element, elementOne) << "The element in the front node should be " << elementOne;
+    EXPECT_EQ(sut.get(1).element, elementTwo) << "The element at index 1 should be " << elementTwo;
+    EXPECT_EQ(sut.get(2).element, elementThree) << "The element at index 2 should be " << elementThree;
+    EXPECT_EQ(sut.size(), 3) << "The size of singly linked list should be 3";
+    EXPECT_EQ(sut.headIndex(), 0) << "The head index of singly linked list should be 0";
+    EXPECT_EQ(freeList.size(), NUMBER_OF_ELEMENTS - 3) << "The size of free linked list should be " << NUMBER_OF_ELEMENTS - 3;
+
+    /* Clean Up */
+    sut.clear(freeList);
+}
+
+TEST_F(StaticSinglyLinkedList_TestSuite, InsertOneElement)
+{
+    /* Arrange */
+    LinkedList::StaticSinglyLinkedListNode<instantiationType> pool[NUMBER_OF_ELEMENTS];
+    LinkedList::StaticSinglyLinkedList<instantiationType> freeList = LinkedList::StaticSinglyLinkedList<instantiationType>::initializePool(pool, NUMBER_OF_ELEMENTS);
+
+    LinkedList::StaticSinglyLinkedList<instantiationType> sut(pool);
+    const instantiationType element                                 = elementArray.at(0);
+
+    LinkedList::StaticSinglyLinkedListNode<instantiationType>* node = {};
+    uint32_t nodeIndex                                              = {};
+    freeList.removeFront(node, nodeIndex);
+
+    /* Act */
+    sut.insert(0, *node, nodeIndex, element);
+
+    /* Assert */
+    EXPECT_EQ(sut.front().element, element) << "The element in the front node should be " << element;
+    EXPECT_EQ(sut.size(), 1) << "The size of singly linked list should be 1";
+    EXPECT_EQ(sut.headIndex(), 0) << "The head index of singly linked list should be 0";
+    EXPECT_EQ(freeList.size(), NUMBER_OF_ELEMENTS - 1) << "The size of free linked list should be " << NUMBER_OF_ELEMENTS - 1;
+
+    /* Clean Up */
+    sut.clear(freeList);
+}
+
+TEST_F(StaticSinglyLinkedList_TestSuite, InsertSecondElement)
+{
+    /* Arrange */
+    LinkedList::StaticSinglyLinkedListNode<instantiationType> pool[NUMBER_OF_ELEMENTS];
+    LinkedList::StaticSinglyLinkedList<instantiationType> freeList = LinkedList::StaticSinglyLinkedList<instantiationType>::initializePool(pool, NUMBER_OF_ELEMENTS);
+
+    LinkedList::StaticSinglyLinkedList<instantiationType> sut(pool);
+    const instantiationType elementOne                              = elementArray.at(0);
+
+    LinkedList::StaticSinglyLinkedListNode<instantiationType>* node = {};
+    uint32_t nodeIndex                                              = {};
+    freeList.removeFront(node, nodeIndex);
+    sut.insert(0, *node, nodeIndex, elementOne);
+
+    const instantiationType elementTwo = elementArray.at(1);
+    freeList.removeFront(node, nodeIndex);
+
+    /* Act */
+    sut.insert(1, *node, nodeIndex, elementTwo);
+
+    /* Assert */
+    EXPECT_EQ(sut.front().element, elementOne) << "The element in the front node should be " << elementOne;
+    EXPECT_EQ(sut.get(1).element, elementTwo) << "The element at index 1 should be " << elementTwo;
+    EXPECT_EQ(sut.size(), 2) << "The size of singly linked list should be 2";
+    EXPECT_EQ(sut.headIndex(), 0) << "The head index of singly linked list should be 0";
+    EXPECT_EQ(freeList.size(), NUMBER_OF_ELEMENTS - 2) << "The size of free linked list should be " << NUMBER_OF_ELEMENTS - 2;
+
+    /* Clean Up */
+    sut.clear(freeList);
+}
+
+TEST_F(StaticSinglyLinkedList_TestSuite, InsertBeyondList)
+{
+    /* Arrange */
+    LinkedList::StaticSinglyLinkedListNode<instantiationType> pool[NUMBER_OF_ELEMENTS];
+    LinkedList::StaticSinglyLinkedList<instantiationType> freeList = LinkedList::StaticSinglyLinkedList<instantiationType>::initializePool(pool, NUMBER_OF_ELEMENTS);
+
+    LinkedList::StaticSinglyLinkedList<instantiationType> sut(pool);
+    const instantiationType elementOne                              = elementArray.at(0);
+
+    LinkedList::StaticSinglyLinkedListNode<instantiationType>* node = {};
+    uint32_t nodeIndex                                              = {};
+    freeList.removeFront(node, nodeIndex);
+    sut.insert(0, *node, nodeIndex, elementOne);
+
+    const instantiationType elementTwo = elementArray.at(1);
+    freeList.removeFront(node, nodeIndex);
+    sut.insert(1, *node, nodeIndex, elementTwo);
+
+    const instantiationType elementThree = elementArray.at(2);
+    freeList.removeFront(node, nodeIndex);
+
+    /* Act */
+    sut.insert(NUMBER_OF_ELEMENTS, *node, nodeIndex, elementThree);
+
+    /* Assert */
+    EXPECT_EQ(sut.front().element, elementOne) << "The element in the front node should be " << elementOne;
+    EXPECT_EQ(sut.get(1).element, elementTwo) << "The element at index 1 should be " << elementTwo;
+    EXPECT_EQ(sut.get(2).element, elementThree) << "The element at index 2 should be " << elementThree;
+    EXPECT_EQ(sut.size(), 3) << "The size of singly linked list should be 3";
+    EXPECT_EQ(sut.headIndex(), 0) << "The head index of singly linked list should be 0";
+    EXPECT_EQ(freeList.size(), NUMBER_OF_ELEMENTS - 3) << "The size of free linked list should be " << NUMBER_OF_ELEMENTS - 3;
 
     /* Clean Up */
     sut.clear(freeList);

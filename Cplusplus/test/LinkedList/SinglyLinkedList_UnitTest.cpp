@@ -220,6 +220,22 @@ TEST_F(SinglyLinkedList_TestSuite, MaximumSize)
     EXPECT_EQ(size, elementArray.size()) << "The size of singly linked list should be " << elementArray.size();
 }
 
+TEST_F(SinglyLinkedList_TestSuite, GetFront)
+{
+    /* Arrange */
+    LinkedList::SinglyLinkedList<instantiationType> sut;
+    for (const auto entry : elementArray)
+    {
+        sut.addFront(entry);
+    }
+
+    /* Act */
+    const instantiationType front = sut.front();
+
+    /* Assert */
+    EXPECT_EQ(front, elementArray.at(NUMBER_OF_ELEMENTS - 1));
+}
+
 TEST_F(SinglyLinkedList_TestSuite, GetThirdElement)
 {
     /* Arrange */

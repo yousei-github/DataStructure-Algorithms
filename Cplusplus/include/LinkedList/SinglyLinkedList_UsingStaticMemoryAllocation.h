@@ -148,6 +148,31 @@ public:
     void addFront(StaticSinglyLinkedListNode<T>& u, const uint32_t& uIndex, const T& e);
     /**
      * @brief
+     * Add a node at @a index from the head
+     * 
+     * @param[in] index  Index of the list
+     * @param[in] source Source list to which the node to be added previously belonged
+     * @param[in] e      Element to be added
+     * 
+     * @note
+     * If @a index exceeds the size of list, the node is added to the tail
+     */
+    void insert(uint32_t index, StaticSinglyLinkedList<T>& source, const T& e);
+    /**
+     * @brief
+     * Add a node at @a index from the head
+     * 
+     * @param[in] index  Index of the list
+     * @param[in] u      Node to be added
+     * @param[in] uIndex Index of the node to be added in array
+     * @param[in] e      Element to be added
+     * 
+     * @note
+     * If @a index exceeds the size of list, the node is added to the tail
+     */
+    void insert(uint32_t index, StaticSinglyLinkedListNode<T>& u, const uint32_t& uIndex, const T& e);
+    /**
+     * @brief
      * Remove a node from the front of list
      * 
      * @param[out] node      Node removed
@@ -325,6 +350,7 @@ void StaticSinglyLinkedList<T>::addFront(StaticSinglyLinkedList<T>& source, cons
     if (source.empty())
     {
         assert(false);
+        return;
     }
 
     StaticSinglyLinkedListNode<T>* u = {}; // Create a new node for e
@@ -348,6 +374,82 @@ void StaticSinglyLinkedList<T>::addFront(StaticSinglyLinkedListNode<T>& u, const
     u.next_index = head_index;
     // The u node is now the head
     head_index   = uIndex;
+
+    list_size++;
+}
+
+template<class T>
+void StaticSinglyLinkedList<T>::insert(uint32_t index, StaticSinglyLinkedList<T>& source, const T& e)
+{
+    if (source.empty())
+    {
+        assert(false);
+        return;
+    }
+
+    if (index == 0)
+    {
+        addFront(source, e);
+        return;
+    }
+
+    StaticSinglyLinkedListNode<T>* u = {}; // Create a new node for e
+    uint32_t u_index                 = static_cast<uint32_t>(ArrayIndex::END_NODE_INDEX);
+    source.removeFront(u, u_index);
+
+    if (list_size <= index)
+    {
+        index = list_size; // Insert to the tail node
+    }
+
+    StaticSinglyLinkedListNode<T>* previous = array + head_index;
+    uint32_t current_index                  = previous->next_index;
+    StaticSinglyLinkedListNode<T>* current  = array + current_index;
+    for (size_t i = 1; i < index; i++)
+    {
+        previous      = current;
+        current_index = current->next_index;
+        current       = array + current_index;
+    }
+
+    u->element           = e;
+    // Link previous node <-> u node
+    previous->next_index = u_index;
+    // Link u node <-> current node
+    u->next_index        = current_index;
+
+    list_size++;
+}
+
+template<class T>
+void StaticSinglyLinkedList<T>::insert(uint32_t index, StaticSinglyLinkedListNode<T>& u, const uint32_t& uIndex, const T& e)
+{
+    if (index == 0)
+    {
+        addFront(u, uIndex, e);
+        return;
+    }
+
+    if (list_size <= index)
+    {
+        index = list_size; // Insert to the tail node
+    }
+
+    StaticSinglyLinkedListNode<T>* previous = array + head_index;
+    uint32_t current_index                  = previous->next_index;
+    StaticSinglyLinkedListNode<T>* current  = array + current_index;
+    for (size_t i = 1; i < index; i++)
+    {
+        previous      = current;
+        current_index = current->next_index;
+        current       = array + current_index;
+    }
+
+    u.element            = e;
+    // Link previous node <-> u node
+    previous->next_index = uIndex;
+    // Link u node <-> current node
+    u.next_index         = current_index;
 
     list_size++;
 }
