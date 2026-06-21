@@ -40,11 +40,23 @@ Build methods are explained below.
 ### 2. Command line-based Method.
 By referring the contents of `tasks.json` file in the `.vscode` directory, input the below command,
 ```sh
-$ [COMPILER] -O3 -g -Wall -fopenmp -I project_directory/inc/ -I project_directory/Cplusplus/include/ -I project_directory/Cplusplus/include/LinkedList/ 
-project_directory/Cplusplus/source/LinkedList/*.cpp project_directory/Cplusplus/source/*.cpp
--o project_directory/Cplusplus/bin/project_entry_O3
+$ g++ -O3 -g -Wall -Werror -fopenmp -I Cplusplus/include/ \
+    Cplusplus/source/*/*.cpp Cplusplus/source/*.cpp \
+    -o Cplusplus/bin/project_entry
 ```
-where [COMPILER] is the compiler's name, such as g++.
+Run this from the workspace root. `Cplusplus/source/*/*.cpp` are all of the module sources, and `Cplusplus/source/*.cpp` is the entry point (`Main.cpp`) plus `ProjectConfiguration.cpp`. Any C++11 compiler can replace `g++`; `-Werror` turns warnings into errors, matching `tasks.json`.
+
+### 3. Build and run a unit test (command line).
+Each test file compiles to its own executable, linking the module sources, `ProjectConfiguration.cpp`, the single test file, and the GoogleTest/HippoMocks libraries installed in the *Download Submodules* section above (there is no aggregate test runner). For example,
+```sh
+$ g++ -O0 -g -Wall -Werror -fopenmp -I Cplusplus/include/ \
+    Cplusplus/source/*/*.cpp Cplusplus/source/ProjectConfiguration.cpp \
+    Cplusplus/test/LinkedList/SinglyLinkedList_UnitTest.cpp \
+    -lgtest -lgtest_main -lgmock -lgmock_main \
+    -o Cplusplus/bin/SinglyLinkedList_UnitTest
+$ ./Cplusplus/bin/SinglyLinkedList_UnitTest
+```
+Swap in any file under `Cplusplus/test/` to run a different suite. In VS Code, the equivalent is the *Build active test by specified optimization* task.
 
 ## Debug
 Debug methods are explained below.
@@ -55,9 +67,10 @@ Debug methods are explained below.
 
 ### 2. Command line-based Method.
 By referring the contents of `launch.json` file in the `.vscode` directory, input the below command,
+```sh
+$ gdb --args ./Cplusplus/bin/project_entry --help
 ```
-(waiting for updating)
-```
+The executable is compiled with `-g`, so it is ready for `gdb` (or load it through `launch.json` in VS Code).
 
 # Run C++ Program
 According to the build setting in the `/tasks.json` file, input the command like,

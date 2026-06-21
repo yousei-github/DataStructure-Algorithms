@@ -1,0 +1,12 @@
+# Python dependencies for the exercises under Python/.
+# Versions are pinned to those installed in .virtualEnvironment; pip resolves
+# the transitive packages (pandas, pillow, tornado, ...) automatically.
+
+# Plotting / data libraries imported by the chart and exercise scripts
+bokeh==3.6.2
+matplotlib==3.10.0
+numpy==2.2.2
+seaborn==0.13.2
+
+# Test runner
+pytest>=7.0
