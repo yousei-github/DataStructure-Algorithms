@@ -3,6 +3,9 @@
 /bin/
 /Cplusplus/bin/
 /Python/.virtualEnvironment/
+## Python test suite artifacts
+__pycache__/
+.pytest_cache/
 
 # ignore the specified type of files (.stats/.statistics/.trace/Dockerfile/.sh)
 /*.stats

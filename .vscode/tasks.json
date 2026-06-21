@@ -442,6 +442,56 @@
 				"Show binary folder",
 			],
 			"dependsOrder": "sequence"
+		},
+		{
+			"type": "shell",
+			// Uses the project virtual environment (venv) interpreter (see Python/README.md) so
+			// pytest is available; falls back to nothing if the venv is missing.
+			"label": "Python: Run pytest tutorial",
+			"command": "${workspaceFolder}/Python/.virtualEnvironment/bin/python",
+			"args": [
+				"-m",
+				"pytest",
+				"-vv", // Increase verbosity: show one test per line
+				"${workspaceFolder}/Python/pytest/", // Run tests in a directory
+				// "${workspaceFolder}/Python/pytest/1_tutorial_test.py", // Run tests in a module
+			],
+			"options": {
+				"cwd": "${workspaceFolder}" // define the cwd command, such as ${fileDirname}
+			},
+			"problemMatcher": [],
+			"windows": {
+				"command": "${workspaceFolder}\\Python\\.virtualEnvironment\\Scripts\\python.exe",
+				"args": [
+					"-m",
+					"pytest",
+					"-vv",
+					"${workspaceFolder}\\Python\\pytest\\", // Run tests in a directory
+					// "${workspaceFolder}\\Python\\pytest\\1_tutorial_test.py", // Run tests in a module
+				],
+				"options": {
+					"cwd": "${workspaceFolder}"
+				},
+				"problemMatcher": []
+			},
+			// Defines to which group the task belongs
+			"group": {
+				"kind": "test",
+				"isDefault": true
+			},
+			// Defines how the task output is handled in the user interface
+			"presentation": {
+				"reveal": "always", // The panel is always brought to front.
+				"revealProblems": "onProblem", // Only reveals the Problems panel if a problem is found
+				"focus": false,
+				"echo": true,
+				"showReuseMessage": false, // Don't show the "Terminal will be reused by tasks, press any key to close it" message
+				"panel": "shared", // The terminal is shared and the output of other task runs are added to the same terminal
+				"clear": false,
+				"close": false
+			},
+			"hide": false,
+			"detail": "Run pytest on Python/pytest/. The task assumes the venv exists at Python/.virtualEnvironment (per Python/README.md). It does in this environment. If a user hasn't created it, they'll need python3 -m venv Python/.virtualEnvironment && pip install -r Python/requirements.txt first."
 		}
 	],
 	/**
