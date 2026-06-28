@@ -189,7 +189,7 @@ def get_list():
     - module: the fixture is destroyed during teardown of the last test in the module.
     - package: the fixture is destroyed during teardown of the last test in the package where the fixture is defined,
     including sub-packages and sub-directories within it.
-    - session: the fixture is destroyed at the end of the test session.
+    - session: the fixture is destroyed at the end of the test session (i.e., all tests requesting it).
     """
     return ["fixture1", "fixture2"]
 
@@ -286,3 +286,29 @@ def test_case_11(get_managed_list: list):
     # Assert
     assert get_managed_list[-1].name == NAME
     assert len(get_managed_list) == SIZE + 1
+
+# Test case 12: parametrizing fixtures
+
+
+@pytest.fixture(scope="function", params=["fixture1", "fixture2"])
+def get_parametrized_list(request):
+    """
+    Fixtures can be parametrized in which case they will be called multiple times,
+    each time executing the set of dependent tests, i.e. the tests that depend on this fixture.
+    """
+    return [request.param]
+
+
+def test_case_12(get_parametrized_list: list):
+    """
+    Test parametrizing fixtures
+    """
+    # Arrange
+    LIST = get_parametrized_list
+
+    # Act
+    SIZE = len(LIST)
+
+    # Assert
+    print(f'LIST: {LIST}')
+    assert SIZE == 1
