@@ -1,6 +1,8 @@
 # 1_tutorial_test.py
 """Test Tutorial."""
 
+
+import pathlib
 import sys
 import pytest
 
@@ -19,9 +21,15 @@ def test_case_1():
     Test successful_increment()
     pytest discovers test prefixed test functions or methods outside of class
     """
+    # Arrange
     OPERAND = 3
     EXPECTATION = OPERAND + 1
-    assert successful_increment(OPERAND) == EXPECTATION
+
+    # Act
+    RESULT = successful_increment(OPERAND)
+
+    # Assert
+    assert RESULT == EXPECTATION
 
 
 # Test case 2: test an exception
@@ -83,7 +91,7 @@ class TestClass:
 # Test case 4: request a unique temporary directory for functional tests
 
 
-def test_case_4(tmp_path):
+def test_case_4(tmp_path: pathlib.Path):
     """
     Test a unique temporary directory
     List the name tmp_path in the test function signature,
@@ -92,15 +100,18 @@ def test_case_4(tmp_path):
     Find out what kind of builtin pytest --fixtures exist with the command:
     $ pytest --fixtures
     """
+    # Arrange
     print(tmp_path, file=sys.stderr)  # tmp_path is a pathlib.Path object
     print(sys.path, file=sys.stderr)
-
     CONTENT = "content"
+
+    # Act
     d = tmp_path / "sub"
     d.mkdir()
     p = d / "hello.txt"
     p.write_text(CONTENT, encoding="utf-8")
 
+    # Assert
     assert p.read_text(encoding="utf-8") == CONTENT  # Test content
     assert len(list(tmp_path.iterdir())) == 1  # Test the number of created files
 
@@ -151,6 +162,7 @@ def test_case_7(x, y):
     """
     Test parameter combinations
     """
+    print(f'x: {x}, y: {y}')
     pass
 
 # Test case 8: parametrize test in a module
@@ -168,17 +180,6 @@ class TestParametrizeClass:
 # Test case 9: request fixtures
 
 
-class FixtureClass:
-    def __init__(self, name):
-        self.name = name
-        self.value = False
-
-    def set(self):
-        self.value = True
-
-# Arrange
-
-
 @pytest.fixture(scope="function")
 def get_list():
     """
@@ -190,10 +191,10 @@ def get_list():
     including sub-packages and sub-directories within it.
     - session: the fixture is destroyed at the end of the test session.
     """
-    return [FixtureClass("fixture1"), FixtureClass("fixture2")]
+    return ["fixture1", "fixture2"]
 
 
-def test_case_9(get_list):
+def test_case_9(get_list: list):
     """
     Test requesting fixtures
 
@@ -202,36 +203,57 @@ def test_case_9(get_list):
     Once pytest finds them, it runs those fixtures, captures what they returned (if anything),
     and passes those objects into the test function as arguments.
     """
+    # Arrange
+    SIZE = len(get_list)
     NAME = "fixture3"
+
     # Act
-    get_list.append(FixtureClass(NAME))
+    get_list.append(NAME)
 
     # Assert
-    assert get_list[-1].name == NAME
-    assert len(get_list) == 3
+    assert get_list[-1] == NAME
+    assert len(get_list) == SIZE + 1
 
 # Test case 10: reuse fixtures
 
 
-def test_case_10(get_list):
+def test_case_10(get_list: list):
     """
-    Test reusing fixtures
+    Test reusing fixtures (recommended for integration tests)
 
     Define a generic setup step that can be reused over and over,
     just like a normal function would be used.
     Two different tests can request the same fixture and have pytest give each test their own result from that fixture.
     """
+    # Arrange
+    BASE_NAME = "fixture"
+    LENGTH = len(BASE_NAME)
+
     # Act
     LIST = get_list
+
     # Assert
-    assert all((item.value != True) for item in LIST)
+    assert all((item[0:LENGTH] == BASE_NAME) for item in LIST)
     assert len(LIST) == 2
 
 # Test case 11: teardown/cleanup
 
 
+class FixtureClass:
+    """
+    A test fixture which has name and value
+    """
+
+    def __init__(self, name):
+        self.name = name
+        self.value = False
+
+    def set(self):
+        self.value = True
+
+
 @pytest.fixture(scope="function")
-def managed_list():
+def get_managed_list():
     """
     Use yield instead of return to add teardown/cleanup code to a fixture.
     The code before the yield runs as setup before the test;
@@ -241,11 +263,12 @@ def managed_list():
     # Setup
     resource = [FixtureClass("fixture1")]
     yield resource
+
     # Teardown
     resource.clear()
 
 
-def test_case_11(managed_list):
+def test_case_11(get_managed_list: list):
     """
     Test fixture teardown/cleanup
 
@@ -253,10 +276,13 @@ def test_case_11(managed_list):
     pytest runs the setup up to the yield, passes the yielded value into
     the test, then runs the remaining teardown code once the test completes.
     """
-    NAME = "fixture4"
+    # Arrange
+    SIZE = len(get_managed_list)
+    NAME = "fixture2"
+
     # Act
-    managed_list.append(FixtureClass(NAME))
+    get_managed_list.append(FixtureClass(NAME))
 
     # Assert
-    assert managed_list[-1].name == NAME
-    assert len(managed_list) == 2
+    assert get_managed_list[-1].name == NAME
+    assert len(get_managed_list) == SIZE + 1
